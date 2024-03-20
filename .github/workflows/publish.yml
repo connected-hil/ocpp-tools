@@ -11,7 +11,16 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: pnpm install
-      - run: pnpm publish
+      - uses: pnpm/action-setup@v3
+        name: Install pnpm
+        with:
+          version: 8
+          run_install: true
+      - name: Bump Version of package.json
+        uses: ramonpaolo/bump-version@v2.3.1
+        with:
+          tag: ${{ github.event.release.tag_name }}
+          commit: false
+      - run: pnpm publish --publish-branch main --no-git-checks --tag ${{ github.event.release.tag_name }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
