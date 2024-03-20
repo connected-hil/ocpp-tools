@@ -1,3 +1,4 @@
+import { parseOCPPMessage } from "src/message/ocpp-message";
 import {
   isValidAuthorizeResponseV16,
   isValidAuthorizeRequestV16,
@@ -55,9 +56,11 @@ import {
   isValidUnlockConnectorRequestV16,
   isValidUpdateFirmwareResponseV16,
   isValidUpdateFirmwareRequestV16,
-} from "../src/generated/validation/v16/index";
+} from "../src/generated/v16/";
+import { ocppVersion } from "src/message/types";
 
 interface TestCase {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   fun: (data: unknown) => data is any;
   validData: unknown;
   invalidData: unknown;
@@ -396,5 +399,28 @@ describe("Validation for OCPP v1.6 payloads", () => {
   test.each(tests)("$fun", ({ fun, validData, invalidData }) => {
     expect(fun(validData)).toBe(true);
     expect(fun(invalidData)).toBe(false);
+  });
+});
+
+describe(".parseOCPPMessage", () => {
+  test("throws error on invalid message", () => {
+    expect(() => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      parseOCPPMessage(
+        JSON.stringify([4, "abc123", "GenericError", "description"])
+      );
+    }).toThrow("Invalid OCPP message");
+  });
+  test("throws error on invalid messageType ID", () => {
+    expect(() => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      parseOCPPMessage(
+        JSON.stringify([6, "abc123", "GenericError", "description"]),
+        {
+          validateMessage: false,
+          ocppVersion: ocppVersion.ocpp16,
+        }
+      );
+    }).toThrow("Unknown message type: 6");
   });
 });

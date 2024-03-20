@@ -10,7 +10,7 @@
   <h3 align="center">OCPP tools</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    OCPP-J v1.6 message and payload types with validation.
     <br />
     <a href="#usage"><strong>Explore the docs »</strong></a>
     <br />
@@ -47,20 +47,13 @@
 
 ## About The Project
 
-**OCPP tools** is a collection of Open Charge Point Protocol message schemas, validation functions, utility types and typed interfaces for Typescript.
+**OCPP tools** is a collection of Open Charge Point Protocol message schemas, validation functions, utility types and typed interfaces for Typescript. Most of the code is generated using the OCPP payload JSON schema files.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Getting Started
 
 Add ocpp-tools to your project using any package manager, or by cloning this repository.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-
-- npm
-- nodejs > 18.x
 
 ### Installation
 
@@ -74,10 +67,19 @@ npm install @cshil/ocpp-tools
 
 ## Usage
 
-### Validating OCPP JSON messages
+### Typescript interfaces and types and utilities
+
+This project includes
+
+- All OCPP v1.6 payloads have [interfaces](src/generated/v16/types) generated from JSON schema files.
+- Types for valid CALL [actions, request and repsonse types as well as error code types](src/generated/v16/types/index.ts).
+- Utility classes for RPC requests for [CALL](src/message/ocpp-call.ts), [CALL_RESULT](src/message/ocpp-call-result.ts) and [CALL ERROR](src/message/ocpp-call-error.ts).
+- Parsers for [OCPP RPC calls](src/validation/index.ts) and [OCPP message payloads](src/generated/v16/validators.ts).
+
+### Validating OCPP JSON message payloads
 
 ```typescript
-import { isValidHeartbeatRequestV16, HeartbeatV15 } from "@cshil/ocpp-tools";
+import { isValidHeartbeatRequestV16, HeartbeatV16 } from "@cshil/ocpp-tools";
 
 const data = JSON.parse("{}"")
 const result = isValidHeartbeatRequestV16(data) //  => true
@@ -94,6 +96,28 @@ const message: AuthorizeResponseV16 = {
 };
 ```
 
+### Parsing full OCPP RPC messages
+
+```typescript
+import { parseOCPPMessage, OCPPCallResult } from "@cshil/ocpp-tools";
+
+const authorizeResponse = parseOCPPMessage(
+  "[3, \"abc123\", {\"status\": \"Accepted\""}]",
+) as OCPPCallResult
+```
+
+### Construct a response to a RPC call
+
+```typescript
+const request = parseOCPPMessage(
+  "[2, \"abc123\", \"Authorize\", {\"idTag\": \"abc-123-abc\""}]",
+) as OCPPCall
+
+console.info(request.toCallResponse({status: "Accepted"}).toRPCObject)
+// => [3, "abc123", { "status": "Accepted"}]
+
+```
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->
@@ -102,6 +126,7 @@ const message: AuthorizeResponseV16 = {
 
 - [x] Include OCPP v1.6 schemas
 - [ ] Include OCPP v2.0.1 schemas
+- [ ] Proper documentation
 
 See the [open issues](https://github.com/connected-hil/ocpp-tools/issues) for a full list of proposed features (and known issues).
 

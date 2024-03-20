@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="/Users/larte/work/hil/cloudcharger/ocpp-tools/tests/validate-ocpp-payload.test.ts">
+    <testCase name="validateOCPPMessage should return false if data is not provided" duration="3"/>
+    <testCase name="validateOCPPMessage should validate anything with given schema" duration="23"/>
+  </file>
+  <file path="/Users/larte/work/hil/cloudcharger/ocpp-tools/tests/ocpp-messages.test.ts">
+    <testCase name="OCPP CALL .parseOCPPMessage parses a BootNotification into OCPP CALL" duration="26"/>
+    <testCase name="OCPP CALL .parseOCPPMessage parses a Heartbeat into OCPP CALL" duration="1"/>
+    <testCase name="OCPP CALL Can create CALL_RESULT from CALL" duration="0"/>
+    <testCase name="OCPP CALL Returns RPC format for BootNotification" duration="1"/>
+    <testCase name="OCPP CALL Returns RPC format for Heartbeat" duration="0"/>
+    <testCase name="OCPP CALL Construct CALL via constructor" duration="1"/>
+    <testCase name="OCPP CALL_RESULT constructs {&quot;messageId&quot;: &quot;1234&quot;, &quot;messageTypeId&quot;: 3, &quot;payload&quot;: [Object]}" duration="2"/>
+    <testCase name="OCPP CALL_RESULT constructs {&quot;messageId&quot;: &quot;1234&quot;, &quot;messageTypeId&quot;: 3, &quot;payload&quot;: [Object]}" duration="0"/>
+    <testCase name="OCPP CALL_RESULT Returns RPC format for {&quot;action&quot;: &quot;BootNotification&quot;, &quot;messageId&quot;: &quot;1234&quot;, &quot;messageTypeId&quot;: 2, &quot;payload&quot;: [Object]}" duration="1"/>
+    <testCase name="OCPP CALL_RESULT Returns RPC format for {&quot;action&quot;: &quot;Heartbeat&quot;, &quot;messageId&quot;: &quot;1234&quot;, &quot;messageTypeId&quot;: 2, &quot;payload&quot;: [Object]}" duration="0"/>
+    <testCase name="OCPP CALL_ERROR constructs GenericError" duration="4"/>
+    <testCase name="OCPP CALL_ERROR constructs InternalError" duration="0"/>
+    <testCase name="OCPP CALL_ERROR Returns RPC format for {&quot;errorCode&quot;: &quot;GenericError&quot;, &quot;errorDescription&quot;: &quot;Some description&quot;, &quot;errorDetails&quot;: [Object], &quot;messageId&quot;: &quot;1234&quot;, &quot;messageTypeId&quot;: 4}" duration="0"/>
+    <testCase name="OCPP CALL_ERROR Returns RPC format for {&quot;errorCode&quot;: &quot;InternalError&quot;, &quot;errorDescription&quot;: &quot;&quot;, &quot;errorDetails&quot;: [Object], &quot;messageId&quot;: &quot;1234&quot;, &quot;messageTypeId&quot;: 4}" duration="0"/>
+    <testCase name="OCPP CALL_ERROR Construct CALL_ERROR via constructor can omit messageId and errorDetails" duration="0"/>
+    <testCase name="OCPPMessage validation validate RPC message BootNotification" duration="0"/>
+    <testCase name="OCPPMessage validation validate RPC message Heartbeat" duration="0"/>
+  </file>
+  <file path="/Users/larte/work/hil/cloudcharger/ocpp-tools/tests/validations-v16.test.ts">
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidAuthorizeResponseV16]" duration="44"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidAuthorizeRequestV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidBootNotificationResponseV16]" duration="2"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidBootNotificationRequestV16]" duration="2"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidCancelReservationResponseV16]" duration="4"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidCancelReservationRequestV16]" duration="0"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidChangeAvailabilityResponseV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidChangeAvailabilityRequestV16]" duration="2"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidChangeConfigurationResponseV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidChangeConfigurationRequestV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidClearCacheResponseV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidClearCacheRequestV16]" duration="0"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidClearChargingProfileResponseV16]" duration="2"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidClearChargingProfileRequestV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidDataTransferResponseV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidDataTransferRequestV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidDiagnosticsStatusNotificationResponseV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidDiagnosticsStatusNotificationRequestV16]" duration="3"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidFirmwareStatusNotificationResponseV16]" duration="0"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidFirmwareStatusNotificationRequestV16]" duration="2"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidGetCompositeScheduleResponseV16]" duration="3"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidGetCompositeScheduleRequestV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidGetConfigurationResponseV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidGetConfigurationRequestV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidGetDiagnosticsResponseV16]" duration="0"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidGetDiagnosticsRequestV16]" duration="3"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidGetLocalListVersionResponseV16]" duration="0"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidGetLocalListVersionRequestV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidHeartbeatResponseV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidHeartbeatRequestV16]" duration="0"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidMeterValuesResponseV16]" duration="0"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidRemoteStartTransactionResponseV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidRemoteStartTransactionRequestV16]" duration="7"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidRemoteStopTransactionResponseV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidRemoteStopTransactionRequestV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidReserveNowResponseV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidReserveNowRequestV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidResetResponseV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidResetRequestV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidSendLocalListResponseV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidSendLocalListRequestV16]" duration="6"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidSetChargingProfileResponseV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidSetChargingProfileRequestV16]" duration="6"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidStartTransactionResponseV16]" duration="2"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidStartTransactionRequestV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidStatusNotificationResponseV16]" duration="0"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidStatusNotificationRequestV16]" duration="3"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidStopTransactionResponseV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidStopTransactionRequestV16]" duration="6"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidTriggerMessageResponseV16]" duration="2"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidTriggerMessageRequestV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidUnlockConnectorResponseV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidUnlockConnectorRequestV16]" duration="1"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidUpdateFirmwareResponseV16]" duration="0"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidUpdateFirmwareRequestV16]" duration="3"/>
+    <testCase name="Validation for OCPP v1.6 payloads [Function isValidMeterValuesRequestV16]" duration="6"/>
+    <testCase name=".parseOCPPMessage throws error on invalid message" duration="8"/>
+    <testCase name=".parseOCPPMessage throws error on invalid messageType ID" duration="0"/>
+  </file>
+</testExecutions>
