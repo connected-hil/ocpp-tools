@@ -1,0 +1,29 @@
+name: Merge to main
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node: [18, 20]
+
+    name: Node v${{ matrix.node }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run linting rules and tests
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - uses: pnpm/action-setup@v3
+        name: Install pnpm
+        with:
+          version: 8
+          run_install: true
+      - run: pnpm run lint
+      - run: pnpm run test

@@ -1,6 +1,6 @@
 {
-  "name": "@cshil/ocpp-schema",
-  "version": "1.0.0",
+  "name": "@cshil/ocpp-tools",
+  "version": "0.0.1",
   "description": "A package containing schemas, types and validations for OCPP protocol version 1.6.x",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -8,6 +8,10 @@
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/connected-hil/ocpp-tools.git"
+  },
   "scripts": {
     "lint": "eslint --ext ts",
     "generate": "pnpm ts-node scripts/compile-schemas-to-types.ts",
@@ -47,5 +51,6 @@
   },
   "directories": {
     "test": "test"
-  }
+  },
+  "packageManager": "pnpm@8"
 }
