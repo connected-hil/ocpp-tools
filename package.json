@@ -51,5 +51,6 @@
   },
   "directories": {
     "test": "test"
-  }
+  },
+  "packageManager": "pnpm@8"
 }
