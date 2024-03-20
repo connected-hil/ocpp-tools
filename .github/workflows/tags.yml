@@ -28,13 +28,6 @@ jobs:
           tag: ${{ github.ref_name }}
           writeToFile: false
 
-      - name: Bump Version of package.json
-        uses: ramonpaolo/bump-version@v2.3.1
-        with:
-          tag: ${{ github.ref_name }}
-          commit: true
-          branch_to_push: "main"
-
       - name: Create Release
         uses: ncipollo/release-action@v1.12.0
         with:
