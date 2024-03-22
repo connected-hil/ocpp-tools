@@ -19,7 +19,7 @@ jobs:
       - name: Set version
         run: |
           TAG=${{ github.event.release.tag_name }}
-          echo "VERSION=${TAG:v}" >> $GITHUB_ENV"
+          echo "VERSION=${TAG:v}" >> $GITHUB_ENV
       - name: Bump Version of package.json
         uses: ramonpaolo/bump-version@v2.3.1
         with:
