@@ -1,71 +1,26 @@
 import { compile } from "json-schema-to-typescript";
 import fs from "fs";
 import path from "path";
-import {
-  validationFunctionAST,
-  sharedImportsAST,
-  importSchemaAST,
-} from "./validation-function-ast";
-import {
-  createSourceFile,
-  createPrinter,
-  NewLineKind,
-  ScriptKind,
-  ScriptTarget,
-  ListFormat,
-  Node,
-  factory,
-} from "typescript";
+import { generateSchemaFile } from "./schema-ast";
+import { generateValidators } from "./validators-ast";
+import { generateTypesIndex } from "./types-ast";
+import { GeneratorDefinition } from "./common";
+import { generateVersionIndex } from "./version-index-ast";
 
 const ocppVersions = ["v16"];
 
-const getFilePath = (
-  version: string,
-  dir: "schemas" | "types" | "validation",
-  name?: string
-): string => {
-  const components = [__dirname, "/../src/"];
-  if (dir !== "schemas") {
-    components.push("generated/");
-  }
-  const base = path.resolve(components.join(""));
-  return [base, dir, version, name].filter(Boolean).join("/");
-};
+const basePath = path.resolve([__dirname, "/../src/"].join(""));
 
 const generate = () => {
-  const printer = createPrinter({ newLine: NewLineKind.LineFeed });
   ocppVersions.forEach((version) => {
-    const path = getFilePath(version, "schemas");
+    const path = [basePath, "schemas", version].join("/");
     const schemas = fs.readdirSync(path).map((file) => file.split(".")[0]);
-    const generatedFun = getFilePath(version, "validation", `index.ts`);
-    fs.writeFileSync(
-      generatedFun,
-      "// This file is generated with schema compilation\n"
-    );
-    const sourceFile = createSourceFile(
-      getFilePath(version, "validation", `index.ts`),
-      "",
-      ScriptTarget.Latest,
-      false,
-      ScriptKind.TS
-    );
-    fs.appendFileSync(
-      generatedFun,
-      printer.printList(
-        ListFormat.MultiLine,
-        factory.createNodeArray(sharedImportsAST()),
-        sourceFile
-      ) + "\n"
-    );
 
-    let imports: Node[] = [];
-    let functions: Node[][] = [];
-    let typeExports: string[] = [];
+    const schemasDefinitions: GeneratorDefinition[] = [];
 
     schemas.forEach((schema) => {
-      const contents = fs
-        .readFileSync(getFilePath(version, "schemas", `${schema}.json`))
-        .toString();
+      const schemaPath = [path, `${schema}.json`].join("/");
+      const contents = fs.readFileSync(schemaPath).toString();
       const { title, ...rest } = JSON.parse(contents);
 
       // Postfix interface name with version
@@ -74,37 +29,31 @@ const generate = () => {
         ...rest,
       };
 
-      imports.push(importSchemaAST(jsonSchema.title, version, schema));
-      functions.push(validationFunctionAST(jsonSchema.title, version, schema));
-      typeExports.push(`export { ${jsonSchema.title} } from "./${schema}";`);
+      const typeFile = [
+        "src",
+        "generated",
+        version,
+        "types",
+        `${schema}.ts`,
+      ].join("/");
+      schemasDefinitions.push({
+        version,
+        title: jsonSchema.title,
+        schemaFile: [schema, ".json"].join(""),
+        typeFile,
+      });
 
       compile(jsonSchema, schema).then((ts) =>
-        fs.writeFileSync(getFilePath(version, "types", `${schema}.ts`), ts)
+        fs.writeFileSync(
+          [basePath, "generated", version, "types", `${schema}.ts`].join("/"),
+          ts
+        )
       );
     });
-
-    fs.appendFileSync(
-      generatedFun,
-      printer.printList(
-        ListFormat.MultiLine,
-        factory.createNodeArray(imports),
-        sourceFile
-      ) + "\n"
-    );
-    fs.writeFileSync(
-      getFilePath(version, "types", "index.ts"),
-      typeExports.join("\n")
-    );
-    functions.forEach((fun) => {
-      fs.appendFileSync(
-        generatedFun,
-        printer.printList(
-          ListFormat.MultiLine,
-          factory.createNodeArray(fun),
-          sourceFile
-        ) + "\n"
-      );
-    });
+    generateValidators(version, schemasDefinitions);
+    generateTypesIndex(version, schemasDefinitions);
+    generateSchemaFile(version, schemasDefinitions);
+    generateVersionIndex(version, schemasDefinitions);
     console.log("Done");
   });
 };
