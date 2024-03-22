@@ -5,6 +5,7 @@ import { generateSchemaFile } from "./schema-ast";
 import { generateValidators } from "./validators-ast";
 import { generateTypesIndex } from "./types-ast";
 import { GeneratorDefinition } from "./common";
+import { generateVersionIndex } from "./version-index-ast";
 
 const ocppVersions = ["v16"];
 
@@ -28,12 +29,18 @@ const generate = () => {
         ...rest,
       };
 
-      const typeFile = ["src", "generated", version, "types", `${schema}.ts`].join("/")
+      const typeFile = [
+        "src",
+        "generated",
+        version,
+        "types",
+        `${schema}.ts`,
+      ].join("/");
       schemasDefinitions.push({
         version,
         title: jsonSchema.title,
         schemaFile: [schema, ".json"].join(""),
-        typeFile
+        typeFile,
       });
 
       compile(jsonSchema, schema).then((ts) =>
@@ -43,16 +50,10 @@ const generate = () => {
         )
       );
     });
-    generateValidators(
-      version,
-      schemasDefinitions
-    );
-    generateTypesIndex(
-      version,
-      schemasDefinitions
-    );
+    generateValidators(version, schemasDefinitions);
+    generateTypesIndex(version, schemasDefinitions);
     generateSchemaFile(version, schemasDefinitions);
-
+    generateVersionIndex(version, schemasDefinitions);
     console.log("Done");
   });
 };
