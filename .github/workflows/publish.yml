@@ -16,11 +16,17 @@ jobs:
         with:
           version: 8
           run_install: true
-      - run: |
+      - name: Set version
+        run: |
           TAG=${{ github.event.release.tag_name }}
-          VERSION=${TAG#v}
-          echo "VERSION is: $VERSION"
+          echo "VERSION=${TAG:v}" >> $GITHUB_ENV"
+      - name: Bump Version of package.json
+        uses: ramonpaolo/bump-version@v2.3.1
+        with:
+          tag: ${{ env.VERSION }}
+          commit: false
+      - run: |
           pnpm build
-          pnpm publish --publish-branch main --no-git-checks --tag $VERSION
+          pnpm publish --publish-branch main --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
