@@ -18,7 +18,7 @@ jobs:
           run_install: true
       - run: |
           TAG=${{ github.event.release.tag_name }}
-          VERSION=${TAG:v}
+          VERSION=${TAG#v}
           echo "VERSION is: $VERSION"
           pnpm build
           pnpm publish --publish-branch main --no-git-checks --tag $VERSION
