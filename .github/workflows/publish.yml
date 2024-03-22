@@ -24,6 +24,7 @@ jobs:
       - run: |
           TAG=${{ github.event.release.tag_name }}
           echo "VERSION=${TAG#v}" >> $GITHUB_ENV
-          pnpm publish --publish-branch main --no-git-checks --tag ${VERSION}
+          echo $VERSION
+          pnpm publish --publish-branch main --no-git-checks --tag $VERSION
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
