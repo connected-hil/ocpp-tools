@@ -16,11 +16,6 @@ jobs:
         with:
           version: 8
           run_install: true
-      - name: Bump Version of package.json
-        uses: ramonpaolo/bump-version@v2.3.1
-        with:
-          tag: ${{ github.event.release.tag_name }}
-          commit: false
       - run: |
           TAG=${{ github.event.release.tag_name }}
           VERSION=${TAG:v}
