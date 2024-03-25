@@ -11,7 +11,7 @@ interface iOCPPCallError {
 }
 
 export class OCPPCallError {
-  public messageTypeId: OCPPMessageType;
+  public messageTypeId: OCPPMessageType.CALL_ERROR;
   public messageId: string;
 
   public errorCode: OCPPErrorCodeV16;

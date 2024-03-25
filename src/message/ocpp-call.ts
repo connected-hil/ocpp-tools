@@ -9,14 +9,16 @@ import { OCPPCallResult } from "./ocpp-call-result";
 import { OCPPCallV16 } from "src/generated/v16/types/ocpp-call";
 
 export class OCPPCall {
-  public messageTypeId: OCPPMessageType;
+  public messageTypeId: OCPPMessageType.CALL;
   public messageId: string;
 
   public action: ActionV16;
 
   public payload: OCPPRequestTypeV16;
 
-  public toCallResponse(payload: OCPPResponseTypeV16): OCPPCallResult {
+  public toCallResponse<T extends OCPPResponseTypeV16>(
+    payload: T
+  ): OCPPCallResult {
     return new OCPPCallResult({
       messageId: this.messageId,
       payload,
