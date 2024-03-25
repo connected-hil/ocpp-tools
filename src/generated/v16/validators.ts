@@ -32,9 +32,9 @@ import { type HeartbeatResponseV16 } from 'src/generated/v16/types/heartbeat-res
 import { type HeartbeatRequestV16 } from 'src/generated/v16/types/heartbeat'
 import { type MeterValuesResponseV16 } from 'src/generated/v16/types/meter-values-response'
 import { type MeterValuesRequestV16 } from 'src/generated/v16/types/meter-values'
-import { type OCPPCallErrorV16 } from 'src/generated/v16/types/ocpp-call-error'
-import { type OCPPCallResultV16 } from 'src/generated/v16/types/ocpp-call-result'
-import { type OCPPCallV16 } from 'src/generated/v16/types/ocpp-call'
+import { type RpcCallErrorV16 } from 'src/generated/v16/types/rpc-call-error'
+import { type RpcCallResultV16 } from 'src/generated/v16/types/rpc-call-result'
+import { type RpcCallV16 } from 'src/generated/v16/types/rpc-call'
 import { type RemoteStartTransactionResponseV16 } from 'src/generated/v16/types/remote-start-transaction-response'
 import { type RemoteStartTransactionRequestV16 } from 'src/generated/v16/types/remote-start-transaction'
 import { type RemoteStopTransactionResponseV16 } from 'src/generated/v16/types/remote-stop-transaction-response'
@@ -285,27 +285,6 @@ export const isValidMeterValuesResponseV16 = (data: unknown): data is MeterValue
 export const isValidMeterValuesRequestV16 = (data: unknown): data is MeterValuesRequestV16 => validateOCPPPayload(schemas.v16.meterValuesRequestV16, data)
 
 /**
- * Validation function for OCPPCallErrorV16 using JSON included schema.
- *  @param { unknown } data JSON decoded payload to validate
- *  @returns { boolean } true if payload is valid against schema, false otherwise
- *  */
-export const isValidOCPPCallErrorV16 = (data: unknown): data is OCPPCallErrorV16 => validateOCPPPayload(schemas.v16.oCPPCallErrorV16, data)
-
-/**
- * Validation function for OCPPCallResultV16 using JSON included schema.
- *  @param { unknown } data JSON decoded payload to validate
- *  @returns { boolean } true if payload is valid against schema, false otherwise
- *  */
-export const isValidOCPPCallResultV16 = (data: unknown): data is OCPPCallResultV16 => validateOCPPPayload(schemas.v16.oCPPCallResultV16, data)
-
-/**
- * Validation function for OCPPCallV16 using JSON included schema.
- *  @param { unknown } data JSON decoded payload to validate
- *  @returns { boolean } true if payload is valid against schema, false otherwise
- *  */
-export const isValidOCPPCallV16 = (data: unknown): data is OCPPCallV16 => validateOCPPPayload(schemas.v16.oCPPCallV16, data)
-
-/**
  * Validation function for RemoteStartTransactionResponseV16 using JSON included schema.
  *  @param { unknown } data JSON decoded payload to validate
  *  @returns { boolean } true if payload is valid against schema, false otherwise
@@ -360,6 +339,27 @@ export const isValidResetResponseV16 = (data: unknown): data is ResetResponseV16
  *  @returns { boolean } true if payload is valid against schema, false otherwise
  *  */
 export const isValidResetRequestV16 = (data: unknown): data is ResetRequestV16 => validateOCPPPayload(schemas.v16.resetRequestV16, data)
+
+/**
+ * Validation function for RpcCallErrorV16 using JSON included schema.
+ *  @param { unknown } data JSON decoded payload to validate
+ *  @returns { boolean } true if payload is valid against schema, false otherwise
+ *  */
+export const isValidRpcCallErrorV16 = (data: unknown): data is RpcCallErrorV16 => validateOCPPPayload(schemas.v16.rpcCallErrorV16, data);
+
+/**
+ * Validation function for RpcCallResultV16 using JSON included schema.
+ *  @param { unknown } data JSON decoded payload to validate
+ *  @returns { boolean } true if payload is valid against schema, false otherwise
+ *  */
+export const isValidRpcCallResultV16 = (data: unknown): data is RpcCallResultV16 => validateOCPPPayload(schemas.v16.rpcCallResultV16, data);
+
+/**
+ * Validation function for RpcCallV16 using JSON included schema.
+ *  @param { unknown } data JSON decoded payload to validate
+ *  @returns { boolean } true if payload is valid against schema, false otherwise
+ *  */
+export const isValidRpcCallV16 = (data: unknown): data is RpcCallV16 => validateOCPPPayload(schemas.v16.rpcCallV16, data);
 
 /**
  * Validation function for SendLocalListResponseV16 using JSON included schema.

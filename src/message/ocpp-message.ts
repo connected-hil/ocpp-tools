@@ -1,52 +1,59 @@
-import { OCPPCall } from "./ocpp-call";
-import { OCPPCallResult } from "./ocpp-call-result";
-import { OCPPCallError } from "./ocpp-call-error";
+import { OCPPCallV16, OCPPCallV201 } from "./ocpp-call";
+import { OCPPCallResultV16, OCPPCallResultV201 } from "./ocpp-call-result";
+import { OCPPCallErrorV16, OCPPCallErrorV201 } from "./ocpp-call-error";
 import { OCPPMessageType, ocppVersion } from "./types";
 import { validateOCPPMessage } from "src/validation";
 
-interface OCPPMessageParserOptions {
-  // Validate the message structure
-  validateMessage?: boolean
-  // Validate message OCPP Payload, only for RPC CALL type
-  validatePayload?: boolean
-  // OCPP version
-  ocppVersion: ocppVersion
-}
+type OCPPMessageParserOptions = {
+  validateMessage?: boolean;
+  validatePayload?: boolean;
+  version: ocppVersion;
+};
 
 export const parseOCPPMessage = (
   rawMessage: string,
   options: OCPPMessageParserOptions = {
-    ocppVersion: ocppVersion.ocpp16,
+    version: ocppVersion.ocpp16,
     validateMessage: true,
     validatePayload: false
   }
-): OCPPCallError | OCPPCallResult | OCPPCall => {
+) => {
   const parsed = JSON.parse(rawMessage);
   const [messageTypeId, messageId, ...attributes] = parsed;
-
-  if (options.validateMessage ?? false) {
-    if (!validateOCPPMessage(options.ocppVersion, parsed as unknown[])) {
+  const { version } = options;
+  if (options.validateMessage) {
+    if (validateOCPPMessage(version, parsed) === false) {
       throw new Error("Invalid OCPP message");
     }
   }
+
   switch (messageTypeId) {
     case OCPPMessageType.CALL: {
-      return new OCPPCall({
+      const attr = {
         messageId,
         action: attributes[0],
-        payload: attributes[1]
-      });
+        payload: attributes[1],
+      };
+      return version === ocppVersion.ocpp16
+        ? new OCPPCallV16(attr)
+        : new OCPPCallV201(attr);
     }
     case OCPPMessageType.CALL_RESULT: {
-      return new OCPPCallResult({ messageId, payload: attributes[0] });
+      const attr = { messageId, payload: attributes[0] };
+      return version === ocppVersion.ocpp16
+        ? new OCPPCallResultV16(attr)
+        : new OCPPCallResultV201(attr);
     }
     case OCPPMessageType.CALL_ERROR: {
-      return new OCPPCallError({
+      const attr = {
         messageId,
         errorCode: attributes[0],
         errorDescription: attributes[1],
-        errorDetails: attributes[2] ?? {}
-      });
+        errorDetails: attributes[2] ?? {},
+      };
+      return version === ocppVersion.ocpp16
+        ? new OCPPCallErrorV16(attr)
+        : new OCPPCallErrorV201(attr);
     }
     default:
       throw new Error(`Unknown message type: ${messageTypeId}`);

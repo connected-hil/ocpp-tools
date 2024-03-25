@@ -1,24 +1,18 @@
-import { OCPPMessageType } from './types'
-import { type OCPPErrorCodeV16 } from './../generated/v16'
-import { randomUUID } from 'crypto'
-import { type OCPPCallErrorV16 } from 'src/generated/v16/types/ocpp-call-error'
+import { OCPPErrorCodeV16 } from "src/generated/v16";
+import { OCPPMessageType, OCPPErrorCodeType } from "./types";
 
-interface iOCPPCallError {
-  messageId?: string
-  errorCode: OCPPErrorCodeV16
-  errorDescription: string
-  errorDetails?: Record<string, unknown>
-}
+import { randomUUID } from "crypto";
+import { OCPPErrorCodeV201 } from "src/generated/v201";
 
-export class OCPPCallError {
-  public messageTypeId: OCPPMessageType.CALL_ERROR
-  public messageId: string
+export class OCPPCallError<T extends OCPPErrorCodeType> {
+  public messageTypeId: OCPPMessageType.CALL_ERROR;
+  public messageId: string;
 
-  public errorCode: OCPPErrorCodeV16
-  public errorDescription: string
-  public errorDetails: Record<string, unknown>
+  public errorCode: T;
+  public errorDescription: string;
+  public errorDetails: Record<string, unknown>;
 
-  public toRPCObject (): OCPPCallErrorV16 {
+  public toRPCObject() {
     return [
       OCPPMessageType.CALL_ERROR,
       this.messageId,
@@ -32,12 +26,20 @@ export class OCPPCallError {
     messageId,
     errorCode,
     errorDescription,
-    errorDetails
-  }: iOCPPCallError) {
-    this.messageTypeId = OCPPMessageType.CALL_ERROR
-    this.messageId = messageId ?? randomUUID()
-    this.errorCode = errorCode
-    this.errorDescription = errorDescription
-    this.errorDetails = errorDetails ?? {}
+    errorDetails,
+  }: {
+    messageId?: string;
+    errorCode: T;
+    errorDescription: string;
+    errorDetails?: Record<string, unknown>;
+  }) {
+    this.messageTypeId = OCPPMessageType.CALL_ERROR;
+    this.messageId = messageId ?? randomUUID();
+    this.errorCode = errorCode;
+    this.errorDescription = errorDescription;
+    this.errorDetails = errorDetails ?? {};
   }
 }
+
+export class OCPPCallErrorV16 extends OCPPCallError<OCPPErrorCodeV16> {}
+export class OCPPCallErrorV201 extends OCPPCallError<OCPPErrorCodeV201> {}

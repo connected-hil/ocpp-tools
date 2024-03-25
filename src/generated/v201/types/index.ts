@@ -1,0 +1,148 @@
+import { AuthorizeResponseV201 } from "src/generated/v201/types/authorize-response";
+import { AuthorizeRequestV201 } from "src/generated/v201/types/authorize";
+import { BootNotificationResponseV201 } from "src/generated/v201/types/boot-notification-response";
+import { BootNotificationRequestV201 } from "src/generated/v201/types/boot-notification";
+import { CancelReservationResponseV201 } from "src/generated/v201/types/cancel-reservation-response";
+import { CancelReservationRequestV201 } from "src/generated/v201/types/cancel-reservation";
+import { CertificateSignedResponseV201 } from "src/generated/v201/types/certificate-signed-response";
+import { CertificateSignedRequestV201 } from "src/generated/v201/types/certificate-signed";
+import { ChangeAvailabilityResponseV201 } from "src/generated/v201/types/change-availability-response";
+import { ChangeAvailabilityRequestV201 } from "src/generated/v201/types/change-availability";
+import { ClearCacheResponseV201 } from "src/generated/v201/types/clear-cache-response";
+import { ClearCacheRequestV201 } from "src/generated/v201/types/clear-cache";
+import { ClearChargingProfileResponseV201 } from "src/generated/v201/types/clear-charging-profile-response";
+import { ClearChargingProfileRequestV201 } from "src/generated/v201/types/clear-charging-profile";
+import { ClearDisplayMessageResponseV201 } from "src/generated/v201/types/clear-display-message-response";
+import { ClearDisplayMessageRequestV201 } from "src/generated/v201/types/clear-display-message";
+import { ClearVariableMonitoringResponseV201 } from "src/generated/v201/types/clear-variable-monitoring-response";
+import { ClearVariableMonitoringRequestV201 } from "src/generated/v201/types/clear-variable-monitoring";
+import { ClearedChargingLimitResponseV201 } from "src/generated/v201/types/cleared-charging-limit-response";
+import { ClearedChargingLimitRequestV201 } from "src/generated/v201/types/cleared-charging-limit";
+import { CostUpdatedResponseV201 } from "src/generated/v201/types/cost-updated-response";
+import { CostUpdatedRequestV201 } from "src/generated/v201/types/cost-updated";
+import { CustomerInformationResponseV201 } from "src/generated/v201/types/customer-information-response";
+import { CustomerInformationRequestV201 } from "src/generated/v201/types/customer-information";
+import { DataTransferResponseV201 } from "src/generated/v201/types/data-transfer-response";
+import { DataTransferRequestV201 } from "src/generated/v201/types/data-transfer";
+import { DeleteCertificateResponseV201 } from "src/generated/v201/types/delete-certificate-response";
+import { DeleteCertificateRequestV201 } from "src/generated/v201/types/delete-certificate";
+import { FirmwareStatusNotificationResponseV201 } from "src/generated/v201/types/firmware-status-notification-response";
+import { FirmwareStatusNotificationRequestV201 } from "src/generated/v201/types/firmware-status-notification";
+import { GetBaseReportResponseV201 } from "src/generated/v201/types/get-base-report-response";
+import { GetBaseReportRequestV201 } from "src/generated/v201/types/get-base-report";
+import { GetCertificateStatusResponseV201 } from "src/generated/v201/types/get-certificate-status-response";
+import { GetCertificateStatusRequestV201 } from "src/generated/v201/types/get-certificate-status";
+import { GetChargingProfilesResponseV201 } from "src/generated/v201/types/get-charging-profiles-response";
+import { GetChargingProfilesRequestV201 } from "src/generated/v201/types/get-charging-profiles";
+import { GetCompositeScheduleResponseV201 } from "src/generated/v201/types/get-composite-schedule-response";
+import { GetCompositeScheduleRequestV201 } from "src/generated/v201/types/get-composite-schedule";
+import { GetDisplayMessagesResponseV201 } from "src/generated/v201/types/get-display-messages-response";
+import { GetDisplayMessagesRequestV201 } from "src/generated/v201/types/get-display-messages";
+import { GetInstalledCertificateIdsResponseV201 } from "src/generated/v201/types/get-installed-certificate-ids-response";
+import { GetInstalledCertificateIdsRequestV201 } from "src/generated/v201/types/get-installed-certificate-ids";
+import { GetLocalListVersionResponseV201 } from "src/generated/v201/types/get-local-list-version-response";
+import { GetLocalListVersionRequestV201 } from "src/generated/v201/types/get-local-list-version";
+import { GetLogResponseV201 } from "src/generated/v201/types/get-log-response";
+import { GetLogRequestV201 } from "src/generated/v201/types/get-log";
+import { GetMonitoringReportResponseV201 } from "src/generated/v201/types/get-monitoring-report-response";
+import { GetMonitoringReportRequestV201 } from "src/generated/v201/types/get-monitoring-report";
+import { GetReportResponseV201 } from "src/generated/v201/types/get-report-response";
+import { GetReportRequestV201 } from "src/generated/v201/types/get-report";
+import { GetTransactionStatusResponseV201 } from "src/generated/v201/types/get-transaction-status-response";
+import { GetTransactionStatusRequestV201 } from "src/generated/v201/types/get-transaction-status";
+import { GetVariablesResponseV201 } from "src/generated/v201/types/get-variables-response";
+import { GetVariablesRequestV201 } from "src/generated/v201/types/get-variables";
+import { Get15118EVCertificateResponseV201 } from "src/generated/v201/types/get15118-e-v-certificate-response";
+import { Get15118EVCertificateRequestV201 } from "src/generated/v201/types/get15118-e-v-certificate";
+import { HeartbeatResponseV201 } from "src/generated/v201/types/heartbeat-response";
+import { HeartbeatRequestV201 } from "src/generated/v201/types/heartbeat";
+import { InstallCertificateResponseV201 } from "src/generated/v201/types/install-certificate-response";
+import { InstallCertificateRequestV201 } from "src/generated/v201/types/install-certificate";
+import { LogStatusNotificationResponseV201 } from "src/generated/v201/types/log-status-notification-response";
+import { LogStatusNotificationRequestV201 } from "src/generated/v201/types/log-status-notification";
+import { MeterValuesResponseV201 } from "src/generated/v201/types/meter-values-response";
+import { MeterValuesRequestV201 } from "src/generated/v201/types/meter-values";
+import { NotifyChargingLimitResponseV201 } from "src/generated/v201/types/notify-charging-limit-response";
+import { NotifyChargingLimitRequestV201 } from "src/generated/v201/types/notify-charging-limit";
+import { NotifyCustomerInformationResponseV201 } from "src/generated/v201/types/notify-customer-information-response";
+import { NotifyCustomerInformationRequestV201 } from "src/generated/v201/types/notify-customer-information";
+import { NotifyDisplayMessagesResponseV201 } from "src/generated/v201/types/notify-display-messages-response";
+import { NotifyDisplayMessagesRequestV201 } from "src/generated/v201/types/notify-display-messages";
+import { NotifyEVChargingNeedsResponseV201 } from "src/generated/v201/types/notify-e-v-charging-needs-response";
+import { NotifyEVChargingNeedsRequestV201 } from "src/generated/v201/types/notify-e-v-charging-needs";
+import { NotifyEVChargingScheduleResponseV201 } from "src/generated/v201/types/notify-e-v-charging-schedule-response";
+import { NotifyEVChargingScheduleRequestV201 } from "src/generated/v201/types/notify-e-v-charging-schedule";
+import { NotifyEventResponseV201 } from "src/generated/v201/types/notify-event-response";
+import { NotifyEventRequestV201 } from "src/generated/v201/types/notify-event";
+import { NotifyMonitoringReportResponseV201 } from "src/generated/v201/types/notify-monitoring-report-response";
+import { NotifyMonitoringReportRequestV201 } from "src/generated/v201/types/notify-monitoring-report";
+import { NotifyReportResponseV201 } from "src/generated/v201/types/notify-report-response";
+import { NotifyReportRequestV201 } from "src/generated/v201/types/notify-report";
+import { PublishFirmwareResponseV201 } from "src/generated/v201/types/publish-firmware-response";
+import { PublishFirmwareStatusNotificationResponseV201 } from "src/generated/v201/types/publish-firmware-status-notification-response";
+import { PublishFirmwareStatusNotificationRequestV201 } from "src/generated/v201/types/publish-firmware-status-notification";
+import { PublishFirmwareRequestV201 } from "src/generated/v201/types/publish-firmware";
+import { ReportChargingProfilesResponseV201 } from "src/generated/v201/types/report-charging-profiles-response";
+import { ReportChargingProfilesRequestV201 } from "src/generated/v201/types/report-charging-profiles";
+import { ReservationStatusUpdateResponseV201 } from "src/generated/v201/types/reservation-status-update-response";
+import { ReservationStatusUpdateRequestV201 } from "src/generated/v201/types/reservation-status-update";
+import { ReserveNowResponseV201 } from "src/generated/v201/types/reserve-now-response";
+import { ReserveNowRequestV201 } from "src/generated/v201/types/reserve-now";
+import { ResetResponseV201 } from "src/generated/v201/types/reset-response";
+import { ResetRequestV201 } from "src/generated/v201/types/reset";
+import { RpcCallErrorV201 } from "src/generated/v201/types/rpc-call-error";
+import { RpcCallResultV201 } from "src/generated/v201/types/rpc-call-result";
+import { RpcCallV201 } from "src/generated/v201/types/rpc-call";
+import { SecurityEventNotificationResponseV201 } from "src/generated/v201/types/security-event-notification-response";
+import { SecurityEventNotificationRequestV201 } from "src/generated/v201/types/security-event-notification";
+import { SendLocalListResponseV201 } from "src/generated/v201/types/send-local-list-response";
+import { SendLocalListRequestV201 } from "src/generated/v201/types/send-local-list";
+import { SetChargingProfileResponseV201 } from "src/generated/v201/types/set-charging-profile-response";
+import { SetChargingProfileRequestV201 } from "src/generated/v201/types/set-charging-profile";
+import { SetDisplayMessageResponseV201 } from "src/generated/v201/types/set-display-message-response";
+import { SetDisplayMessageRequestV201 } from "src/generated/v201/types/set-display-message";
+import { SetMonitoringBaseResponseV201 } from "src/generated/v201/types/set-monitoring-base-response";
+import { SetMonitoringBaseRequestV201 } from "src/generated/v201/types/set-monitoring-base";
+import { SetMonitoringLevelResponseV201 } from "src/generated/v201/types/set-monitoring-level-response";
+import { SetMonitoringLevelRequestV201 } from "src/generated/v201/types/set-monitoring-level";
+import { SetNetworkProfileResponseV201 } from "src/generated/v201/types/set-network-profile-response";
+import { SetNetworkProfileRequestV201 } from "src/generated/v201/types/set-network-profile";
+import { SetVariableMonitoringResponseV201 } from "src/generated/v201/types/set-variable-monitoring-response";
+import { SetVariableMonitoringRequestV201 } from "src/generated/v201/types/set-variable-monitoring";
+import { SetVariablesResponseV201 } from "src/generated/v201/types/set-variables-response";
+import { SetVariablesRequestV201 } from "src/generated/v201/types/set-variables";
+import { SignCertificateResponseV201 } from "src/generated/v201/types/sign-certificate-response";
+import { SignCertificateRequestV201 } from "src/generated/v201/types/sign-certificate";
+import { RequestStartTransactionResponseV201 } from "src/generated/v201/types/start-transaction-response";
+import { RequestStartTransactionRequestV201 } from "src/generated/v201/types/start-transaction";
+import { StatusNotificationResponseV201 } from "src/generated/v201/types/status-notification-response";
+import { StatusNotificationRequestV201 } from "src/generated/v201/types/status-notification";
+import { RequestStopTransactionResponseV201 } from "src/generated/v201/types/stop-transaction-response";
+import { RequestStopTransactionRequestV201 } from "src/generated/v201/types/stop-transaction";
+import { TransactionEventResponseV201 } from "src/generated/v201/types/transaction-event-response";
+import { TransactionEventRequestV201 } from "src/generated/v201/types/transaction-event";
+import { TriggerMessageResponseV201 } from "src/generated/v201/types/trigger-message-response";
+import { TriggerMessageRequestV201 } from "src/generated/v201/types/trigger-message";
+import { UnlockConnectorResponseV201 } from "src/generated/v201/types/unlock-connector-response";
+import { UnlockConnectorRequestV201 } from "src/generated/v201/types/unlock-connector";
+import { UnpublishFirmwareResponseV201 } from "src/generated/v201/types/unpublish-firmware-response";
+import { UnpublishFirmwareRequestV201 } from "src/generated/v201/types/unpublish-firmware";
+import { UpdateFirmwareResponseV201 } from "src/generated/v201/types/update-firmware-response";
+import { UpdateFirmwareRequestV201 } from "src/generated/v201/types/update-firmware";
+
+export type ActionV201 = "Authorize" | "BootNotification" | "CancelReservation" | "CertificateSigned" | "ChangeAvailability" | "ClearCache" | "ClearChargingProfile" | "ClearDisplayMessage" | "ClearVariableMonitoring" | "ClearedChargingLimit" | "CostUpdated" | "CustomerInformation" | "DataTransfer" | "DeleteCertificate" | "FirmwareStatusNotification" | "GetBaseReport" | "GetCertificateStatus" | "GetChargingProfiles" | "GetCompositeSchedule" | "GetDisplayMessages" | "GetInstalledCertificateIds" | "GetLocalListVersion" | "GetLog" | "GetMonitoringReport" | "GetReport" | "GetTransactionStatus" | "GetVariables" | "Get15118EVCertificate" | "Heartbeat" | "InstallCertificate" | "LogStatusNotification" | "MeterValues" | "NotifyChargingLimit" | "NotifyCustomerInformation" | "NotifyDisplayMessages" | "NotifyEVChargingNeeds" | "NotifyEVChargingSchedule" | "NotifyEvent" | "NotifyMonitoringReport" | "NotifyReport" | "PublishFirmwareStatusNotification" | "PublishFirmware" | "ReportChargingProfiles" | "ReservationStatusUpdate" | "ReserveNow" | "Reset" | "SecurityEventNotification" | "SendLocalList" | "SetChargingProfile" | "SetDisplayMessage" | "SetMonitoringBase" | "SetMonitoringLevel" | "SetNetworkProfile" | "SetVariableMonitoring" | "SetVariables" | "SignCertificate" | "StartTransactionResponse" | "StartTransactionRequest" | "StatusNotification" | "StopTransactionResponse" | "StopTransactionRequest" | "TransactionEvent" | "TriggerMessage" | "UnlockConnector" | "UnpublishFirmware" | "UpdateFirmware";
+export type OCPPRequestTypeV201 = AuthorizeRequestV201 | BootNotificationRequestV201 | CancelReservationRequestV201 | CertificateSignedRequestV201 | ChangeAvailabilityRequestV201 | ClearCacheRequestV201 | ClearChargingProfileRequestV201 | ClearDisplayMessageRequestV201 | ClearVariableMonitoringRequestV201 | ClearedChargingLimitRequestV201 | CostUpdatedRequestV201 | CustomerInformationRequestV201 | DataTransferRequestV201 | DeleteCertificateRequestV201 | FirmwareStatusNotificationRequestV201 | GetBaseReportRequestV201 | GetCertificateStatusRequestV201 | GetChargingProfilesRequestV201 | GetCompositeScheduleRequestV201 | GetDisplayMessagesRequestV201 | GetInstalledCertificateIdsRequestV201 | GetLocalListVersionRequestV201 | GetLogRequestV201 | GetMonitoringReportRequestV201 | GetReportRequestV201 | GetTransactionStatusRequestV201 | GetVariablesRequestV201 | Get15118EVCertificateRequestV201 | HeartbeatRequestV201 | InstallCertificateRequestV201 | LogStatusNotificationRequestV201 | MeterValuesRequestV201 | NotifyChargingLimitRequestV201 | NotifyCustomerInformationRequestV201 | NotifyDisplayMessagesRequestV201 | NotifyEVChargingNeedsRequestV201 | NotifyEVChargingScheduleRequestV201 | NotifyEventRequestV201 | NotifyMonitoringReportRequestV201 | NotifyReportRequestV201 | PublishFirmwareStatusNotificationRequestV201 | PublishFirmwareRequestV201 | ReportChargingProfilesRequestV201 | ReservationStatusUpdateRequestV201 | ReserveNowRequestV201 | ResetRequestV201 | SecurityEventNotificationRequestV201 | SendLocalListRequestV201 | SetChargingProfileRequestV201 | SetDisplayMessageRequestV201 | SetMonitoringBaseRequestV201 | SetMonitoringLevelRequestV201 | SetNetworkProfileRequestV201 | SetVariableMonitoringRequestV201 | SetVariablesRequestV201 | SignCertificateRequestV201 | RequestStartTransactionResponseV201 | RequestStartTransactionRequestV201 | StatusNotificationRequestV201 | RequestStopTransactionResponseV201 | RequestStopTransactionRequestV201 | TransactionEventRequestV201 | TriggerMessageRequestV201 | UnlockConnectorRequestV201 | UnpublishFirmwareRequestV201 | UpdateFirmwareRequestV201;
+export type OCPPResponseTypeV201 = AuthorizeResponseV201 | BootNotificationResponseV201 | CancelReservationResponseV201 | CertificateSignedResponseV201 | ChangeAvailabilityResponseV201 | ClearCacheResponseV201 | ClearChargingProfileResponseV201 | ClearDisplayMessageResponseV201 | ClearVariableMonitoringResponseV201 | ClearedChargingLimitResponseV201 | CostUpdatedResponseV201 | CustomerInformationResponseV201 | DataTransferResponseV201 | DeleteCertificateResponseV201 | FirmwareStatusNotificationResponseV201 | GetBaseReportResponseV201 | GetCertificateStatusResponseV201 | GetChargingProfilesResponseV201 | GetCompositeScheduleResponseV201 | GetDisplayMessagesResponseV201 | GetInstalledCertificateIdsResponseV201 | GetLocalListVersionResponseV201 | GetLogResponseV201 | GetMonitoringReportResponseV201 | GetReportResponseV201 | GetTransactionStatusResponseV201 | GetVariablesResponseV201 | Get15118EVCertificateResponseV201 | HeartbeatResponseV201 | InstallCertificateResponseV201 | LogStatusNotificationResponseV201 | MeterValuesResponseV201 | NotifyChargingLimitResponseV201 | NotifyCustomerInformationResponseV201 | NotifyDisplayMessagesResponseV201 | NotifyEVChargingNeedsResponseV201 | NotifyEVChargingScheduleResponseV201 | NotifyEventResponseV201 | NotifyMonitoringReportResponseV201 | NotifyReportResponseV201 | PublishFirmwareResponseV201 | PublishFirmwareStatusNotificationResponseV201 | ReportChargingProfilesResponseV201 | ReservationStatusUpdateResponseV201 | ReserveNowResponseV201 | ResetResponseV201 | SecurityEventNotificationResponseV201 | SendLocalListResponseV201 | SetChargingProfileResponseV201 | SetDisplayMessageResponseV201 | SetMonitoringBaseResponseV201 | SetMonitoringLevelResponseV201 | SetNetworkProfileResponseV201 | SetVariableMonitoringResponseV201 | SetVariablesResponseV201 | SignCertificateResponseV201 | RequestStartTransactionResponseV201 | StatusNotificationResponseV201 | RequestStopTransactionResponseV201 | TransactionEventResponseV201 | TriggerMessageResponseV201 | UnlockConnectorResponseV201 | UnpublishFirmwareResponseV201 | UpdateFirmwareResponseV201;
+export enum OCPPErrorCodeV201 {
+    NotImplemented = "NotImplemented",
+    NotSupported = "NotSupported",
+    InternalError = "InternalError",
+    ProtocolError = "ProtocolError",
+    SecurityError = "SecurityError",
+    FormationViolation = "FormationViolation",
+    PropertyConstraintViolation = "PropertyConstraintViolation",
+    OccurenceConstraintViolation = "OccurenceConstraintViolation",
+    TypeConstraintViolation = "TypeConstraintViolation",
+    GenericError = "GenericError"
+}
+export type OCPPRpcMessageV201 = RpcCallV201 | RpcCallResultV201 | RpcCallErrorV201;

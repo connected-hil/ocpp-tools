@@ -30,9 +30,9 @@ import { type HeartbeatResponseV16 } from 'src/generated/v16/types/heartbeat-res
 import { type HeartbeatRequestV16 } from 'src/generated/v16/types/heartbeat'
 import { type MeterValuesResponseV16 } from 'src/generated/v16/types/meter-values-response'
 import { type MeterValuesRequestV16 } from 'src/generated/v16/types/meter-values'
-import { type OCPPCallErrorV16 } from 'src/generated/v16/types/ocpp-call-error'
-import { type OCPPCallResultV16 } from 'src/generated/v16/types/ocpp-call-result'
-import { type OCPPCallV16 } from 'src/generated/v16/types/ocpp-call'
+import { type RpcCallErrorV16 } from 'src/generated/v16/types/rpc-call-error'
+import { type RpcCallResultV16 } from 'src/generated/v16/types/rpc-call-result'
+import { type RpcCallV16 } from 'src/generated/v16/types/rpc-call'
 import { type RemoteStartTransactionResponseV16 } from 'src/generated/v16/types/remote-start-transaction-response'
 import { type RemoteStartTransactionRequestV16 } from 'src/generated/v16/types/remote-start-transaction'
 import { type RemoteStopTransactionResponseV16 } from 'src/generated/v16/types/remote-stop-transaction-response'
@@ -73,4 +73,4 @@ export enum OCPPErrorCodeV16 {
   TypeConstraintViolation = 'TypeConstraintViolation',
   GenericError = 'GenericError'
 }
-export type OCPPRPCMessageV16 = OCPPCallV16 | OCPPCallResultV16 | OCPPCallErrorV16
+export type OCPPRpcMessageV16 = RpcCallV16 | RpcCallResultV16 | RpcCallErrorV16;

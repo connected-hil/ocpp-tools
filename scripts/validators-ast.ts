@@ -1,5 +1,4 @@
 import {
-  // addSyntheticLeadingComment,
   factory,
   NodeFlags,
   SyntaxKind,
@@ -15,6 +14,7 @@ import fs from "fs";
 import { type GeneratorDefinition } from "./common";
 
 export const validationImportsAST = (
+  version: string,
   definitions: GeneratorDefinition[]
 ): Node[] => [
   factory.createImportDeclaration(
@@ -30,7 +30,9 @@ export const validationImportsAST = (
         )
       ])
     ),
-    factory.createStringLiteral(["src", "generated", "schemas"].join("/")),
+    factory.createStringLiteral(
+      ["src", "generated", version, "schemas"].join("/")
+    ),
     undefined
   ),
   factory.createImportDeclaration(
@@ -66,17 +68,20 @@ export const validationImportsAST = (
       factory.createStringLiteral(typeFile.replace(/.ts$/, "")),
       undefined
     );
-  })
+  }),
 ];
 
-export const validatorFunctionAST = (title: string): Node[] => [
+export const validatorFunctionAST = (
+  version: string,
+  title: string
+): Node[] => [
   factory.createJSDocComment(
     [
       ["Validation function for ", title, " using JSON included schema."].join(
         ""
       ),
       " @param { unknown } data JSON decoded payload to validate",
-      " @returns { boolean } true if payload is valid against schema, false otherwise\n"
+      " @returns { boolean } true if payload is valid against schema, false otherwise\n",
     ].join("\n")
   ),
   factory.createVariableStatement(
@@ -98,7 +103,7 @@ export const validatorFunctionAST = (title: string): Node[] => [
                 undefined,
                 factory.createKeywordTypeNode(SyntaxKind.UnknownKeyword),
                 undefined
-              )
+              ),
             ],
             factory.createTypePredicateNode(
               undefined,
@@ -116,27 +121,27 @@ export const validatorFunctionAST = (title: string): Node[] => [
                 factory.createPropertyAccessExpression(
                   factory.createPropertyAccessExpression(
                     factory.createIdentifier("schemas"),
-                    factory.createIdentifier("v16")
+                    factory.createIdentifier(version)
                   ),
                   factory.createIdentifier(
                     title.charAt(0).toLowerCase() + title.slice(1)
                   )
                 ),
-                factory.createIdentifier("data")
+                factory.createIdentifier("data"),
               ]
             )
           )
-        )
+        ),
       ],
       NodeFlags.Const
     )
-  )
+  ),
 ];
 
 export const generateValidators = (
   version: string,
   definitions: GeneratorDefinition[]
-): void => {
+) => {
   const filename = ["src", "generated", version, "validators.ts"].join("/");
   const printer = createPrinter({ newLine: NewLineKind.LineFeed });
   const sourceFile = createSourceFile(
@@ -152,16 +157,16 @@ export const generateValidators = (
     [
       printer.printList(
         ListFormat.MultiLine,
-        factory.createNodeArray(validationImportsAST(definitions)),
+        factory.createNodeArray(validationImportsAST(version, definitions)),
         sourceFile
       ),
       ...definitions.map(({ title }) =>
         printer.printList(
           ListFormat.MultiLine,
-          factory.createNodeArray(validatorFunctionAST(title)),
+          factory.createNodeArray(validatorFunctionAST(version, title)),
           sourceFile
         )
-      )
+      ),
     ].join("\n")
   );
 };

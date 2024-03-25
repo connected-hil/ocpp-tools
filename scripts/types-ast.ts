@@ -1,20 +1,20 @@
 import {
-  // addSyntheticLeadingComment,
+
   factory,
-  // NodeFlags,
+
   SyntaxKind,
   type Node,
-  // ListFormat,
+
   createPrinter,
   NewLineKind,
   ScriptTarget,
   ScriptKind,
   createSourceFile,
   EmitHint,
-  ListFormat
-} from 'typescript'
-import fs from 'fs'
-import { type GeneratorDefinition } from './common'
+  ListFormat,
+} from "typescript";
+import fs from "fs";
+import { GeneratorDefinition, capitalize } from "./common";
 
 const errorCodes = {
   v16: [
@@ -55,94 +55,96 @@ const enumAST = (name: string, enums: string[]): Node =>
     )
   )
 
-const importAST = (name: string, path: string): Node => factory.createImportDeclaration(
-  undefined,
-  factory.createImportClause(
-    false,
+const importAST = (name: string, path: string): Node =>
+  factory.createImportDeclaration(
     undefined,
-    factory.createNamedImports([
-      factory.createImportSpecifier(
-        false,
-        undefined,
-        factory.createIdentifier(name)
-      )
-    ])
-  ),
-  factory.createStringLiteral(path),
-  undefined
-)
+    factory.createImportClause(
+      false,
+      undefined,
+      factory.createNamedImports([
+        factory.createImportSpecifier(
+          false,
+          undefined,
+          factory.createIdentifier(name)
+        ),
+      ])
+    ),
+    factory.createStringLiteral(path),
+    undefined
+  );
 
 const importsAST = (definitions: GeneratorDefinition[]): Node[] =>
-  definitions.map(({ title, typeFile }) => importAST(title, typeFile.replace(/\.ts$/, '')))
+  definitions.map(({ title, typeFile }) =>
+    importAST(title, typeFile.replace(/\.ts$/, ""))
+  );
 
-export const generateTypesIndex = (version: string, definitions: GeneratorDefinition[]): void => {
-  const filename = ['src', 'generated', version, 'types', 'index.ts'].join('/')
-  const printer = createPrinter({ newLine: NewLineKind.LineFeed })
-  const titles = definitions.map((s) => s.title)
+export const generateTypesIndex = (
+  version: string,
+  definitions: GeneratorDefinition[]
+): void => {
+  const filename = ["src", "generated", version, "types", "index.ts"].join("/");
+  const printer = createPrinter({ newLine: NewLineKind.LineFeed });
+  const titles = definitions.map((s) => s.title);
   const sourceFile = createSourceFile(
     filename,
     '',
     ScriptTarget.Latest,
     false,
     ScriptKind.TS
-  )
-  const upperCaseVersion = version.toUpperCase()
+  );
+  const upperCaseVersion = capitalize(version);
 
-  fs.writeFileSync(
-    filename,
-    [
-      printer.printList(
-        ListFormat.MultiLine,
-        factory.createNodeArray(importsAST(definitions)),
-        sourceFile
+  const types: string[] = [
+    printer.printList(
+      ListFormat.MultiLine,
+      factory.createNodeArray(importsAST(definitions)),
+      sourceFile
+    ),
+    printer.printNode(
+      EmitHint.Unspecified,
+      unionTypeAST(
+        ["Action", upperCaseVersion].join(""),
+        titles
+          .filter((t) => /Request/.exec(t))
+          .map((t) => t.replace(capitalize(version), ""))
+          .map((a) => `"${a.replace(/Request/, "")}"`)
       ),
-      printer.printNode(
-        EmitHint.Unspecified,
-        unionTypeAST(
-          ['Action', upperCaseVersion].join(''),
-          titles
-            .filter((t) => /Request/.exec(t))
-            .map((t) => t.replace(version.toUpperCase(), ''))
-            .map((a) => `"${a.replace(/Request/, '')}"`)
-        ),
-        sourceFile
+      sourceFile
+    ),
+    printer.printNode(
+      EmitHint.Unspecified,
+      unionTypeAST(
+        ["OCPPRequestType", upperCaseVersion].join(""),
+        titles.filter((t) => /Request/.exec(t))
       ),
-      printer.printNode(
-        EmitHint.Unspecified,
-        unionTypeAST(
-          ['OCPPRequestType', upperCaseVersion].join(''),
-          titles
-            .filter((t) => /Request/.exec(t))
-        ),
-        sourceFile
+      sourceFile
+    ),
+    printer.printNode(
+      EmitHint.Unspecified,
+      unionTypeAST(
+        ["OCPPResponseType", upperCaseVersion].join(""),
+        titles.filter((t) => /Response/.exec(t))
       ),
-      printer.printNode(
-        EmitHint.Unspecified,
-        unionTypeAST(
-          ['OCPPResponseType', upperCaseVersion].join(''),
-          titles
-            .filter((t) => /Response/.exec(t))
-        ),
-        sourceFile
+      sourceFile
+    ),
+    printer.printNode(
+      EmitHint.Unspecified,
+      enumAST(
+        ["OCPPErrorCode", version.toLocaleUpperCase()].join(""),
+        errorCodes.v16
       ),
-      printer.printNode(
-        EmitHint.Unspecified,
-        enumAST(
-          ['OCPPErrorCode', version.toLocaleUpperCase()].join(''),
-          errorCodes.v16
-        ),
-        sourceFile
-      ),
-      printer.printNode(
-        EmitHint.Unspecified,
-        unionTypeAST(
-          ['OCPPRPCMessage', version.toLocaleUpperCase()].join(''),
-          ['OCPPCall', 'OCPPCallResult', 'OCPPCallError'].map(
-            (m) => m + version.toUpperCase()
-          )
-        ),
-        sourceFile
-      )
-    ].join('\n')
-  )
-}
+      sourceFile
+    ),
+    printer.printNode(
+      EmitHint.Unspecified,
+      unionTypeAST(["OCPPRpcMessage", upperCaseVersion].join(""), [
+        ["RpcCall", upperCaseVersion].join(""),
+        ["RpcCallResult", upperCaseVersion].join(""),
+        ["RpcCallError", upperCaseVersion].join(""),
+      ]),
+      sourceFile
+    ),
+  ];
+
+  fs.writeFileSync(filename, types.join("\n"), { encoding: "utf-8" });
+};

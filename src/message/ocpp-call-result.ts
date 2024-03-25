@@ -1,14 +1,15 @@
-import { OCPPMessageType } from './types'
-import { type OCPPResponseTypeV16 } from './../generated/v16'
-import { type OCPPCallResultV16 } from 'src/generated/v16/types/ocpp-call-result'
+import { OCPPResponseTypeV16 } from "src/generated/v16";
+import { OCPPMessageType } from "./types";
+import { OCPPResponsePayloadType } from "./types";
+import { OCPPResponseTypeV201 } from "src/generated/v201/types";
 
-export class OCPPCallResult {
-  public messageTypeId: OCPPMessageType.CALL_RESULT
-  public messageId: string
+export class OCPPCallResult<ResponseType extends OCPPResponsePayloadType> {
+  public messageTypeId: OCPPMessageType.CALL_RESULT;
+  public messageId: string;
 
-  public payload: OCPPResponseTypeV16
+  public payload: ResponseType;
 
-  public toRPCObject (): OCPPCallResultV16 {
+  public toRPCObject() {
     return [
       OCPPMessageType.CALL_RESULT,
       this.messageId,
@@ -20,11 +21,14 @@ export class OCPPCallResult {
     messageId,
     payload
   }: {
-    messageId: string
-    payload: OCPPResponseTypeV16
+    messageId: string;
+    payload: ResponseType;
   }) {
     this.messageTypeId = OCPPMessageType.CALL_RESULT
     this.messageId = messageId
     this.payload = payload
   }
 }
+
+export class OCPPCallResultV16 extends OCPPCallResult<OCPPResponseTypeV16> {}
+export class OCPPCallResultV201 extends OCPPCallResult<OCPPResponseTypeV201> {}

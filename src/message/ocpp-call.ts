@@ -1,31 +1,45 @@
-import { OCPPMessageType } from './types'
 import {
-  type ActionV16,
-  type OCPPRequestTypeV16,
-  type OCPPResponseTypeV16
-} from './../generated/v16'
-import { randomUUID } from 'crypto'
-import { OCPPCallResult } from './ocpp-call-result'
-import { type OCPPCallV16 } from 'src/generated/v16/types/ocpp-call'
+  OCPPMessageType,
+  OCPPRequestPayloadType,
+  CallActionType,
+  OCPPResponsePayloadType,
+} from "./types";
+import { ActionV16, OCPPRequestTypeV16 } from "src/generated/v16";
+import { ActionV201, OCPPRequestTypeV201 } from "src/generated/v201";
 
-export class OCPPCall {
-  public messageTypeId: OCPPMessageType.CALL
-  public messageId: string
+import { randomUUID } from "crypto";
+import { OCPPCallResult } from "./ocpp-call-result";
 
-  public action: ActionV16
+export interface iOCPPCall<
+  RequestPayloadType extends OCPPRequestPayloadType,
+  ActionType extends CallActionType
+> {
+  messageId?: string;
+  action: ActionType;
+  payload: RequestPayloadType;
+}
 
-  public payload: OCPPRequestTypeV16
+export class OCPPCall<
+  RequestPayloadType extends OCPPRequestPayloadType,
+  ActionType extends CallActionType
+> {
+  public messageTypeId: OCPPMessageType.CALL;
+  public messageId: string;
 
-  public toCallResponse<T extends OCPPResponseTypeV16>(
+  public action: ActionType;
+
+  public payload: RequestPayloadType;
+
+  public toCallResponse<T extends OCPPResponsePayloadType>(
     payload: T
-  ): OCPPCallResult {
-    return new OCPPCallResult({
+  ): OCPPCallResult<T> {
+    return new OCPPCallResult<T>({
       messageId: this.messageId,
       payload
     })
   }
 
-  public toRPCObject (): OCPPCallV16 {
+  public toRPCObject() {
     return [
       OCPPMessageType.CALL,
       this.messageId,
@@ -37,15 +51,14 @@ export class OCPPCall {
   constructor ({
     messageId,
     action,
-    payload
-  }: {
-    messageId?: string
-    action: ActionV16
-    payload: OCPPRequestTypeV16
-  }) {
-    this.messageId = messageId ?? randomUUID()
-    this.messageTypeId = OCPPMessageType.CALL
-    this.action = action
-    this.payload = payload
+    payload,
+  }: iOCPPCall<RequestPayloadType, ActionType>) {
+    this.messageId = messageId ?? randomUUID();
+    this.messageTypeId = OCPPMessageType.CALL;
+    this.action = action;
+    this.payload = payload;
   }
 }
+
+export class OCPPCallV16 extends OCPPCall<OCPPRequestTypeV16, ActionV16> {}
+export class OCPPCallV201 extends OCPPCall<OCPPRequestTypeV201, ActionV201> {}

@@ -418,7 +418,7 @@ describe(".parseOCPPMessage", () => {
         JSON.stringify([6, "abc123", "GenericError", "description"]),
         {
           validateMessage: false,
-          ocppVersion: ocppVersion.ocpp16,
+          version: ocppVersion.ocpp16,
         }
       );
     }).toThrow("Unknown message type: 6");

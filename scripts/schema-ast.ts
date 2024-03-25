@@ -69,8 +69,8 @@ const schemaMapAST = (version: string, names: string[]): Node =>
 export const generateSchemaFile = (
   version: string,
   definitions: GeneratorDefinition[]
-): void => {
-  const filename = ["src", "generated", "schemas.ts"].join("/");
+) => {
+  const filename = ["src", "generated", version, "schemas.ts"].join("/");
   const printer = createPrinter({ newLine: NewLineKind.LineFeed });
   const sourceFile = createSourceFile(
     filename,
