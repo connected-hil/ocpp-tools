@@ -4,7 +4,7 @@ import { OCPPCall } from "src/message/ocpp-call";
 import { OCPPMessageType, ocppVersion } from "src/message/types";
 import { OCPPCallResult } from "src/message/ocpp-call-result";
 import { OCPPCallError } from "src/message/ocpp-call-error";
-import { OCPPErrorCodeV16 } from "src/generated/v16";
+import { AuthorizeResponseV16, OCPPErrorCodeV16 } from "src/generated/v16";
 type TestCase<T> = {
   input: string;
   expected: Partial<T>;
@@ -98,9 +98,17 @@ describe("OCPP CALL", () => {
     const input = exampleRequests[0].input;
     const m = parseOCPPMessage(input) as OCPPCall;
 
-    const result = m.toCallResponse({ status: "Accepted" }).toRPCObject();
+    const result = m
+      .toCallResponse<AuthorizeResponseV16>({
+        idTagInfo: { status: "Accepted" },
+      })
+      .toRPCObject();
 
-    expect(result).toEqual([3, JSON.parse(input)[1], { status: "Accepted" }]);
+    expect(result).toEqual([
+      3,
+      JSON.parse(input)[1],
+      { idTagInfo: { status: "Accepted" } },
+    ]);
   });
 
   test.each(exampleRequests)(

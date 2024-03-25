@@ -49,6 +49,8 @@
 
 **OCPP tools** is a collection of Open Charge Point Protocol message schemas, validation functions, utility types and typed interfaces for Typescript. Most of the code is generated using the OCPP payload JSON schema files.
 
+**Note**: Things are changing, and backwards compatibility might be broken until a v1 release.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Getting Started
@@ -109,11 +111,14 @@ const authorizeResponse = parseOCPPMessage(
 ### Construct a response to a RPC call
 
 ```typescript
+import { parseOCPPMessage, AuthorizeResponseV16, OCPPCall} from "@cshil/ocpp-tools";
+
 const request = parseOCPPMessage(
   "[2, \"abc123\", \"Authorize\", {\"idTag\": \"abc-123-abc\""}]",
 ) as OCPPCall
 
-console.info(request.toCallResponse({status: "Accepted"}).toRPCObject)
+const callResult = request.toCallResponse<AuthorizeResponseV16>({idTagInfo: { status: "Accepted"}})
+console.info(callResult).toRPCObject)
 // => [3, "abc123", { "status": "Accepted"}]
 
 ```
