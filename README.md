@@ -9,7 +9,7 @@
   <h3 align="center">OCPP tools</h3>
 
   <p align="center">
-    OCPP-J v1.6 message and payload types with validation.
+    OCPP-J v1.6 and v2.0.1 message and payload types with validation.
     <br />
     <a href="docs/index.html"><strong>Explore the docs »</strong></a>
     <br />
@@ -48,7 +48,7 @@
 
 **OCPP tools** is a collection of Open Charge Point Protocol message schemas, validation functions, utility types and typed interfaces for Typescript. Most of the code is generated using the OCPP payload JSON schema files.
 
-**Note**: Things are changing, and backwards compatibility might be broken until a v1 release.
+**Note**: Things are changing, and backwards compatibility might be broken until all todo items are cleard.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -73,7 +73,8 @@ npm install @cshil/ocpp-tools
 This project includes
 
 - All OCPP v1.6 payloads have [interfaces](src/generated/v16/types) generated from JSON schema files.
-- Types for valid CALL [actions, request and repsonse types as well as error code types](src/generated/v16/types/index.ts).
+- All OCPP v2.0.1 payloads have [interfaces](src/generated/v201/types) generated from JSON schema files.
+- Types for valid CALL actions, request and response types as well as error code types for [v1.6](src/generated/v16/types/index.ts) and [v2.0.1](src/generated/v201/types/index.ts)
 - Utility classes for RPC requests for [CALL](src/message/ocpp-call.ts), [CALL_RESULT](src/message/ocpp-call-result.ts) and [CALL ERROR](src/message/ocpp-call-error.ts).
 - Parsers for [OCPP RPC calls](src/validation/index.ts) and [OCPP message payloads](src/generated/v16/validators.ts).
 
@@ -104,7 +105,8 @@ import { parseOCPPMessage, OCPPCallResult } from "@cshil/ocpp-tools";
 
 const authorizeResponse = parseOCPPMessage(
   "[3, \"abc123\", {\"status\": \"Accepted\""}]",
-) as OCPPCallResult
+  { version: ocppVersion.ocpp16}
+) as OCPPCallV16
 ```
 
 ### Construct a response to a RPC call
@@ -122,6 +124,27 @@ console.info(callResult).toRPCObject)
 
 ```
 
+## Create a new OCPP RPC Call
+
+using the general ocpp call:
+
+```typescript
+import { OCPPCall, OCPPRequestTypeV16, ActionV16 } from "@cshil/ocpp-tools";
+
+const call = new OCPPCall<OCPPRequestTypeV16, ActionV16>({ action: "Authorize", payload: { idTag: "abv123"})
+```
+
+or using the versioned ocpp call:
+
+```typescript
+import { OCPPCallV201 } from "@cshil/ocpp-tools";
+
+const call = new OCPPCallV210({
+  action: "Authorize",
+  payload: { idToken: { idToken: "abv123", type: "Central" } },
+});
+```
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->
@@ -129,7 +152,7 @@ console.info(callResult).toRPCObject)
 ## Roadmap
 
 - [x] Include OCPP v1.6 schemas
-- [ ] Include OCPP v2.0.1 schemas
+- [x] Include OCPP v2.0.1 schemas
 - [ ] Proper documentation
 
 See the [open issues](https://github.com/connected-hil/ocpp-tools/issues) for a full list of proposed features (and known issues).
