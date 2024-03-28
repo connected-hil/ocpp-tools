@@ -5,12 +5,23 @@ import {
   OCPPResponsePayloadType,
   ocppVersion,
 } from "./types";
-import { ActionV16, OCPPRequestTypeV16, OCPPRpcMessageV16, RpcCallV16, actionValidatorV16 } from "src/generated/v16";
-import { ActionV201, OCPPRequestTypeV201, OCPPRpcMessageV201, RpcCallV201, actionValidatorV201 } from "src/generated/v201";
+import {
+  ActionV16,
+  OCPPRequestTypeV16,
+  OCPPRpcMessageV16,
+  RpcCallV16,
+  actionValidatorV16,
+} from "src/generated/v16";
+import {
+  ActionV201,
+  OCPPRequestTypeV201,
+  OCPPRpcMessageV201,
+  RpcCallV201,
+  actionValidatorV201,
+} from "src/generated/v201";
 
 import { randomUUID } from "crypto";
 import { OCPPCallResult } from "./ocpp-call-result";
-
 
 export interface iOCPPCall<
   RequestPayloadType extends OCPPRequestPayloadType,
@@ -50,8 +61,8 @@ export class OCPPCall<
   }
 
   /*
-  * Return RPC object for OCPP CALL
-    */
+   * Return RPC object for OCPP CALL
+   */
   public toRPCObject(): OCPPRpcMessageV16 | OCPPRpcMessageV201 {
     const rpc = [
       OCPPMessageType.CALL,
@@ -59,17 +70,9 @@ export class OCPPCall<
       this.action,
       this.payload as Record<string, unknown>,
     ];
-    return this.version === ocppVersion.ocpp16 ? rpc as RpcCallV16 : rpc as RpcCallV201
-  }
-
-  /**
-   * Validates RPC message format for action
-   * @returns {boolean} validation result
-   */
-  public validatePayload(): boolean {
-    const validator = this.version === ocppVersion.ocpp16 ?
-      actionValidatorV16[this.action] : actionValidatorV201[this.action]
-    return validator(this.payload);
+    return this.version === ocppVersion.ocpp16
+      ? (rpc as RpcCallV16)
+      : (rpc as RpcCallV201);
   }
 
   constructor({
@@ -87,7 +90,7 @@ export class OCPPCall<
 }
 
 export class OCPPCallV16 extends OCPPCall<OCPPRequestTypeV16, ActionV16> {
-    /**
+  /**
    * Create a new OCPP RPC Call version 1.6
    *
    * @param {Object} param0
@@ -98,9 +101,17 @@ export class OCPPCallV16 extends OCPPCall<OCPPRequestTypeV16, ActionV16> {
   constructor({
     messageId,
     action,
-    payload
+    payload,
   }: Omit<iOCPPCall<OCPPRequestTypeV16, ActionV16>, "version">) {
-    super({version: ocppVersion.ocpp16, messageId, action, payload})
+    super({ version: ocppVersion.ocpp16, messageId, action, payload });
+  }
+
+  /**
+   * Validates RPC message format for action
+   * @returns {boolean} validation result
+   */
+  public validatePayload(): boolean {
+    return actionValidatorV16[this.action](this.payload);
   }
 }
 export class OCPPCallV201 extends OCPPCall<OCPPRequestTypeV201, ActionV201> {
@@ -115,8 +126,16 @@ export class OCPPCallV201 extends OCPPCall<OCPPRequestTypeV201, ActionV201> {
   constructor({
     messageId,
     action,
-    payload
+    payload,
   }: Omit<iOCPPCall<OCPPRequestTypeV201, ActionV201>, "version">) {
-    super({version: ocppVersion.ocpp201, messageId, action, payload})
+    super({ version: ocppVersion.ocpp201, messageId, action, payload });
+  }
+
+  /**
+   * Validates RPC message format for action
+   * @returns {boolean} validation result
+   */
+  public validatePayload(): boolean {
+    return actionValidatorV201[this.action](this.payload);
   }
 }
