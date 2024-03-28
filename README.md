@@ -129,9 +129,9 @@ console.info(callResult).toRPCObject)
 using the general ocpp call:
 
 ```typescript
-import { OCPPCall, OCPPRequestTypeV16, ActionV16 } from "@cshil/ocpp-tools";
+import { OCPPCall, OCPPRequestTypeV16, ActionV16, ocppVersion } from "@cshil/ocpp-tools";
 
-const call = new OCPPCall<OCPPRequestTypeV16, ActionV16>({ action: "Authorize", payload: { idTag: "abv123"})
+const call = new OCPPCall<OCPPRequestTypeV16, ActionV16>({ version: ocppVersion.ocpp16, action: "Authorize", payload: { idTag: "abv123"})
 ```
 
 or using the versioned ocpp call:

@@ -5,8 +5,8 @@ import {
   OCPPResponsePayloadType,
   ocppVersion,
 } from "./types";
-import { ActionV16, OCPPRequestTypeV16, actionValidatorV16 } from "src/generated/v16";
-import { ActionV201, OCPPRequestTypeV201, actionValidatorV201 } from "src/generated/v201";
+import { ActionV16, OCPPRequestTypeV16, OCPPRpcMessageV16, RpcCallV16, actionValidatorV16 } from "src/generated/v16";
+import { ActionV201, OCPPRequestTypeV201, OCPPRpcMessageV201, RpcCallV201, actionValidatorV201 } from "src/generated/v201";
 
 import { randomUUID } from "crypto";
 import { OCPPCallResult } from "./ocpp-call-result";
@@ -35,6 +35,11 @@ export class OCPPCall<
 
   private version: ocppVersion;
 
+  /**
+   * Create a OCPPCallResult for this call.
+   * @param payload A OCPPResponse type
+   * @returns OCPPCallResult
+   */
   public toCallResponse<T extends OCPPResponsePayloadType>(
     payload: T
   ): OCPPCallResult<T> {
@@ -44,15 +49,23 @@ export class OCPPCall<
     })
   }
 
-  public toRPCObject() {
-    return [
+  /*
+  * Return RPC object for OCPP CALL
+    */
+  public toRPCObject(): OCPPRpcMessageV16 | OCPPRpcMessageV201 {
+    const rpc = [
       OCPPMessageType.CALL,
       this.messageId,
       this.action,
-      this.payload as Record<string, unknown>
-    ]
+      this.payload as Record<string, unknown>,
+    ];
+    return this.version === ocppVersion.ocpp16 ? rpc as RpcCallV16 : rpc as RpcCallV201
   }
 
+  /**
+   * Validates RPC message format for action
+   * @returns {boolean} validation result
+   */
   public validatePayload(): boolean {
     const validator = this.version === ocppVersion.ocpp16 ?
       actionValidatorV16[this.action] : actionValidatorV201[this.action]
@@ -74,6 +87,14 @@ export class OCPPCall<
 }
 
 export class OCPPCallV16 extends OCPPCall<OCPPRequestTypeV16, ActionV16> {
+    /**
+   * Create a new OCPP RPC Call version 1.6
+   *
+   * @param {Object} param0
+   * @param {string=} param0.messageId optional message Identifier for CALL
+   * @param {ActionV16} param0.action OCPP action for CALL
+   * @param {OCPPRequestTypeV16} param0.payload OCPP message for RPC Call
+   */
   constructor({
     messageId,
     action,
@@ -83,6 +104,14 @@ export class OCPPCallV16 extends OCPPCall<OCPPRequestTypeV16, ActionV16> {
   }
 }
 export class OCPPCallV201 extends OCPPCall<OCPPRequestTypeV201, ActionV201> {
+  /**
+   * Create a new OCPP RPC Call version 2.0.1
+   *
+   * @param {Object} param0
+   * @param {string} [param0.messageId] optional message Identifier for CALL
+   * @param {ActionV201} param0.action OCPP action for CALL
+   * @param {OCPPRequestTypeV201} param0.payload OCPP message for RPC Call
+   */
   constructor({
     messageId,
     action,
