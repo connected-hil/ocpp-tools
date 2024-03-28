@@ -8,7 +8,8 @@ import {
   NewLineKind,
   ScriptTarget,
   ScriptKind,
-  createSourceFile
+  createSourceFile,
+  EmitHint,
 } from "typescript";
 import fs from "fs";
 import { type GeneratorDefinition } from "./common";
@@ -138,6 +139,49 @@ export const validatorFunctionAST = (
   ),
 ];
 
+export const actiopToValidatorAST = (version: string, titles: string[]): Node => factory.createVariableStatement(
+  [factory.createToken(SyntaxKind.ExportKeyword)],
+  factory.createVariableDeclarationList(
+    [factory.createVariableDeclaration(
+      factory.createIdentifier(["actionValidator", version.toUpperCase()].join("")),
+      undefined,
+      factory.createTypeLiteralNode([factory.createIndexSignature(
+        undefined,
+        [factory.createParameterDeclaration(
+          undefined,
+          undefined,
+          factory.createIdentifier("key"),
+          undefined,
+          factory.createKeywordTypeNode(SyntaxKind.StringKeyword),
+          undefined
+        )],
+        factory.createFunctionTypeNode(
+          undefined,
+          [factory.createParameterDeclaration(
+            undefined,
+            undefined,
+            factory.createIdentifier("data"),
+            undefined,
+            factory.createKeywordTypeNode(SyntaxKind.UnknownKeyword),
+            undefined
+          )],
+          factory.createKeywordTypeNode(SyntaxKind.BooleanKeyword)
+        )
+      )]),
+      factory.createObjectLiteralExpression(
+        titles.map((title) =>
+          factory.createPropertyAssignment(
+            factory.createStringLiteral(title),
+            factory.createIdentifier(["isValid", title, "Request", version.toUpperCase()].join(""))
+          )
+        ),
+        true
+      )
+    )],
+    NodeFlags.Const
+  )
+)
+
 export const generateValidators = (
   version: string,
   definitions: GeneratorDefinition[]
@@ -151,6 +195,8 @@ export const generateValidators = (
     false,
     ScriptKind.TS
   );
+
+  const actions = definitions.filter((t) => /RequestV\d+$/.exec(t.title)).map(({title}) => title.replace(/RequestV\d+$/, ""));
 
   fs.writeFileSync(
     filename,
@@ -167,6 +213,11 @@ export const generateValidators = (
           sourceFile
         )
       ),
+      printer.printNode(
+        EmitHint.Unspecified,
+        actiopToValidatorAST(version, actions),
+        sourceFile
+      )
     ].join("\n")
   );
 };

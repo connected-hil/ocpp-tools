@@ -10,6 +10,15 @@ type OCPPMessageParserOptions = {
   version: ocppVersion;
 };
 
+/**
+ * Parse and optionally validate a string JSON object as OCPP RPC.
+ * @param {string }rawMessage JSON message to parse as OCPPMessage
+ * @param {Object} options Parsing options
+ * @param { ocppVersion } options.version OCPP version to to use
+ * @param { boolean } options.validateMessage validate OCPP RPC message against schema
+ * @param { boolean } options.validatePayload validate OCPP payload ( Only applicable to RPC type CALL)
+ * @returns
+ */
 export const parseOCPPMessage = (
   rawMessage: string,
   options: OCPPMessageParserOptions = {
@@ -20,8 +29,8 @@ export const parseOCPPMessage = (
 ) => {
   const parsed = JSON.parse(rawMessage);
   const [messageTypeId, messageId, ...attributes] = parsed;
-  const { version } = options;
-  if (options.validateMessage) {
+  const { version, validateMessage, validatePayload } = options;
+  if (validateMessage) {
     if (validateOCPPMessage(version, parsed) === false) {
       throw new Error("Invalid OCPP message");
     }
@@ -34,9 +43,13 @@ export const parseOCPPMessage = (
         action: attributes[0],
         payload: attributes[1],
       };
-      return version === ocppVersion.ocpp16
+      const call = version === ocppVersion.ocpp16
         ? new OCPPCallV16(attr)
         : new OCPPCallV201(attr);
+      if (validatePayload && !call.validatePayload()) {
+        throw new Error("Invalid OCPP Call payload")
+      }
+      return call
     }
     case OCPPMessageType.CALL_RESULT: {
       const attr = { messageId, payload: attributes[0] };

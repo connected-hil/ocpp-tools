@@ -139,7 +139,7 @@ or using the versioned ocpp call:
 ```typescript
 import { OCPPCallV201 } from "@cshil/ocpp-tools";
 
-const call = new OCPPCallV210({
+const call = new OCPPCallV201({
   action: "Authorize",
   payload: { idToken: { idToken: "abv123", type: "Central" } },
 });

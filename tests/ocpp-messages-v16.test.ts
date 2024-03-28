@@ -9,6 +9,7 @@ import {
   AuthorizeResponseV16,
   OCPPErrorCodeV16,
   OCPPRequestTypeV16,
+  BootNotificationRequestV16
 } from "src/generated/v16";
 type TestCase<T> = {
   input: string;
@@ -131,7 +132,7 @@ describe("OCPP CALL V16", () => {
   );
 
   test("Construct CALL via constructor", () => {
-    const m = new OCPPCall({
+    const m = new OCPPCallV16({
       action: "BootNotification",
       payload: {
         chargePointVendor: "VendorX",
@@ -146,6 +147,31 @@ describe("OCPP CALL V16", () => {
       chargePointModel: "SingleSocketCharger",
     });
   });
+
+  describe("Validating call payloads", () => {
+
+    test("Detects invalid payload for action", () => {
+      expect(() => parseOCPPMessage(JSON.stringify([2, "abv13", "Authorize", {}]),
+        {version: ocppVersion.ocpp16, validatePayload: true}
+      )).toThrow(Error)
+       expect(1).toBe(1)
+    });
+
+    test("Accepts valid payload for action", () => {
+      const payload: BootNotificationRequestV16 = {
+        chargePointModel: "Model1",
+        chargePointVendor: "Vendor1"
+      }
+      expect(() => parseOCPPMessage(
+          JSON.stringify(
+            [2, "abc", "BootNotification", payload]
+          ),
+          {version: ocppVersion.ocpp16, validatePayload: true}
+      )).not.toThrow(Error)
+    });
+
+  })
+
 });
 
 describe("OCPP CALL_RESULT V16", () => {

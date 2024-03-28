@@ -471,4 +471,37 @@ export const isValidUpdateFirmwareResponseV16 = (data: unknown): data is UpdateF
  *  @param { unknown } data JSON decoded payload to validate
  *  @returns { boolean } true if payload is valid against schema, false otherwise
  *  */
-export const isValidUpdateFirmwareRequestV16 = (data: unknown): data is UpdateFirmwareRequestV16 => validateOCPPPayload(schemas.v16.updateFirmwareRequestV16, data)
+export const isValidUpdateFirmwareRequestV16 = (data: unknown): data is UpdateFirmwareRequestV16 => validateOCPPPayload(schemas.v16.updateFirmwareRequestV16, data);
+
+export const actionValidatorV16: {
+    [key: string]: (data: unknown) => boolean;
+} = {
+    "Authorize": isValidAuthorizeRequestV16,
+    "BootNotification": isValidBootNotificationRequestV16,
+    "CancelReservation": isValidCancelReservationRequestV16,
+    "ChangeAvailability": isValidChangeAvailabilityRequestV16,
+    "ChangeConfiguration": isValidChangeConfigurationRequestV16,
+    "ClearCache": isValidClearCacheRequestV16,
+    "ClearChargingProfile": isValidClearChargingProfileRequestV16,
+    "DataTransfer": isValidDataTransferRequestV16,
+    "DiagnosticsStatusNotification": isValidDiagnosticsStatusNotificationRequestV16,
+    "FirmwareStatusNotification": isValidFirmwareStatusNotificationRequestV16,
+    "GetCompositeSchedule": isValidGetCompositeScheduleRequestV16,
+    "GetConfiguration": isValidGetConfigurationRequestV16,
+    "GetDiagnostics": isValidGetDiagnosticsRequestV16,
+    "GetLocalListVersion": isValidGetLocalListVersionRequestV16,
+    "Heartbeat": isValidHeartbeatRequestV16,
+    "MeterValues": isValidMeterValuesRequestV16,
+    "RemoteStartTransaction": isValidRemoteStartTransactionRequestV16,
+    "RemoteStopTransaction": isValidRemoteStopTransactionRequestV16,
+    "ReserveNow": isValidReserveNowRequestV16,
+    "Reset": isValidResetRequestV16,
+    "SendLocalList": isValidSendLocalListRequestV16,
+    "SetChargingProfile": isValidSetChargingProfileRequestV16,
+    "StartTransaction": isValidStartTransactionRequestV16,
+    "StatusNotification": isValidStatusNotificationRequestV16,
+    "StopTransaction": isValidStopTransactionRequestV16,
+    "TriggerMessage": isValidTriggerMessageRequestV16,
+    "UnlockConnector": isValidUnlockConnectorRequestV16,
+    "UpdateFirmware": isValidUpdateFirmwareRequestV16
+};
