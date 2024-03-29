@@ -4,29 +4,29 @@ import {
   factory,
   ListFormat,
   NewLineKind,
-  Node,
+  type Node,
   ScriptKind,
-  ScriptTarget,
-} from "typescript";
-import { GeneratorDefinition } from "./common";
-import fs from "fs";
+  ScriptTarget
+} from 'typescript'
+import { type GeneratorDefinition } from './common'
+import fs from 'fs'
 
 const commonExportsAST = (): Node[] => [
   factory.createExportDeclaration(
     undefined,
     false,
     undefined,
-    factory.createStringLiteral("./validators"),
+    factory.createStringLiteral('./validators'),
     undefined
   ),
   factory.createExportDeclaration(
     undefined,
     false,
     undefined,
-    factory.createStringLiteral("./types"),
+    factory.createStringLiteral('./types'),
     undefined
-  ),
-];
+  )
+]
 
 const typesExportsAST = (descriptions: GeneratorDefinition[]): Node[] =>
   descriptions.map(({ title, typeFile }) =>
@@ -38,27 +38,27 @@ const typesExportsAST = (descriptions: GeneratorDefinition[]): Node[] =>
           false,
           undefined,
           factory.createIdentifier(title)
-        ),
+        )
       ]),
-      factory.createStringLiteral(typeFile.replace(/\.ts$/, "")),
+      factory.createStringLiteral(typeFile.replace(/\.ts$/, '')),
       undefined
     )
-  );
+  )
 
 export const generateVersionIndex = (
   version: string,
   descriptions: GeneratorDefinition[]
 ): void => {
-  const filename = ["src", "generated", version, "index.ts"].join("/");
-  const printer = createPrinter({ newLine: NewLineKind.LineFeed });
+  const filename = ['src', 'generated', version, 'index.ts'].join('/')
+  const printer = createPrinter({ newLine: NewLineKind.LineFeed })
 
   const sourceFile = createSourceFile(
     filename,
-    "",
+    '',
     ScriptTarget.Latest,
     false,
     ScriptKind.TS
-  );
+  )
 
   fs.writeFileSync(
     filename,
@@ -72,7 +72,7 @@ export const generateVersionIndex = (
         ListFormat.MultiLine,
         factory.createNodeArray(typesExportsAST(descriptions)),
         sourceFile
-      ),
-    ].join("\n")
-  );
-};
+      )
+    ].join('\n')
+  )
+}

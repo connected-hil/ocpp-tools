@@ -1,17 +1,17 @@
-import { compile } from "json-schema-to-typescript";
+import { type JSONSchema, compile } from "json-schema-to-typescript";
 import fs from "fs";
 import path from "path";
 import { generateSchemaFile } from "./schema-ast";
 import { generateValidators } from "./validators-ast";
 import { generateTypesIndex } from "./types-ast";
-import { GeneratorDefinition } from "./common";
+import { type GeneratorDefinition } from "./common";
 import { generateVersionIndex } from "./version-index-ast";
 
 const ocppVersions = ["v16"];
 
 const basePath = path.resolve([__dirname, "/../src/"].join(""));
 
-const generate = () => {
+const generate = (): void => {
   ocppVersions.forEach((version) => {
     const path = [basePath, "schemas", version].join("/");
     const schemas = fs.readdirSync(path).map((file) => file.split(".")[0]);
@@ -26,7 +26,7 @@ const generate = () => {
       // Postfix interface name with version
       const jsonSchema = {
         title: `${title}${version.toUpperCase()}`,
-        ...rest,
+        ...rest
       };
 
       const typeFile = [
@@ -34,21 +34,25 @@ const generate = () => {
         "generated",
         version,
         "types",
-        `${schema}.ts`,
+        `${schema}.ts`
       ].join("/");
       schemasDefinitions.push({
         version,
         title: jsonSchema.title,
         schemaFile: [schema, ".json"].join(""),
-        typeFile,
+        typeFile
       });
 
-      compile(jsonSchema, schema).then((ts) =>
-        fs.writeFileSync(
-          [basePath, "generated", version, "types", `${schema}.ts`].join("/"),
-          ts
-        )
-      );
+      compile(jsonSchema as JSONSchema, schema)
+        .then((ts) => {
+          fs.writeFileSync(
+            [basePath, "generated", version, "types", `${schema}.ts`].join("/"),
+            ts
+          );
+        })
+        .catch((e) => {
+          console.error(e);
+        });
     });
     generateValidators(version, schemasDefinitions);
     generateTypesIndex(version, schemasDefinitions);

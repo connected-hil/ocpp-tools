@@ -1,4 +1,4 @@
-import ajv, { Schema } from "ajv";
+import ajv, { type Schema } from "ajv";
 import addFormats from "ajv-formats";
 import callSchemav16 from "src/schemas/v16/ocpp-call.json";
 import callResponseSchemav16 from "src/schemas/v16/ocpp-call-result.json";
@@ -11,7 +11,7 @@ addFormats(validator);
 const ocppMessageSchemasV16 = {
   [OCPPMessageType.CALL]: callSchemav16,
   [OCPPMessageType.CALL_RESULT]: callResponseSchemav16,
-  [OCPPMessageType.CALL_ERROR]: callErrorSchemav16,
+  [OCPPMessageType.CALL_ERROR]: callErrorSchemav16
 };
 /**
  *
@@ -19,8 +19,8 @@ const ocppMessageSchemasV16 = {
  * @param data Object to validate against the schema
  * @returns boolean indicating if the data is valid against the schema
  */
-export const validateOCPPPayload = (schema: Schema, data: unknown) => {
-  if (!data) {
+export const validateOCPPPayload = (schema: Schema, data: unknown): boolean => {
+  if (data == null) {
     return false;
   }
 
@@ -36,25 +36,25 @@ export const validateOCPPPayload = (schema: Schema, data: unknown) => {
 const getSchemaForMessage = (
   version: ocppVersion,
   messageTypeId: OCPPMessageType
-) => {
+): Schema => {
   switch (version) {
     case ocppVersion.ocpp16:
       return ocppMessageSchemasV16[messageTypeId];
     case ocppVersion.ocpp20:
     case ocppVersion.ocpp201:
-      throw new Error(`ocpp version not supported`);
+      throw new Error("ocpp version not supported");
   }
 };
 
 export const validateOCPPMessage = (
   ocppversion: ocppVersion,
-  data: Array<unknown>
-) => {
-  if (!data) {
+  data: unknown[]
+): boolean => {
+  if (data == null) {
     return false;
   }
 
-  if (Object.values(OCPPMessageType).includes(Number(data[0])) === false) {
+  if (!Object.values(OCPPMessageType).includes(Number(data[0]))) {
     return false;
   }
 

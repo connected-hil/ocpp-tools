@@ -5,35 +5,31 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "repository": {
     "type": "git",
     "url": "https://github.com/connected-hil/ocpp-tools.git"
   },
   "scripts": {
     "lint": "eslint --ext .ts src/ scripts/",
+    "docs": "typedoc --out docs/ --entryPointStrategy expand ./src",
     "check-types": "tsc --noEmit",
     "generate": "pnpm ts-node scripts/compile-schemas-to-types.ts",
     "build": "pnpm tsup",
     "test": "jest"
   },
-  "keywords": [
-    "OCPP",
-    "schema"
-  ],
+  "keywords": ["OCPP", "schema"],
   "author": "l-arte <lauri.arte@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "@jest/globals": "^29.7.0",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.28",
-    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.3.1",
     "eslint": "^8.57.0",
+    "eslint-config-love": "^43.1.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-config-standard-with-typescript": "^43.0.1",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jest": "^27.9.0",
     "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
@@ -44,8 +40,9 @@
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
     "tsup": "^8.0.2",
+    "typedoc": "^0.25.12",
     "typescript": "5.3.3",
-    "typescript-eslint": "^7.3.1"
+    "typescript-eslint": "^7.4.0"
   },
   "dependencies": {
     "ajv": "^8.12.0",

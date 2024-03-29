@@ -3,7 +3,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="https://github.com/connected-hil/ocpp-tools">
     <img src="images/logo.webp" alt="Logo" width="80" height="80" style="border: 1px solid black;">
   </a>
 
@@ -12,7 +12,7 @@
   <p align="center">
     OCPP-J v1.6 message and payload types with validation.
     <br />
-    <a href="#usage"><strong>Explore the docs »</strong></a>
+    <a href="docs/index.html"><strong>Explore the docs »</strong></a>
     <br />
     <br />
 </div>
