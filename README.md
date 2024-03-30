@@ -3,9 +3,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/connected-hil/ocpp-tools">
-    <img src="images/logo.webp" alt="Logo" width="80" height="80" style="border: 1px solid black;">
-  </a>
+
+  <img src="https://raw.githubusercontent.com/connected-hil/ocpp-tools/main/images/logo.webp" width=100 style="border: 1px solid grey"/>
 
   <h3 align="center">OCPP tools</h3>
 
@@ -94,7 +93,7 @@ const result = isValidHeartbeatRequestV16(data) //  => true
 import { AuthorizeResponseV16 } from "@cshil/ocpp-tools";
 
 const message: AuthorizeResponseV16 = {
-  idTagInfo: { status: "Accepted" },
+  idTagInfo: { status: "Accepted" }
 };
 ```
 
@@ -161,3 +160,6 @@ Don't forget to give the project a star! Thanks again!
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+[logo]: https://raw.githubusercontent.com/connected-hil/ocpp-tools/main/images/logo.webp
+[logo-url]: https://github.com/connected-hil/ocpp-tools/
