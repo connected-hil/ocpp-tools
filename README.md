@@ -68,7 +68,7 @@ npm install @cshil/ocpp-tools
 
 ## Usage
 
-### Typescript interfaces and types and utilities
+### Typescript interfaces, types and utilities
 
 This project includes
 
