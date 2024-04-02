@@ -1,136 +1,269 @@
-import { schemas } from "src/generated/v201/schemas";
-import { validateOCPPPayload } from "src/validation";
-import { AuthorizeResponseV201 } from "src/generated/v201/types/authorize-response";
-import { AuthorizeRequestV201 } from "src/generated/v201/types/authorize";
-import { BootNotificationResponseV201 } from "src/generated/v201/types/boot-notification-response";
-import { BootNotificationRequestV201 } from "src/generated/v201/types/boot-notification";
-import { CancelReservationResponseV201 } from "src/generated/v201/types/cancel-reservation-response";
-import { CancelReservationRequestV201 } from "src/generated/v201/types/cancel-reservation";
-import { CertificateSignedResponseV201 } from "src/generated/v201/types/certificate-signed-response";
-import { CertificateSignedRequestV201 } from "src/generated/v201/types/certificate-signed";
-import { ChangeAvailabilityResponseV201 } from "src/generated/v201/types/change-availability-response";
-import { ChangeAvailabilityRequestV201 } from "src/generated/v201/types/change-availability";
-import { ClearCacheResponseV201 } from "src/generated/v201/types/clear-cache-response";
-import { ClearCacheRequestV201 } from "src/generated/v201/types/clear-cache";
-import { ClearChargingProfileResponseV201 } from "src/generated/v201/types/clear-charging-profile-response";
-import { ClearChargingProfileRequestV201 } from "src/generated/v201/types/clear-charging-profile";
-import { ClearDisplayMessageResponseV201 } from "src/generated/v201/types/clear-display-message-response";
-import { ClearDisplayMessageRequestV201 } from "src/generated/v201/types/clear-display-message";
-import { ClearVariableMonitoringResponseV201 } from "src/generated/v201/types/clear-variable-monitoring-response";
-import { ClearVariableMonitoringRequestV201 } from "src/generated/v201/types/clear-variable-monitoring";
-import { ClearedChargingLimitResponseV201 } from "src/generated/v201/types/cleared-charging-limit-response";
-import { ClearedChargingLimitRequestV201 } from "src/generated/v201/types/cleared-charging-limit";
-import { CostUpdatedResponseV201 } from "src/generated/v201/types/cost-updated-response";
-import { CostUpdatedRequestV201 } from "src/generated/v201/types/cost-updated";
-import { CustomerInformationResponseV201 } from "src/generated/v201/types/customer-information-response";
-import { CustomerInformationRequestV201 } from "src/generated/v201/types/customer-information";
-import { DataTransferResponseV201 } from "src/generated/v201/types/data-transfer-response";
-import { DataTransferRequestV201 } from "src/generated/v201/types/data-transfer";
-import { DeleteCertificateResponseV201 } from "src/generated/v201/types/delete-certificate-response";
-import { DeleteCertificateRequestV201 } from "src/generated/v201/types/delete-certificate";
-import { FirmwareStatusNotificationResponseV201 } from "src/generated/v201/types/firmware-status-notification-response";
-import { FirmwareStatusNotificationRequestV201 } from "src/generated/v201/types/firmware-status-notification";
-import { GetBaseReportResponseV201 } from "src/generated/v201/types/get-base-report-response";
-import { GetBaseReportRequestV201 } from "src/generated/v201/types/get-base-report";
-import { GetCertificateStatusResponseV201 } from "src/generated/v201/types/get-certificate-status-response";
-import { GetCertificateStatusRequestV201 } from "src/generated/v201/types/get-certificate-status";
-import { GetChargingProfilesResponseV201 } from "src/generated/v201/types/get-charging-profiles-response";
-import { GetChargingProfilesRequestV201 } from "src/generated/v201/types/get-charging-profiles";
-import { GetCompositeScheduleResponseV201 } from "src/generated/v201/types/get-composite-schedule-response";
-import { GetCompositeScheduleRequestV201 } from "src/generated/v201/types/get-composite-schedule";
-import { GetDisplayMessagesResponseV201 } from "src/generated/v201/types/get-display-messages-response";
-import { GetDisplayMessagesRequestV201 } from "src/generated/v201/types/get-display-messages";
-import { GetInstalledCertificateIdsResponseV201 } from "src/generated/v201/types/get-installed-certificate-ids-response";
-import { GetInstalledCertificateIdsRequestV201 } from "src/generated/v201/types/get-installed-certificate-ids";
-import { GetLocalListVersionResponseV201 } from "src/generated/v201/types/get-local-list-version-response";
-import { GetLocalListVersionRequestV201 } from "src/generated/v201/types/get-local-list-version";
-import { GetLogResponseV201 } from "src/generated/v201/types/get-log-response";
-import { GetLogRequestV201 } from "src/generated/v201/types/get-log";
-import { GetMonitoringReportResponseV201 } from "src/generated/v201/types/get-monitoring-report-response";
-import { GetMonitoringReportRequestV201 } from "src/generated/v201/types/get-monitoring-report";
-import { GetReportResponseV201 } from "src/generated/v201/types/get-report-response";
-import { GetReportRequestV201 } from "src/generated/v201/types/get-report";
-import { GetTransactionStatusResponseV201 } from "src/generated/v201/types/get-transaction-status-response";
-import { GetTransactionStatusRequestV201 } from "src/generated/v201/types/get-transaction-status";
-import { GetVariablesResponseV201 } from "src/generated/v201/types/get-variables-response";
-import { GetVariablesRequestV201 } from "src/generated/v201/types/get-variables";
-import { Get15118EVCertificateResponseV201 } from "src/generated/v201/types/get15118-e-v-certificate-response";
-import { Get15118EVCertificateRequestV201 } from "src/generated/v201/types/get15118-e-v-certificate";
-import { HeartbeatResponseV201 } from "src/generated/v201/types/heartbeat-response";
-import { HeartbeatRequestV201 } from "src/generated/v201/types/heartbeat";
-import { InstallCertificateResponseV201 } from "src/generated/v201/types/install-certificate-response";
-import { InstallCertificateRequestV201 } from "src/generated/v201/types/install-certificate";
-import { LogStatusNotificationResponseV201 } from "src/generated/v201/types/log-status-notification-response";
-import { LogStatusNotificationRequestV201 } from "src/generated/v201/types/log-status-notification";
-import { MeterValuesResponseV201 } from "src/generated/v201/types/meter-values-response";
-import { MeterValuesRequestV201 } from "src/generated/v201/types/meter-values";
-import { NotifyChargingLimitResponseV201 } from "src/generated/v201/types/notify-charging-limit-response";
-import { NotifyChargingLimitRequestV201 } from "src/generated/v201/types/notify-charging-limit";
-import { NotifyCustomerInformationResponseV201 } from "src/generated/v201/types/notify-customer-information-response";
-import { NotifyCustomerInformationRequestV201 } from "src/generated/v201/types/notify-customer-information";
-import { NotifyDisplayMessagesResponseV201 } from "src/generated/v201/types/notify-display-messages-response";
-import { NotifyDisplayMessagesRequestV201 } from "src/generated/v201/types/notify-display-messages";
-import { NotifyEVChargingNeedsResponseV201 } from "src/generated/v201/types/notify-e-v-charging-needs-response";
-import { NotifyEVChargingNeedsRequestV201 } from "src/generated/v201/types/notify-e-v-charging-needs";
-import { NotifyEVChargingScheduleResponseV201 } from "src/generated/v201/types/notify-e-v-charging-schedule-response";
-import { NotifyEVChargingScheduleRequestV201 } from "src/generated/v201/types/notify-e-v-charging-schedule";
-import { NotifyEventResponseV201 } from "src/generated/v201/types/notify-event-response";
-import { NotifyEventRequestV201 } from "src/generated/v201/types/notify-event";
-import { NotifyMonitoringReportResponseV201 } from "src/generated/v201/types/notify-monitoring-report-response";
-import { NotifyMonitoringReportRequestV201 } from "src/generated/v201/types/notify-monitoring-report";
-import { NotifyReportResponseV201 } from "src/generated/v201/types/notify-report-response";
-import { NotifyReportRequestV201 } from "src/generated/v201/types/notify-report";
-import { PublishFirmwareResponseV201 } from "src/generated/v201/types/publish-firmware-response";
-import { PublishFirmwareStatusNotificationResponseV201 } from "src/generated/v201/types/publish-firmware-status-notification-response";
-import { PublishFirmwareStatusNotificationRequestV201 } from "src/generated/v201/types/publish-firmware-status-notification";
-import { PublishFirmwareRequestV201 } from "src/generated/v201/types/publish-firmware";
-import { ReportChargingProfilesResponseV201 } from "src/generated/v201/types/report-charging-profiles-response";
-import { ReportChargingProfilesRequestV201 } from "src/generated/v201/types/report-charging-profiles";
-import { ReservationStatusUpdateResponseV201 } from "src/generated/v201/types/reservation-status-update-response";
-import { ReservationStatusUpdateRequestV201 } from "src/generated/v201/types/reservation-status-update";
-import { ReserveNowResponseV201 } from "src/generated/v201/types/reserve-now-response";
-import { ReserveNowRequestV201 } from "src/generated/v201/types/reserve-now";
-import { ResetResponseV201 } from "src/generated/v201/types/reset-response";
-import { ResetRequestV201 } from "src/generated/v201/types/reset";
-import { RpcCallErrorV201 } from "src/generated/v201/types/rpc-call-error";
-import { RpcCallResultV201 } from "src/generated/v201/types/rpc-call-result";
-import { RpcCallV201 } from "src/generated/v201/types/rpc-call";
-import { SecurityEventNotificationResponseV201 } from "src/generated/v201/types/security-event-notification-response";
-import { SecurityEventNotificationRequestV201 } from "src/generated/v201/types/security-event-notification";
-import { SendLocalListResponseV201 } from "src/generated/v201/types/send-local-list-response";
-import { SendLocalListRequestV201 } from "src/generated/v201/types/send-local-list";
-import { SetChargingProfileResponseV201 } from "src/generated/v201/types/set-charging-profile-response";
-import { SetChargingProfileRequestV201 } from "src/generated/v201/types/set-charging-profile";
-import { SetDisplayMessageResponseV201 } from "src/generated/v201/types/set-display-message-response";
-import { SetDisplayMessageRequestV201 } from "src/generated/v201/types/set-display-message";
-import { SetMonitoringBaseResponseV201 } from "src/generated/v201/types/set-monitoring-base-response";
-import { SetMonitoringBaseRequestV201 } from "src/generated/v201/types/set-monitoring-base";
-import { SetMonitoringLevelResponseV201 } from "src/generated/v201/types/set-monitoring-level-response";
-import { SetMonitoringLevelRequestV201 } from "src/generated/v201/types/set-monitoring-level";
-import { SetNetworkProfileResponseV201 } from "src/generated/v201/types/set-network-profile-response";
-import { SetNetworkProfileRequestV201 } from "src/generated/v201/types/set-network-profile";
-import { SetVariableMonitoringResponseV201 } from "src/generated/v201/types/set-variable-monitoring-response";
-import { SetVariableMonitoringRequestV201 } from "src/generated/v201/types/set-variable-monitoring";
-import { SetVariablesResponseV201 } from "src/generated/v201/types/set-variables-response";
-import { SetVariablesRequestV201 } from "src/generated/v201/types/set-variables";
-import { SignCertificateResponseV201 } from "src/generated/v201/types/sign-certificate-response";
-import { SignCertificateRequestV201 } from "src/generated/v201/types/sign-certificate";
-import { RequestStartTransactionResponseV201 } from "src/generated/v201/types/start-transaction-response";
-import { RequestStartTransactionRequestV201 } from "src/generated/v201/types/start-transaction";
-import { StatusNotificationResponseV201 } from "src/generated/v201/types/status-notification-response";
-import { StatusNotificationRequestV201 } from "src/generated/v201/types/status-notification";
-import { RequestStopTransactionResponseV201 } from "src/generated/v201/types/stop-transaction-response";
-import { RequestStopTransactionRequestV201 } from "src/generated/v201/types/stop-transaction";
-import { TransactionEventResponseV201 } from "src/generated/v201/types/transaction-event-response";
-import { TransactionEventRequestV201 } from "src/generated/v201/types/transaction-event";
-import { TriggerMessageResponseV201 } from "src/generated/v201/types/trigger-message-response";
-import { TriggerMessageRequestV201 } from "src/generated/v201/types/trigger-message";
-import { UnlockConnectorResponseV201 } from "src/generated/v201/types/unlock-connector-response";
-import { UnlockConnectorRequestV201 } from "src/generated/v201/types/unlock-connector";
-import { UnpublishFirmwareResponseV201 } from "src/generated/v201/types/unpublish-firmware-response";
-import { UnpublishFirmwareRequestV201 } from "src/generated/v201/types/unpublish-firmware";
-import { UpdateFirmwareResponseV201 } from "src/generated/v201/types/update-firmware-response";
-import { UpdateFirmwareRequestV201 } from "src/generated/v201/types/update-firmware";
+import { schemas } from "../../generated/v201/schemas";
+import { validateOCPPPayload } from "../../validation";
+import {
+//
+  type AuthorizeResponseV201,
+  //
+  type AuthorizeRequestV201,
+  //
+  type BootNotificationResponseV201,
+  //
+  type BootNotificationRequestV201,
+  //
+  type CancelReservationResponseV201,
+  //
+  type CancelReservationRequestV201,
+  //
+  type CertificateSignedResponseV201,
+  //
+  type CertificateSignedRequestV201,
+  //
+  type ChangeAvailabilityResponseV201,
+  //
+  type ChangeAvailabilityRequestV201,
+  //
+  type ClearCacheResponseV201,
+  //
+  type ClearCacheRequestV201,
+  //
+  type ClearChargingProfileResponseV201,
+  //
+  type ClearChargingProfileRequestV201,
+  //
+  type ClearDisplayMessageResponseV201,
+  //
+  type ClearDisplayMessageRequestV201,
+  //
+  type ClearVariableMonitoringResponseV201,
+  //
+  type ClearVariableMonitoringRequestV201,
+  //
+  type ClearedChargingLimitResponseV201,
+  //
+  type ClearedChargingLimitRequestV201,
+  //
+  type CostUpdatedResponseV201,
+  //
+  type CostUpdatedRequestV201,
+  //
+  type CustomerInformationResponseV201,
+  //
+  type CustomerInformationRequestV201,
+  //
+  type DataTransferResponseV201,
+  //
+  type DataTransferRequestV201,
+  //
+  type DeleteCertificateResponseV201,
+  //
+  type DeleteCertificateRequestV201,
+  //
+  type FirmwareStatusNotificationResponseV201,
+  //
+  type FirmwareStatusNotificationRequestV201,
+  //
+  type GetBaseReportResponseV201,
+  //
+  type GetBaseReportRequestV201,
+  //
+  type GetCertificateStatusResponseV201,
+  //
+  type GetCertificateStatusRequestV201,
+  //
+  type GetChargingProfilesResponseV201,
+  //
+  type GetChargingProfilesRequestV201,
+  //
+  type GetCompositeScheduleResponseV201,
+  //
+  type GetCompositeScheduleRequestV201,
+  //
+  type GetDisplayMessagesResponseV201,
+  //
+  type GetDisplayMessagesRequestV201,
+  //
+  type GetInstalledCertificateIdsResponseV201,
+  //
+  type GetInstalledCertificateIdsRequestV201,
+  //
+  type GetLocalListVersionResponseV201,
+  //
+  type GetLocalListVersionRequestV201,
+  //
+  type GetLogResponseV201,
+  //
+  type GetLogRequestV201,
+  //
+  type GetMonitoringReportResponseV201,
+  //
+  type GetMonitoringReportRequestV201,
+  //
+  type GetReportResponseV201,
+  //
+  type GetReportRequestV201,
+  //
+  type GetTransactionStatusResponseV201,
+  //
+  type GetTransactionStatusRequestV201,
+  //
+  type GetVariablesResponseV201,
+  //
+  type GetVariablesRequestV201,
+  //
+  type Get15118EVCertificateResponseV201,
+  //
+  type Get15118EVCertificateRequestV201,
+  //
+  type HeartbeatResponseV201,
+  //
+  type HeartbeatRequestV201,
+  //
+  type InstallCertificateResponseV201,
+  //
+  type InstallCertificateRequestV201,
+  //
+  type LogStatusNotificationResponseV201,
+  //
+  type LogStatusNotificationRequestV201,
+  //
+  type MeterValuesResponseV201,
+  //
+  type MeterValuesRequestV201,
+  //
+  type NotifyChargingLimitResponseV201,
+  //
+  type NotifyChargingLimitRequestV201,
+  //
+  type NotifyCustomerInformationResponseV201,
+  //
+  type NotifyCustomerInformationRequestV201,
+  //
+  type NotifyDisplayMessagesResponseV201,
+  //
+  type NotifyDisplayMessagesRequestV201,
+  //
+  type NotifyEVChargingNeedsResponseV201,
+  //
+  type NotifyEVChargingNeedsRequestV201,
+  //
+  type NotifyEVChargingScheduleResponseV201,
+  //
+  type NotifyEVChargingScheduleRequestV201,
+  //
+  type NotifyEventResponseV201,
+  //
+  type NotifyEventRequestV201,
+  //
+  type NotifyMonitoringReportResponseV201,
+  //
+  type NotifyMonitoringReportRequestV201,
+  //
+  type NotifyReportResponseV201,
+  //
+  type NotifyReportRequestV201,
+  //
+  type PublishFirmwareResponseV201,
+  //
+  type PublishFirmwareStatusNotificationResponseV201,
+  //
+  type PublishFirmwareStatusNotificationRequestV201,
+  //
+  type PublishFirmwareRequestV201,
+  //
+  type ReportChargingProfilesResponseV201,
+  //
+  type ReportChargingProfilesRequestV201,
+  //
+  type ReservationStatusUpdateResponseV201,
+  //
+  type ReservationStatusUpdateRequestV201,
+  //
+  type ReserveNowResponseV201,
+  //
+  type ReserveNowRequestV201,
+  //
+  type ResetResponseV201,
+  //
+  type ResetRequestV201,
+  //
+  type RpcCallErrorV201,
+  //
+  type RpcCallResultV201,
+  //
+  type RpcCallV201,
+  //
+  type SecurityEventNotificationResponseV201,
+  //
+  type SecurityEventNotificationRequestV201,
+  //
+  type SendLocalListResponseV201,
+  //
+  type SendLocalListRequestV201,
+  //
+  type SetChargingProfileResponseV201,
+  //
+  type SetChargingProfileRequestV201,
+  //
+  type SetDisplayMessageResponseV201,
+  //
+  type SetDisplayMessageRequestV201,
+  //
+  type SetMonitoringBaseResponseV201,
+  //
+  type SetMonitoringBaseRequestV201,
+  //
+  type SetMonitoringLevelResponseV201,
+  //
+  type SetMonitoringLevelRequestV201,
+  //
+  type SetNetworkProfileResponseV201,
+  //
+  type SetNetworkProfileRequestV201,
+  //
+  type SetVariableMonitoringResponseV201,
+  //
+  type SetVariableMonitoringRequestV201,
+  //
+  type SetVariablesResponseV201,
+  //
+  type SetVariablesRequestV201,
+  //
+  type SignCertificateResponseV201,
+  //
+  type SignCertificateRequestV201,
+  //
+  type RequestStartTransactionResponseV201,
+  //
+  type RequestStartTransactionRequestV201,
+  //
+  type StatusNotificationResponseV201,
+  //
+  type StatusNotificationRequestV201,
+  //
+  type RequestStopTransactionResponseV201,
+  //
+  type RequestStopTransactionRequestV201,
+  //
+  type TransactionEventResponseV201,
+  //
+  type TransactionEventRequestV201,
+  //
+  type TriggerMessageResponseV201,
+  //
+  type TriggerMessageRequestV201,
+  //
+  type UnlockConnectorResponseV201,
+  //
+  type UnlockConnectorRequestV201,
+  //
+  type UnpublishFirmwareResponseV201,
+  //
+  type UnpublishFirmwareRequestV201,
+  //
+  type UpdateFirmwareResponseV201,
+  //
+  type UpdateFirmwareRequestV201
+} from "./index";
 
 /**
  * Validation function for AuthorizeResponseV201 using JSON included schema.
@@ -1049,71 +1182,69 @@ export const isValidUpdateFirmwareResponseV201 = (data: unknown): data is Update
  *  */
 export const isValidUpdateFirmwareRequestV201 = (data: unknown): data is UpdateFirmwareRequestV201 => validateOCPPPayload(schemas.v201.updateFirmwareRequestV201, data);
 
-export const actionValidatorV201: {
-    [key: string]: (data: unknown) => boolean;
-} = {
-    "Authorize": isValidAuthorizeRequestV201,
-    "BootNotification": isValidBootNotificationRequestV201,
-    "CancelReservation": isValidCancelReservationRequestV201,
-    "CertificateSigned": isValidCertificateSignedRequestV201,
-    "ChangeAvailability": isValidChangeAvailabilityRequestV201,
-    "ClearCache": isValidClearCacheRequestV201,
-    "ClearChargingProfile": isValidClearChargingProfileRequestV201,
-    "ClearDisplayMessage": isValidClearDisplayMessageRequestV201,
-    "ClearVariableMonitoring": isValidClearVariableMonitoringRequestV201,
-    "ClearedChargingLimit": isValidClearedChargingLimitRequestV201,
-    "CostUpdated": isValidCostUpdatedRequestV201,
-    "CustomerInformation": isValidCustomerInformationRequestV201,
-    "DataTransfer": isValidDataTransferRequestV201,
-    "DeleteCertificate": isValidDeleteCertificateRequestV201,
-    "FirmwareStatusNotification": isValidFirmwareStatusNotificationRequestV201,
-    "GetBaseReport": isValidGetBaseReportRequestV201,
-    "GetCertificateStatus": isValidGetCertificateStatusRequestV201,
-    "GetChargingProfiles": isValidGetChargingProfilesRequestV201,
-    "GetCompositeSchedule": isValidGetCompositeScheduleRequestV201,
-    "GetDisplayMessages": isValidGetDisplayMessagesRequestV201,
-    "GetInstalledCertificateIds": isValidGetInstalledCertificateIdsRequestV201,
-    "GetLocalListVersion": isValidGetLocalListVersionRequestV201,
-    "GetLog": isValidGetLogRequestV201,
-    "GetMonitoringReport": isValidGetMonitoringReportRequestV201,
-    "GetReport": isValidGetReportRequestV201,
-    "GetTransactionStatus": isValidGetTransactionStatusRequestV201,
-    "GetVariables": isValidGetVariablesRequestV201,
-    "Get15118EVCertificate": isValidGet15118EVCertificateRequestV201,
-    "Heartbeat": isValidHeartbeatRequestV201,
-    "InstallCertificate": isValidInstallCertificateRequestV201,
-    "LogStatusNotification": isValidLogStatusNotificationRequestV201,
-    "MeterValues": isValidMeterValuesRequestV201,
-    "NotifyChargingLimit": isValidNotifyChargingLimitRequestV201,
-    "NotifyCustomerInformation": isValidNotifyCustomerInformationRequestV201,
-    "NotifyDisplayMessages": isValidNotifyDisplayMessagesRequestV201,
-    "NotifyEVChargingNeeds": isValidNotifyEVChargingNeedsRequestV201,
-    "NotifyEVChargingSchedule": isValidNotifyEVChargingScheduleRequestV201,
-    "NotifyEvent": isValidNotifyEventRequestV201,
-    "NotifyMonitoringReport": isValidNotifyMonitoringReportRequestV201,
-    "NotifyReport": isValidNotifyReportRequestV201,
-    "PublishFirmwareStatusNotification": isValidPublishFirmwareStatusNotificationRequestV201,
-    "PublishFirmware": isValidPublishFirmwareRequestV201,
-    "ReportChargingProfiles": isValidReportChargingProfilesRequestV201,
-    "ReservationStatusUpdate": isValidReservationStatusUpdateRequestV201,
-    "ReserveNow": isValidReserveNowRequestV201,
-    "Reset": isValidResetRequestV201,
-    "SecurityEventNotification": isValidSecurityEventNotificationRequestV201,
-    "SendLocalList": isValidSendLocalListRequestV201,
-    "SetChargingProfile": isValidSetChargingProfileRequestV201,
-    "SetDisplayMessage": isValidSetDisplayMessageRequestV201,
-    "SetMonitoringBase": isValidSetMonitoringBaseRequestV201,
-    "SetMonitoringLevel": isValidSetMonitoringLevelRequestV201,
-    "SetNetworkProfile": isValidSetNetworkProfileRequestV201,
-    "SetVariableMonitoring": isValidSetVariableMonitoringRequestV201,
-    "SetVariables": isValidSetVariablesRequestV201,
-    "SignCertificate": isValidSignCertificateRequestV201,
-    "RequestStartTransaction": isValidRequestStartTransactionRequestV201,
-    "StatusNotification": isValidStatusNotificationRequestV201,
-    "RequestStopTransaction": isValidRequestStopTransactionRequestV201,
-    "TransactionEvent": isValidTransactionEventRequestV201,
-    "TriggerMessage": isValidTriggerMessageRequestV201,
-    "UnlockConnector": isValidUnlockConnectorRequestV201,
-    "UnpublishFirmware": isValidUnpublishFirmwareRequestV201,
-    "UpdateFirmware": isValidUpdateFirmwareRequestV201
+export const actionValidatorV201: Record<string, (data: unknown) => boolean> = {
+  Authorize: isValidAuthorizeRequestV201,
+  BootNotification: isValidBootNotificationRequestV201,
+  CancelReservation: isValidCancelReservationRequestV201,
+  CertificateSigned: isValidCertificateSignedRequestV201,
+  ChangeAvailability: isValidChangeAvailabilityRequestV201,
+  ClearCache: isValidClearCacheRequestV201,
+  ClearChargingProfile: isValidClearChargingProfileRequestV201,
+  ClearDisplayMessage: isValidClearDisplayMessageRequestV201,
+  ClearVariableMonitoring: isValidClearVariableMonitoringRequestV201,
+  ClearedChargingLimit: isValidClearedChargingLimitRequestV201,
+  CostUpdated: isValidCostUpdatedRequestV201,
+  CustomerInformation: isValidCustomerInformationRequestV201,
+  DataTransfer: isValidDataTransferRequestV201,
+  DeleteCertificate: isValidDeleteCertificateRequestV201,
+  FirmwareStatusNotification: isValidFirmwareStatusNotificationRequestV201,
+  GetBaseReport: isValidGetBaseReportRequestV201,
+  GetCertificateStatus: isValidGetCertificateStatusRequestV201,
+  GetChargingProfiles: isValidGetChargingProfilesRequestV201,
+  GetCompositeSchedule: isValidGetCompositeScheduleRequestV201,
+  GetDisplayMessages: isValidGetDisplayMessagesRequestV201,
+  GetInstalledCertificateIds: isValidGetInstalledCertificateIdsRequestV201,
+  GetLocalListVersion: isValidGetLocalListVersionRequestV201,
+  GetLog: isValidGetLogRequestV201,
+  GetMonitoringReport: isValidGetMonitoringReportRequestV201,
+  GetReport: isValidGetReportRequestV201,
+  GetTransactionStatus: isValidGetTransactionStatusRequestV201,
+  GetVariables: isValidGetVariablesRequestV201,
+  Get15118EVCertificate: isValidGet15118EVCertificateRequestV201,
+  Heartbeat: isValidHeartbeatRequestV201,
+  InstallCertificate: isValidInstallCertificateRequestV201,
+  LogStatusNotification: isValidLogStatusNotificationRequestV201,
+  MeterValues: isValidMeterValuesRequestV201,
+  NotifyChargingLimit: isValidNotifyChargingLimitRequestV201,
+  NotifyCustomerInformation: isValidNotifyCustomerInformationRequestV201,
+  NotifyDisplayMessages: isValidNotifyDisplayMessagesRequestV201,
+  NotifyEVChargingNeeds: isValidNotifyEVChargingNeedsRequestV201,
+  NotifyEVChargingSchedule: isValidNotifyEVChargingScheduleRequestV201,
+  NotifyEvent: isValidNotifyEventRequestV201,
+  NotifyMonitoringReport: isValidNotifyMonitoringReportRequestV201,
+  NotifyReport: isValidNotifyReportRequestV201,
+  PublishFirmwareStatusNotification: isValidPublishFirmwareStatusNotificationRequestV201,
+  PublishFirmware: isValidPublishFirmwareRequestV201,
+  ReportChargingProfiles: isValidReportChargingProfilesRequestV201,
+  ReservationStatusUpdate: isValidReservationStatusUpdateRequestV201,
+  ReserveNow: isValidReserveNowRequestV201,
+  Reset: isValidResetRequestV201,
+  SecurityEventNotification: isValidSecurityEventNotificationRequestV201,
+  SendLocalList: isValidSendLocalListRequestV201,
+  SetChargingProfile: isValidSetChargingProfileRequestV201,
+  SetDisplayMessage: isValidSetDisplayMessageRequestV201,
+  SetMonitoringBase: isValidSetMonitoringBaseRequestV201,
+  SetMonitoringLevel: isValidSetMonitoringLevelRequestV201,
+  SetNetworkProfile: isValidSetNetworkProfileRequestV201,
+  SetVariableMonitoring: isValidSetVariableMonitoringRequestV201,
+  SetVariables: isValidSetVariablesRequestV201,
+  SignCertificate: isValidSignCertificateRequestV201,
+  RequestStartTransaction: isValidRequestStartTransactionRequestV201,
+  StatusNotification: isValidStatusNotificationRequestV201,
+  RequestStopTransaction: isValidRequestStopTransactionRequestV201,
+  TransactionEvent: isValidTransactionEventRequestV201,
+  TriggerMessage: isValidTriggerMessageRequestV201,
+  UnlockConnector: isValidUnlockConnectorRequestV201,
+  UnpublishFirmware: isValidUnpublishFirmwareRequestV201,
+  UpdateFirmware: isValidUpdateFirmwareRequestV201
 };

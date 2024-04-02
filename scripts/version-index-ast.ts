@@ -32,7 +32,7 @@ const typesExportsAST = (descriptions: GeneratorDefinition[]): Node[] =>
   descriptions.map(({ title, typeFile }) =>
     factory.createExportDeclaration(
       undefined,
-      false,
+      true,
       factory.createNamedExports([
         factory.createExportSpecifier(
           false,
@@ -40,7 +40,10 @@ const typesExportsAST = (descriptions: GeneratorDefinition[]): Node[] =>
           factory.createIdentifier(title)
         )
       ]),
-      factory.createStringLiteral(typeFile.replace(/\.ts$/, '')),
+      factory.createStringLiteral([
+        "./types",
+        typeFile.split("/").reverse()[0].replace(/\.ts$/, '')
+      ].join("/")),
       undefined
     )
   )

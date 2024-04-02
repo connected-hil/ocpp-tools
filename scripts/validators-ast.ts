@@ -10,6 +10,7 @@ import {
   ScriptKind,
   createSourceFile,
   EmitHint,
+  addSyntheticLeadingComment
 } from "typescript";
 import fs from "fs";
 import { type GeneratorDefinition } from "./common";
@@ -32,7 +33,7 @@ export const validationImportsAST = (
       ])
     ),
     factory.createStringLiteral(
-      ["src", "generated", version, "schemas"].join("/")
+      ["..", "..", "generated", version, "schemas"].join("/")
     ),
     undefined
   ),
@@ -49,27 +50,30 @@ export const validationImportsAST = (
         )
       ])
     ),
-    factory.createStringLiteral("src/validation"),
+    factory.createStringLiteral("../../validation"),
     undefined
   ),
-  ...definitions.map(({ title, typeFile }) => {
-    return factory.createImportDeclaration(
+  factory.createImportDeclaration(
+    undefined,
+    factory.createImportClause(
+      false,
       undefined,
-      factory.createImportClause(
-        false,
-        undefined,
-        factory.createNamedImports([
-          factory.createImportSpecifier(
-            false,
-            undefined,
-            factory.createIdentifier(title)
+      factory.createNamedImports(
+        definitions.map(({ title }) =>
+          addSyntheticLeadingComment(
+            factory.createImportSpecifier(
+              true,
+              undefined,
+              factory.createIdentifier(title)
+            ),
+            SyntaxKind.SingleLineCommentTrivia, '', true
           )
-        ])
-      ),
-      factory.createStringLiteral(typeFile.replace(/.ts$/, "")),
-      undefined
-    );
-  }),
+        )
+      )
+    ),
+    factory.createStringLiteral("./index"),
+    undefined
+  )
 ];
 
 export const validatorFunctionAST = (
@@ -82,7 +86,7 @@ export const validatorFunctionAST = (
         ""
       ),
       " @param { unknown } data JSON decoded payload to validate",
-      " @returns { boolean } true if payload is valid against schema, false otherwise\n",
+      " @returns { boolean } true if payload is valid against schema, false otherwise\n"
     ].join("\n")
   ),
   factory.createVariableStatement(
@@ -104,7 +108,7 @@ export const validatorFunctionAST = (
                 undefined,
                 factory.createKeywordTypeNode(SyntaxKind.UnknownKeyword),
                 undefined
-              ),
+              )
             ],
             factory.createTypePredicateNode(
               undefined,
@@ -128,15 +132,15 @@ export const validatorFunctionAST = (
                     title.charAt(0).toLowerCase() + title.slice(1)
                   )
                 ),
-                factory.createIdentifier("data"),
+                factory.createIdentifier("data")
               ]
             )
           )
-        ),
+        )
       ],
       NodeFlags.Const
     )
-  ),
+  )
 ];
 
 export const actiopToValidatorAST = (version: string, titles: string[]): Node => factory.createVariableStatement(
@@ -185,7 +189,7 @@ export const actiopToValidatorAST = (version: string, titles: string[]): Node =>
 export const generateValidators = (
   version: string,
   definitions: GeneratorDefinition[]
-) => {
+): void => {
   const filename = ["src", "generated", version, "validators.ts"].join("/");
   const printer = createPrinter({ newLine: NewLineKind.LineFeed });
   const sourceFile = createSourceFile(
@@ -196,7 +200,7 @@ export const generateValidators = (
     ScriptKind.TS
   );
 
-  const actions = definitions.filter((t) => /RequestV\d+$/.exec(t.title)).map(({title}) => title.replace(/RequestV\d+$/, ""));
+  const actions = definitions.filter((t) => /RequestV\d+$/.exec(t.title)).map(({ title }) => title.replace(/RequestV\d+$/, ""));
 
   fs.writeFileSync(
     filename,

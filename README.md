@@ -78,35 +78,29 @@ This project includes
 - Utility classes for RPC requests for [CALL](src/message/ocpp-call.ts), [CALL_RESULT](src/message/ocpp-call-result.ts) and [CALL ERROR](src/message/ocpp-call-error.ts).
 - Parsers for [OCPP RPC calls](src/validation/index.ts) and [OCPP message payloads](src/generated/v16/validators.ts).
 
-### Validating OCPP JSON message payloads
+### Parse a OCPP RPC message
 
 ```typescript
-import { isValidHeartbeatRequestV16, HeartbeatV16 } from "@cshil/ocpp-tools";
+import { ocppVersion, parseOCPPMessage, OCPPCallResult } from "@cshil/ocpp-tools";
 
-const data = JSON.parse("{}"")
-const result = isValidHeartbeatRequestV16(data) //  => true
-
-```
-
-### Using OCPP interfaces
-
-```typescript
-import { AuthorizeResponseV16 } from "@cshil/ocpp-tools";
-
-const message: AuthorizeResponseV16 = {
-  idTagInfo: { status: "Accepted" }
-};
-```
-
-### Parsing full OCPP RPC messages
-
-```typescript
-import { parseOCPPMessage, OCPPCallResult } from "@cshil/ocpp-tools";
-
-const authorizeResponse = parseOCPPMessage(
-  "[3, \"abc123\", {\"status\": \"Accepted\""}]",
-  { version: ocppVersion.ocpp16}
-) as OCPPCallV16
+const authorizeRequest = parseOCPPMessage(
+  "[2, \"message-abc123\", "Authorize", {\"idTag\": \"abc-def-123\""}]",
+  {
+    version: ocppVersion.ocpp16,
+    validateMessage: true,
+    validatePayload: true // payload is validated for CALL type RPC messages
+  }
+)
+console.log(authorizeRequest)
+/*
+OCPPCallV16 {
+  version: 'ocpp1.6',
+  messageId: 'message-abc123',
+  messageTypeId: 2,
+  action: 'Authorize',
+  payload: { idTag: 'abc-def-123' }
+}
+*/
 ```
 
 ### Construct a response to a RPC call
@@ -116,7 +110,7 @@ import { parseOCPPMessage, AuthorizeResponseV16, OCPPCall} from "@cshil/ocpp-too
 
 const request = parseOCPPMessage(
   "[2, \"abc123\", \"Authorize\", {\"idTag\": \"abc-123-abc\""}]",
-) as OCPPCall
+)
 
 const callResult = request.toCallResponse<AuthorizeResponseV16>({idTagInfo: { status: "Accepted"}})
 console.info(callResult).toRPCObject)
@@ -143,6 +137,35 @@ const call = new OCPPCallV201({
   action: "Authorize",
   payload: { idToken: { idToken: "abv123", type: "Central" } },
 });
+```
+
+### Validating OCPP JSON message payloads
+
+```typescript
+import { isValidHeartbeatRequestV16, HeartbeatV16 } from "@cshil/ocpp-tools";
+
+const data = JSON.parse("{}"")
+const result = isValidHeartbeatRequestV16(data) //  => true
+
+```
+
+### Get validation errors
+
+```typescript
+import { validationErrors, schemas } from '@cshil/ocpp-tools'
+
+const errors = validationErrors(schemas.v16.authorizeRequest, {})
+// => ["#/required: must have required property 'idTag'"]
+```
+
+### Using OCPP interfaces
+
+```typescript
+import { AuthorizeResponseV16 } from "@cshil/ocpp-tools";
+
+const message: AuthorizeResponseV16 = {
+  idTagInfo: { status: "Accepted" }
+};
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -183,6 +206,3 @@ Don't forget to give the project a star! Thanks again!
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-[logo]: https://raw.githubusercontent.com/connected-hil/ocpp-tools/main/images/logo.webp
-[logo-url]: https://github.com/connected-hil/ocpp-tools/

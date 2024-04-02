@@ -1,12 +1,12 @@
 import ajv, { type Schema } from "ajv";
 import addFormats from "ajv-formats";
-import { schemas } from "src/generated/schemas";
-import { OCPPMessageType, ocppVersion } from "src/message/types";
+import { schemas } from "./../generated/schemas";
+import { OCPPMessageType, ocppVersion } from "./../message/types";
 
 const validator = new ajv({
   allErrors: true,
   strict: false,
-  strictSchema: false,
+  strictSchema: false
 });
 addFormats(validator);
 
@@ -22,13 +22,19 @@ export const validateOCPPPayload = (schema: Schema, data: unknown): boolean => {
   }
 
   const validate = validator.compile(schema);
-  const valid = validate(data);
-  if (!valid) {
-    console.warn(validate.errors);
-  }
-
-  return valid;
+  return validate(data);
 };
+
+/**
+ *
+ * @param schema JSON schema
+ * @param data Object to validate against the schema
+ * @returns [String] array of schema validation errors
+ */
+export const validationErrors = (schema: Schema, data: unknown): string[] => {
+  const validate = validator.compile(schema)
+  return validate(data) ? [] : (validate.errors ?? [])?.map((e) => [e.schemaPath, e.message].join(": "));
+}
 
 const resolveSchema = (
   ocppversion: ocppVersion,
@@ -57,18 +63,13 @@ const resolveSchema = (
 
 export const validateOCPPMessage = (
   ocppversion: ocppVersion,
-  data: Array<unknown>
-) => {
-  if (Object.values(OCPPMessageType).includes(Number(data[0])) === false) {
+  data: unknown[]
+): boolean => {
+  if (!Object.values(OCPPMessageType).includes(Number(data[0]))) {
     return false;
   }
 
   const schema = resolveSchema(ocppversion, data[0] as OCPPMessageType);
   const validate = validator.compile(schema);
-  const valid = validate(data);
-  if (!valid) {
-    console.warn(validate.errors);
-  }
-
-  return valid;
+  return validate(data);
 };

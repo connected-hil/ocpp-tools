@@ -1,7 +1,6 @@
-import { OCPPResponseTypeV16 } from "src/generated/v16";
-import { OCPPMessageType } from "./types";
-import { OCPPResponsePayloadType } from "./types";
-import { OCPPResponseTypeV201 } from "src/generated/v201/types";
+import { type OCPPResponseTypeV16, type RpcCallResultV16 } from "./../generated/v16";
+import { type RpcCallResultV201, type OCPPResponseTypeV201 } from "..//generated/v201";
+import { OCPPMessageType, type OCPPResponsePayloadType } from "./types";
 
 export class OCPPCallResult<ResponseType extends OCPPResponsePayloadType> {
   public messageTypeId: OCPPMessageType.CALL_RESULT;
@@ -9,7 +8,7 @@ export class OCPPCallResult<ResponseType extends OCPPResponsePayloadType> {
 
   public payload: ResponseType;
 
-  public toRPCObject() {
+  public toRPCObject (): RpcCallResultV16 | RpcCallResultV201 {
     return [
       OCPPMessageType.CALL_RESULT,
       this.messageId,
@@ -21,8 +20,8 @@ export class OCPPCallResult<ResponseType extends OCPPResponsePayloadType> {
     messageId,
     payload
   }: {
-    messageId: string;
-    payload: ResponseType;
+    messageId: string
+    payload: ResponseType
   }) {
     this.messageTypeId = OCPPMessageType.CALL_RESULT
     this.messageId = messageId

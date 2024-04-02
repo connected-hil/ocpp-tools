@@ -2,13 +2,15 @@ import { OCPPCallV16, OCPPCallV201 } from "./ocpp-call";
 import { OCPPCallResultV16, OCPPCallResultV201 } from "./ocpp-call-result";
 import { OCPPCallErrorV16, OCPPCallErrorV201 } from "./ocpp-call-error";
 import { OCPPMessageType, ocppVersion } from "./types";
-import { validateOCPPMessage } from "src/validation";
+import { validateOCPPMessage } from "./../validation";
 
-type OCPPMessageParserOptions = {
-  validateMessage?: boolean;
-  validatePayload?: boolean;
-  version: ocppVersion;
-};
+interface OCPPMessageParserOptions {
+  validateMessage?: boolean
+  validatePayload?: boolean
+  version: ocppVersion
+}
+
+type ReturnType = OCPPCallV16 | OCPPCallErrorV16 | OCPPCallResultV16 | OCPPCallV201 | OCPPCallResultV201 | OCPPCallErrorV201
 
 /**
  * Parse and optionally validate a string JSON object as OCPP RPC.
@@ -26,12 +28,12 @@ export const parseOCPPMessage = (
     validateMessage: true,
     validatePayload: false
   }
-) => {
+): ReturnType => {
   const parsed = JSON.parse(rawMessage);
   const [messageTypeId, messageId, ...attributes] = parsed;
   const { version, validateMessage, validatePayload } = options;
-  if (validateMessage) {
-    if (validateOCPPMessage(version, parsed) === false) {
+  if (validateMessage === true) {
+    if (!validateOCPPMessage(version, parsed as unknown[])) {
       throw new Error("Invalid OCPP message");
     }
   }
@@ -41,12 +43,12 @@ export const parseOCPPMessage = (
       const attr = {
         messageId,
         action: attributes[0],
-        payload: attributes[1],
+        payload: attributes[1]
       };
       const call = version === ocppVersion.ocpp16
         ? new OCPPCallV16(attr)
         : new OCPPCallV201(attr);
-      if (validatePayload && !call.validatePayload()) {
+      if (validatePayload === true && !call.validatePayload()) {
         throw new Error("Invalid OCPP Call payload")
       }
       return call
@@ -62,7 +64,7 @@ export const parseOCPPMessage = (
         messageId,
         errorCode: attributes[0],
         errorDescription: attributes[1],
-        errorDetails: attributes[2] ?? {},
+        errorDetails: attributes[2] ?? {}
       };
       return version === ocppVersion.ocpp16
         ? new OCPPCallErrorV16(attr)

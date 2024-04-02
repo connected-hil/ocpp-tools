@@ -126,7 +126,7 @@ import {
   isValidUnpublishFirmwareResponseV201,
   isValidUnpublishFirmwareRequestV201,
   isValidUpdateFirmwareResponseV201,
-  isValidUpdateFirmwareRequestV201,
+  isValidUpdateFirmwareRequestV201
 } from "../src/generated/v201/";
 
 interface TestCase {
@@ -138,160 +138,160 @@ interface TestCase {
 
 const statusWithReason = {
   status: "Unknown",
-  statusInfo: { reasonCode: "just because" },
+  statusInfo: { reasonCode: "just because" }
 };
 
 const tests: TestCase[] = [
   {
     fun: isValidAuthorizeResponseV201,
     validData: { idTokenInfo: { status: "NoCredit" } },
-    invalidData: { status: "Accepted" },
+    invalidData: { status: "Accepted" }
   },
   {
     fun: isValidAuthorizeRequestV201,
     validData: { idToken: { idToken: "ABC", type: "Central" } },
-    invalidData: { idToken: "ABC" },
+    invalidData: { idToken: "ABC" }
   },
   {
     fun: isValidBootNotificationResponseV201,
     validData: {
       currentTime: "2021-01-01T00:00:00Z",
       interval: 300,
-      status: "Accepted",
+      status: "Accepted"
     },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidBootNotificationRequestV201,
     validData: {
       chargingStation: { vendorName: "ACME", model: "model1" },
-      reason: "RemoteReset",
+      reason: "RemoteReset"
     },
     invalidData: {
       chargingStation: { vendorName: "ACME", model: "model1" },
-      reason: "JustBecause",
-    },
+      reason: "JustBecause"
+    }
   },
   {
     fun: isValidCancelReservationResponseV201,
     validData: {
       status: "Rejected",
-      statusInfo: { reasonCode: "just because" },
+      statusInfo: { reasonCode: "just because" }
     },
-    invalidData: { status: "Blocked" },
+    invalidData: { status: "Blocked" }
   },
   {
     fun: isValidCancelReservationRequestV201,
     validData: { reservationId: 1234 },
-    invalidData: { reservationId: "foo" },
+    invalidData: { reservationId: "foo" }
   },
   {
     fun: isValidCertificateSignedResponseV201,
     validData: {
       status: "Rejected",
-      statusInfo: { reasonCode: "just because" },
+      statusInfo: { reasonCode: "just because" }
     },
-    invalidData: { statusInfo: { reasonCode: "FOO" } },
+    invalidData: { statusInfo: { reasonCode: "FOO" } }
   },
   {
     fun: isValidCertificateSignedRequestV201,
     validData: {
       certificateChain: "---",
-      certificateType: "ChargingStationCertificate",
+      certificateType: "ChargingStationCertificate"
     },
     invalidData: {
       certificateChain: "---",
-      certificateType: "B2BV2GCertificate",
-    },
+      certificateType: "B2BV2GCertificate"
+    }
   },
   {
     fun: isValidChangeAvailabilityResponseV201,
     validData: {
-      status: "Scheduled",
+      status: "Scheduled"
     },
-    invalidData: { status: "Foo" },
+    invalidData: { status: "Foo" }
   },
   {
     fun: isValidChangeAvailabilityRequestV201,
     validData: { operationalStatus: "Inoperative" },
-    invalidData: { operationalStatus: "Available" },
+    invalidData: { operationalStatus: "Available" }
   },
   {
     fun: isValidClearCacheResponseV201,
     validData: {
-      status: "Accepted",
+      status: "Accepted"
     },
-    invalidData: { status: "Scheduled" },
+    invalidData: { status: "Scheduled" }
   },
   {
     fun: isValidClearCacheRequestV201,
     validData: {},
-    invalidData: { idTag: "foo" },
+    invalidData: { idTag: "foo" }
   },
   {
     fun: isValidClearChargingProfileResponseV201,
     validData: statusWithReason,
     invalidData: {
-      status: "Rejected",
-    },
+      status: "Rejected"
+    }
   },
   {
     fun: isValidClearChargingProfileRequestV201,
     validData: {
       chargingProfileId: 1234,
       chargingProfileCriteria: {
-        chargingProfilePurpose: "TxProfile",
-      },
+        chargingProfilePurpose: "TxProfile"
+      }
     },
-    invalidData: { idTag: "foo" },
+    invalidData: { idTag: "foo" }
   },
   {
     fun: isValidClearDisplayMessageResponseV201,
     validData: statusWithReason,
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidClearDisplayMessageRequestV201,
     validData: { id: 2 },
-    invalidData: { id: "2" },
+    invalidData: { id: "2" }
   },
   {
     fun: isValidClearVariableMonitoringResponseV201,
     validData: { clearMonitoringResult: [{ status: "Accepted", id: 1 }] },
-    invalidData: statusWithReason,
+    invalidData: statusWithReason
   },
   {
     fun: isValidClearVariableMonitoringRequestV201,
     validData: { id: [1] },
-    invalidData: { id: 1 },
+    invalidData: { id: 1 }
   },
   {
     fun: isValidClearedChargingLimitResponseV201,
     validData: { customData: { vendorId: "1", foo: "bar" } },
-    invalidData: { status: "Accepted" },
+    invalidData: { status: "Accepted" }
   },
   {
     fun: isValidClearedChargingLimitRequestV201,
     validData: { chargingLimitSource: "EMS" },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidCostUpdatedResponseV201,
     validData: { customData: { vendorId: "1", foo: "bar" } },
-    invalidData: { status: "Rejected" },
+    invalidData: { status: "Rejected" }
   },
   {
     fun: isValidCostUpdatedRequestV201,
     validData: {
       totalCost: 23,
-      transactionId: "123",
+      transactionId: "123"
     },
-    invalidData: { transactionId: "123" },
+    invalidData: { transactionId: "123" }
   },
   {
     fun: isValidCustomerInformationResponseV201,
     validData: { ...statusWithReason, status: "Invalid" },
-    invalidData: { status: "Unknown" },
+    invalidData: { status: "Unknown" }
   },
   {
     fun: isValidCustomerInformationRequestV201,
@@ -299,24 +299,24 @@ const tests: TestCase[] = [
       requestId: 123,
       report: false,
       clear: false,
-      customerIdentifier: "foo",
+      customerIdentifier: "foo"
     },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidDataTransferResponseV201,
     validData: { ...statusWithReason, status: "Accepted" },
-    invalidData: { status: "Accepted" },
+    invalidData: {}
   },
   {
     fun: isValidDataTransferRequestV201,
     validData: { vendorId: "abc" },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidDeleteCertificateResponseV201,
     validData: { ...statusWithReason, status: "Accepted" },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidDeleteCertificateRequestV201,
@@ -325,42 +325,42 @@ const tests: TestCase[] = [
         hashAlgorithm: "SHA256",
         issuerNameHash: "123",
         issuerKeyHash: "456",
-        serialNumber: "789",
-      },
+        serialNumber: "789"
+      }
     },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidFirmwareStatusNotificationResponseV201,
     validData: {},
-    invalidData: { status: "Unknown" },
+    invalidData: { status: "Unknown" }
   },
   {
     fun: isValidFirmwareStatusNotificationRequestV201,
     validData: {
-      status: "Downloading",
+      status: "Downloading"
     },
     invalidData: {
-      status: "Unknown",
-    },
+      status: "Unknown"
+    }
   },
   {
     fun: isValidGetBaseReportResponseV201,
     validData: { ...statusWithReason, status: "NotSupported" },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidGetBaseReportRequestV201,
     validData: {
       requestId: 123,
-      reportBase: "ConfigurationInventory",
+      reportBase: "ConfigurationInventory"
     },
-    invalidData: { requestId: 123 },
+    invalidData: { requestId: 123 }
   },
   {
     fun: isValidGetCertificateStatusResponseV201,
     validData: { ...statusWithReason, status: "Failed" },
-    invalidData: statusWithReason,
+    invalidData: statusWithReason
   },
   {
     fun: isValidGetCertificateStatusRequestV201,
@@ -370,15 +370,15 @@ const tests: TestCase[] = [
         issuerNameHash: "---",
         issuerKeyHash: "---",
         serialNumber: "123",
-        responderURL: "",
-      },
+        responderURL: ""
+      }
     },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidGetChargingProfilesResponseV201,
     validData: { status: "NoProfiles" },
-    invalidData: { status: "Rejected" },
+    invalidData: { status: "Rejected" }
   },
   {
     fun: isValidGetChargingProfilesRequestV201,
@@ -387,10 +387,10 @@ const tests: TestCase[] = [
       evseId: 1,
       chargingProfile: {
         chargingProfilePurpose: "TxProfile",
-        chargingLimitSource: ["EMS"],
-      },
+        chargingLimitSource: ["EMS"]
+      }
     },
-    invalidData: { requestId: 123 },
+    invalidData: { requestId: 123 }
   },
   {
     fun: isValidGetCompositeScheduleResponseV201,
@@ -402,24 +402,24 @@ const tests: TestCase[] = [
         chargingSchedulePeriod: [
           {
             startPeriod: 0,
-            limit: 100,
-          },
+            limit: 100
+          }
         ],
         scheduleStart: new Date().toISOString(),
-        chargingRateUnit: "W",
-      },
+        chargingRateUnit: "W"
+      }
     },
-    invalidData: statusWithReason,
+    invalidData: statusWithReason
   },
   {
     fun: isValidGetCompositeScheduleRequestV201,
     validData: { duration: 50, evseId: 2, chargingRateUnit: "W" },
-    invalidData: { charginRateUnit: "A", evseId: 1 },
+    invalidData: { charginRateUnit: "A", evseId: 1 }
   },
   {
     fun: isValidGetDisplayMessagesResponseV201,
     validData: statusWithReason,
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidGetDisplayMessagesRequestV201,
@@ -427,34 +427,34 @@ const tests: TestCase[] = [
       id: [1],
       requestId: 123,
       priority: "AlwaysFront",
-      state: "Charging",
+      state: "Charging"
     },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidGetInstalledCertificateIdsResponseV201,
     validData: { ...statusWithReason, status: "NotFound" },
-    invalidData: { status: "Rejected" },
+    invalidData: { status: "Rejected" }
   },
   {
     fun: isValidGetInstalledCertificateIdsRequestV201,
     validData: { certificateType: ["V2GCertificateChain"] },
-    invalidData: { certificateType: "CA" },
+    invalidData: { certificateType: "CA" }
   },
   {
     fun: isValidGetLocalListVersionResponseV201,
     validData: { versionNumber: 2 },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidGetLocalListVersionRequestV201,
     validData: {},
-    invalidData: { customData: {} },
+    invalidData: { customData: {} }
   },
   {
     fun: isValidGetLogResponseV201,
     validData: { ...statusWithReason, status: "Rejected" },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidGetLogRequestV201,
@@ -463,55 +463,54 @@ const tests: TestCase[] = [
       logType: "SecurityLog",
       requestId: 213,
       retries: 2,
-      retryInterval: 300,
+      retryInterval: 300
     },
     invalidData: {
       logType: "SecurityLog",
       requestId: 213,
       retries: 2,
-      retryInterval: 300,
-    },
+      retryInterval: 300
+    }
   },
   {
     fun: isValidGetMonitoringReportResponseV201,
     validData: { ...statusWithReason, status: "EmptyResultSet" },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidGetMonitoringReportRequestV201,
     validData: {
       requestId: 123,
       monitoringCriteria: ["DeltaMonitoring"],
-      componentVariable: [{ component: { name: "foo" } }],
+      componentVariable: [{ component: { name: "foo" } }]
     },
-    invalidData: { requestID: 123 },
+    invalidData: { requestID: 123 }
   },
   {
     fun: isValidGetReportResponseV201,
     validData: { ...statusWithReason, status: "EmptyResultSet" },
-    invalidData: statusWithReason,
+    invalidData: statusWithReason
   },
   {
     fun: isValidGetReportRequestV201,
     validData: {
       requestId: 123,
-      monitoringCriteria: ["DeltaMonitoring"],
-      componentVariable: [{ component: { name: "foo" } }],
+      componentVariable: [{ component: { name: "foo" } }]
     },
-    invalidData: { requestID: 123 },
+    invalidData: {}
   },
   {
     fun: isValidGetTransactionStatusResponseV201,
     validData: {
       messagesInQueue: true,
-      ongoingIndicator: false,
+      ongoingIndicator: false
     },
-    invalidData: { onGoingIndicator: true },
+    invalidData: { onGoingIndicator: true }
   },
   {
     fun: isValidGetTransactionStatusRequestV201,
     validData: { transactionId: "123" },
-    invalidData: { transactionId: 123 },
+    invalidData: { transactionId: 123 }
   },
   {
     fun: isValidGetVariablesResponseV201,
@@ -519,86 +518,86 @@ const tests: TestCase[] = [
       getVariableResult: [
         {
           attributeStatus: "Accepted",
-          attrubteType: "MinSet",
+          attributeType: "MinSet",
           component: { name: "foo" },
           variable: { name: "bar" },
-          attributeValue: "baz",
-        },
-      ],
+          attributeValue: "baz"
+        }
+      ]
     },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidGetVariablesRequestV201,
     validData: {
       getVariableData: [
-        { component: { name: "foo" }, variable: { name: "bar" } },
-      ],
+        { component: { name: "foo" }, variable: { name: "bar" } }
+      ]
     },
-    invalidData: { getVariableData: [] },
+    invalidData: { getVariableData: [] }
   },
   {
     fun: isValidGet15118EVCertificateResponseV201,
     validData: {
       status: "Accepted",
-      exiResponse: "base64encodedstring",
+      exiResponse: "base64encodedstring"
     },
-    invalidData: { status: "Rejected" },
+    invalidData: { status: "Rejected" }
   },
   {
     fun: isValidGet15118EVCertificateRequestV201,
     validData: {
       iso15118SchemaVersion: "1.0.0",
       action: "Install",
-      exiRequest: "base64encodedstring",
+      exiRequest: "base64encodedstring"
     },
     invalidData: {
       is15118SchemaVersion: "1.0.0",
-      action: "Remove",
-    },
+      action: "Remove"
+    }
   },
   {
     fun: isValidHeartbeatResponseV201,
     validData: {
-      currentTime: new Date().toISOString(),
+      currentTime: new Date().toISOString()
     },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidHeartbeatRequestV201,
     validData: {},
-    invalidData: { customData: {} },
+    invalidData: { customData: {} }
   },
   {
     fun: isValidInstallCertificateResponseV201,
     validData: { ...statusWithReason, status: "Accepted" },
-    invalidData: statusWithReason,
+    invalidData: statusWithReason
   },
   {
     fun: isValidInstallCertificateRequestV201,
     validData: {
       certificate: "PEM encoded certificate",
-      certificateType: "ManufacturerRootCertificate",
+      certificateType: "ManufacturerRootCertificate"
     },
-    invalidData: { certificate: "PEM encoded certificate" },
+    invalidData: { certificate: "PEM encoded certificate" }
   },
   {
     fun: isValidLogStatusNotificationResponseV201,
     validData: {},
-    invalidData: { customData: {} },
+    invalidData: { customData: {} }
   },
   {
     fun: isValidLogStatusNotificationRequestV201,
     validData: {
-      requestID: 123,
-      status: "Idle",
+      requestId: 123,
+      status: "Idle"
     },
-    invalidData: { status: "Unknown" },
+    invalidData: { status: "Unknown" }
   },
   {
     fun: isValidMeterValuesResponseV201,
     validData: {},
-    invalidData: { customData: {} },
+    invalidData: { customData: {} }
   },
   {
     fun: isValidMeterValuesRequestV201,
@@ -609,26 +608,25 @@ const tests: TestCase[] = [
           timestamp: "2021-01-01T00:00:00Z",
           sampledValue: [
             {
-              value: "100",
-              valueFormat: "Raw",
+              value: 100,
               measurand: "Energy.Active.Import.Register",
               context: "Sample.Periodic",
               location: "Outlet",
-              unit: "Wh",
-            },
-          ],
-        },
-      ],
+              unitOfMeasure: { unit: "Wh" }
+            }
+          ]
+        }
+      ]
     },
     invalidData: {
       evseId: 1,
-      meterValue: [],
-    },
+      meterValue: []
+    }
   },
   {
     fun: isValidNotifyChargingLimitResponseV201,
     validData: {},
-    invalidData: { customData: {} },
+    invalidData: { customData: {} }
   },
   {
     fun: isValidNotifyChargingLimitRequestV201,
@@ -637,25 +635,24 @@ const tests: TestCase[] = [
       chargingLimit: { chargingLimitSource: "EMS", isGridCritical: false },
       chargingSchedule: [
         {
+          id: 1,
           duration: 60,
-          evseId: 1,
           chargingRateUnit: "W",
           chargingSchedulePeriod: [
             {
               startPeriod: 0,
-              limit: 100,
-            },
-          ],
-          scheduleStart: new Date().toISOString(),
-        },
-      ],
+              limit: 100
+            }
+          ]
+        }
+      ]
     },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidNotifyCustomerInformationResponseV201,
     validData: {},
-    invalidData: { customData: {} },
+    invalidData: { customData: {} }
   },
   {
     fun: isValidNotifyCustomerInformationRequestV201,
@@ -663,14 +660,14 @@ const tests: TestCase[] = [
       data: "foo",
       seqNo: 0,
       generatedAt: new Date().toISOString(),
-      requestID: 123,
+      requestId: 123
     },
-    invalidData: { seqNo: 1, requestId: 1 },
+    invalidData: { seqNo: 1, requestId: 1 }
   },
   {
     fun: isValidNotifyDisplayMessagesResponseV201,
     validData: {},
-    invalidData: { customData: {} },
+    invalidData: { customData: {} }
   },
   {
     fun: isValidNotifyDisplayMessagesRequestV201,
@@ -678,37 +675,44 @@ const tests: TestCase[] = [
       messageInfo: [
         {
           id: 1,
-          priority: "AlwaysFront",
-        },
+          message: { content: "Hi there!", format: "ASCII" },
+          priority: "AlwaysFront"
+        }
       ],
-      requestId: 1,
+      requestId: 1
     },
     invalidData: {
-      messageInfo: [],
-    },
+      messageInfo: []
+    }
   },
   {
     fun: isValidNotifyEVChargingNeedsResponseV201,
-    validData: { ...statusWithReason, state: "Processing" },
-    invalidData: statusWithReason,
+    validData: { ...statusWithReason, status: "Processing" },
+    invalidData: statusWithReason
   },
   {
     fun: isValidNotifyEVChargingNeedsRequestV201,
     validData: {
+      evseId: 1,
       chargingNeeds: {
-        requestedEnergyTransfer: "MaxPower",
-      },
+        requestedEnergyTransfer: "DC",
+        dcChargingParameters: {
+          evMaxCurrent: 50,
+          evMaxVoltage: 400
+        }
+      }
     },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidNotifyEVChargingScheduleResponseV201,
     validData: { status: "Accepted" },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidNotifyEVChargingScheduleRequestV201,
     validData: {
+      evseId: 1,
       timeBase: new Date().toISOString(),
       chargingSchedule: {
         id: 1,
@@ -723,20 +727,20 @@ const tests: TestCase[] = [
               consumptionCost: [
                 {
                   startValue: 2,
-                  cost: [{ amount: 0.25, constKind: "CarbonDioxideEmission" }],
-                },
-              ],
-            },
-          ],
-        },
-      },
+                  cost: [{ amount: 25, costKind: "CarbonDioxideEmission" }]
+                }
+              ]
+            }
+          ]
+        }
+      }
     },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidNotifyEventResponseV201,
     validData: {},
-    invalidData: { customData: {} },
+    invalidData: { customData: {} }
   },
   {
     fun: isValidNotifyEventRequestV201,
@@ -748,19 +752,19 @@ const tests: TestCase[] = [
           eventId: 1,
           timestamp: new Date().toISOString(),
           trigger: "Periodic",
-          actialValue: "123",
+          actualValue: "123",
           component: { name: "foo" },
           variable: { name: "bar" },
-          eventNotificationType: "HardWiredNotification",
-        },
-      ],
+          eventNotificationType: "HardWiredNotification"
+        }
+      ]
     },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidNotifyMonitoringReportResponseV201,
     validData: {},
-    invalidData: { customData: {} },
+    invalidData: { customData: {} }
   },
   {
     fun: isValidNotifyMonitoringReportRequestV201,
@@ -778,23 +782,23 @@ const tests: TestCase[] = [
               type: "Delta",
               severity: 6,
               transaction: false,
-              value: 23,
-            },
-          ],
-        },
-      ],
+              value: 23
+            }
+          ]
+        }
+      ]
     },
-    invalidData: { monitor: [] },
+    invalidData: { monitor: [] }
   },
   {
     fun: isValidNotifyReportResponseV201,
     validData: {},
-    invalidData: { customData: {} },
+    invalidData: { customData: {} }
   },
   {
     fun: isValidNotifyReportRequestV201,
     validData: {
-      requestID: 1,
+      requestId: 1,
       generatedAt: new Date().toISOString(),
       seqNo: 1,
       reportData: [
@@ -803,35 +807,35 @@ const tests: TestCase[] = [
           variable: { name: "bar" },
           variableAttribute: [
             {
-              attributeType: "MinSet",
-              value: "baz",
-            },
-          ],
-        },
-      ],
+              type: "MinSet",
+              value: "baz"
+            }
+          ]
+        }
+      ]
     },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidPublishFirmwareResponseV201,
     validData: {
-      status: "Accepted",
+      status: "Accepted"
     },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidPublishFirmwareStatusNotificationResponseV201,
     validData: {},
-    invalidData: { customData: {} },
+    invalidData: { customData: {} }
   },
   {
     fun: isValidPublishFirmwareStatusNotificationRequestV201,
     validData: {
       status: "Downloading",
       location: ["http://example.com"],
-      requestId: 1,
+      requestId: 1
     },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidPublishFirmwareRequestV201,
@@ -840,14 +844,14 @@ const tests: TestCase[] = [
       retries: 2,
       retryInterval: 300,
       checksum: "0x00",
-      requestId: 1,
+      requestId: 1
     },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidReportChargingProfilesResponseV201,
     validData: {},
-    invalidData: { customData: {} },
+    invalidData: { customData: {} }
   },
   {
     fun: isValidReportChargingProfilesRequestV201,
@@ -859,29 +863,29 @@ const tests: TestCase[] = [
           id: 1,
           stackLevel: 1,
           chargingProfilePurpose: "TxProfile",
-          charginProfileKind: "Recurring",
+          chargingProfileKind: "Recurring",
           chargingSchedule: [
             {
               id: 2,
               chargingRateUnit: "A",
-              chargingSchedulePeriod: [{ startPeriod: 1, limit: 20 }],
-            },
-          ],
-        },
+              chargingSchedulePeriod: [{ startPeriod: 1, limit: 20 }]
+            }
+          ]
+        }
       ],
-      evseId: 1,
+      evseId: 1
     },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidReservationStatusUpdateResponseV201,
     validData: {},
-    invalidData: { customData: {} },
+    invalidData: { customData: {} }
   },
   {
     fun: isValidReservationStatusUpdateRequestV201,
     validData: { reservationId: 12, reservationUpdateStatus: "Expired" },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidReserveNowResponseV201,
@@ -889,10 +893,10 @@ const tests: TestCase[] = [
       status: "Faulted",
       statusInfo: {
         reasonCode: "foo",
-        additionalInfo: "bar",
-      },
+        additionalInfo: "bar"
+      }
     },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidReserveNowRequestV201,
@@ -900,110 +904,351 @@ const tests: TestCase[] = [
       id: 1,
       expiryDateTime: new Date().toISOString(),
       idToken: { idToken: "abc123", type: "Central" },
-      connectorType: "Type2Outlet",
+      connectorType: "sType2"
     },
-    invalidData: { idToken: "abc123" },
+    invalidData: { idToken: "abc123" }
   },
   {
     fun: isValidResetResponseV201,
     validData: {
-      status: "Scheduled",
+      status: "Scheduled"
     },
-    invalidData: {},
+    invalidData: {}
   },
   {
     fun: isValidResetRequestV201,
     validData: {
-      type: "Immediate",
+      type: "Immediate"
     },
-    invalidData: { type: "Whenever" },
+    invalidData: { type: "Whenever" }
   },
   {
     fun: isValidSecurityEventNotificationResponseV201,
     validData: {},
-    invalidData: {},
+    invalidData: { type: "event" }
   },
   {
     fun: isValidSecurityEventNotificationRequestV201,
-    validData: {},
-    invalidData: {},
+    validData: { type: "event", timestamp: new Date().toISOString() },
+    invalidData: { timestamp: new Date().toISOString() }
   },
-  { fun: isValidSendLocalListResponseV201, validData: {}, invalidData: {} },
-  { fun: isValidSendLocalListRequestV201, validData: {}, invalidData: {} },
+  {
+    fun: isValidSendLocalListResponseV201,
+    validData: {
+      status: "VersionMismatch",
+      statusInfo: { reasonCode: "foo" }
+    },
+    invalidData: { status: "Rejected" }
+  },
+  {
+    fun: isValidSendLocalListRequestV201,
+    validData: {
+      versionNumber: 1,
+      localAuthorizationList: [
+        { idToken: { idToken: "abc", type: "Central" } }
+      ],
+      updateType: "Full"
+    },
+    invalidData: {
+      versionNumber: 2
+    }
+  },
   {
     fun: isValidSetChargingProfileResponseV201,
-    validData: {},
-    invalidData: {},
+    validData: { status: "Accepted" },
+    invalidData: {}
   },
-  { fun: isValidSetChargingProfileRequestV201, validData: {}, invalidData: {} },
-  { fun: isValidSetDisplayMessageResponseV201, validData: {}, invalidData: {} },
-  { fun: isValidSetDisplayMessageRequestV201, validData: {}, invalidData: {} },
-  { fun: isValidSetMonitoringBaseResponseV201, validData: {}, invalidData: {} },
-  { fun: isValidSetMonitoringBaseRequestV201, validData: {}, invalidData: {} },
+  {
+    fun: isValidSetChargingProfileRequestV201,
+    validData: {
+      evseId: 1,
+      chargingProfile: {
+        id: 1,
+        stackLevel: 1,
+        chargingProfilePurpose: "TxProfile",
+        chargingProfileKind: "Recurring",
+        chargingSchedule: [
+          {
+            id: 2,
+            chargingRateUnit: "A",
+            chargingSchedulePeriod: [{ startPeriod: 1, limit: 20 }]
+          }
+        ]
+      }
+    },
+    invalidData: {}
+  },
+  {
+    fun: isValidSetDisplayMessageResponseV201,
+    validData: { ...statusWithReason, status: "NotSupportedMessageFormat" },
+    invalidData: statusWithReason
+  },
+  {
+    fun: isValidSetDisplayMessageRequestV201,
+    validData: {
+      message: {
+        id: 1,
+        priority: "AlwaysFront",
+        message: {
+          content: "Hello World",
+          format: "ASCII"
+        }
+      }
+    },
+    invalidData: { message: "hello" }
+  },
+  {
+    fun: isValidSetMonitoringBaseResponseV201,
+    validData: { ...statusWithReason, status: "NotSupported" },
+    invalidData: statusWithReason
+  },
+  {
+    fun: isValidSetMonitoringBaseRequestV201,
+    validData: {
+      monitoringBase: "FactoryDefault"
+    },
+    invalidData: {}
+  },
   {
     fun: isValidSetMonitoringLevelResponseV201,
-    validData: {},
-    invalidData: {},
+    validData: { status: "Accepted" },
+    invalidData: {}
   },
-  { fun: isValidSetMonitoringLevelRequestV201, validData: {}, invalidData: {} },
-  { fun: isValidSetNetworkProfileResponseV201, validData: {}, invalidData: {} },
-  { fun: isValidSetNetworkProfileRequestV201, validData: {}, invalidData: {} },
+  {
+    fun: isValidSetMonitoringLevelRequestV201,
+    validData: { severity: 7 },
+    invalidData: {}
+  },
+  {
+    fun: isValidSetNetworkProfileResponseV201,
+    validData: { status: "Failed" },
+    invalidData: {}
+  },
+  {
+    fun: isValidSetNetworkProfileRequestV201,
+    validData: {
+      configurationSlot: 1,
+      connectionData: {
+        ocppVersion: "OCPP20",
+        ocppTransport: "JSON",
+        securityProfile: 2,
+        messageTimeout: 5,
+        ocppInterface: "Wired0",
+        ocppCsmsUrl: "wss://example.com"
+      }
+    },
+    invalidData: {}
+  },
   {
     fun: isValidSetVariableMonitoringResponseV201,
-    validData: {},
-    invalidData: {},
+    validData: {
+      setMonitoringResult: [
+        {
+          id: 1,
+          status: "Accepted",
+          type: "Delta",
+          component: { name: "foo" },
+          variable: { name: "bar" },
+          severity: 6
+        }
+      ]
+    },
+    invalidData: {}
   },
   {
     fun: isValidSetVariableMonitoringRequestV201,
-    validData: {},
-    invalidData: {},
+    validData: {
+      setMonitoringData: [
+        {
+          id: 2,
+          transaction: false,
+          value: 3,
+          type: "Delta",
+          severity: 6,
+          component: { name: "foo" },
+          variable: { name: "bar" }
+        }
+      ]
+    },
+    invalidData: {}
   },
-  { fun: isValidSetVariablesResponseV201, validData: {}, invalidData: {} },
-  { fun: isValidSetVariablesRequestV201, validData: {}, invalidData: {} },
-  { fun: isValidSignCertificateResponseV201, validData: {}, invalidData: {} },
-  { fun: isValidSignCertificateRequestV201, validData: {}, invalidData: {} },
+  {
+    fun: isValidSetVariablesResponseV201,
+    validData: {
+      setVariableResult: [
+        {
+          attributeStatus: "Accepted",
+          attributeType: "MinSet",
+          component: { name: "foo" },
+          variable: { name: "bar" }
+        }
+      ]
+    },
+    invalidData: {}
+  },
+  {
+    fun: isValidSetVariablesRequestV201,
+    validData: {
+      setVariableData: [
+        {
+          attributeType: "MinSet",
+          component: { name: "foo" },
+          variable: { name: "bar" },
+          attributeValue: "baz"
+        }
+      ]
+    },
+    invalidData: {}
+  },
+  {
+    fun: isValidSignCertificateResponseV201,
+    validData: { ...statusWithReason, status: "Rejected" },
+    invalidData: {}
+  },
+  {
+    fun: isValidSignCertificateRequestV201,
+    validData: {
+      csr: "---",
+      certificateType: "ChargingStationCertificate"
+    },
+    invalidData: {}
+  },
   {
     fun: isValidRequestStartTransactionResponseV201,
-    validData: {},
-    invalidData: {},
+    validData: { ...statusWithReason, status: "Rejected" },
+    invalidData: statusWithReason
   },
   {
     fun: isValidRequestStartTransactionRequestV201,
-    validData: {},
-    invalidData: {},
+    validData: {
+      evseId: 1,
+      idToken: { idToken: "abc", type: "Central" },
+      remoteStartId: 1,
+      chargingProfile: {
+        id: 2,
+        stackLevel: 0,
+        chargingProfilePurpose: "TxProfile",
+        chargingProfileKind: "Recurring",
+        chargingSchedule: [
+          {
+            id: 3,
+            chargingRateUnit: "W",
+            chargingSchedulePeriod: [{ startPeriod: 0, limit: 100 }]
+          }
+        ]
+      }
+    },
+    invalidData: { idTag: "abc" }
   },
   {
     fun: isValidStatusNotificationResponseV201,
     validData: {},
-    invalidData: {},
+    invalidData: { customData: {} }
   },
-  { fun: isValidStatusNotificationRequestV201, validData: {}, invalidData: {} },
+  {
+    fun: isValidStatusNotificationRequestV201,
+    validData: {
+      timestamp: new Date().toISOString(),
+      connectorStatus: "Available",
+      evseId: 2,
+      connectorId: 1
+    },
+    invalidData: {}
+  },
   {
     fun: isValidRequestStopTransactionResponseV201,
-    validData: {},
-    invalidData: {},
+    validData: { ...statusWithReason, status: "Rejected" },
+    invalidData: statusWithReason
   },
   {
     fun: isValidRequestStopTransactionRequestV201,
-    validData: {},
-    invalidData: {},
+    validData: { transactionId: "123" },
+    invalidData: {}
   },
-  { fun: isValidTransactionEventResponseV201, validData: {}, invalidData: {} },
-  { fun: isValidTransactionEventRequestV201, validData: {}, invalidData: {} },
-  { fun: isValidTriggerMessageResponseV201, validData: {}, invalidData: {} },
-  { fun: isValidTriggerMessageRequestV201, validData: {}, invalidData: {} },
-  { fun: isValidUnlockConnectorResponseV201, validData: {}, invalidData: {} },
-  { fun: isValidUnlockConnectorRequestV201, validData: {}, invalidData: {} },
-  { fun: isValidUnpublishFirmwareResponseV201, validData: {}, invalidData: {} },
-  { fun: isValidUnpublishFirmwareRequestV201, validData: {}, invalidData: {} },
-  { fun: isValidUpdateFirmwareResponseV201, validData: {}, invalidData: {} },
-  { fun: isValidUpdateFirmwareRequestV201, validData: {}, invalidData: {} },
+  {
+    fun: isValidTransactionEventResponseV201,
+    validData: {
+      totalCost: 234,
+      chargingPriority: 3
+    },
+    invalidData: { status: "foo" }
+  },
+  {
+    fun: isValidTransactionEventRequestV201,
+    validData: {
+      eventType: "Ended",
+      meterValue: [
+        {
+          sampledValue: [{ value: 23, measurand: "Voltage" }],
+          timestamp: new Date().toISOString()
+        }
+      ],
+      timestamp: new Date().toISOString(),
+      triggerReason: "Authorized",
+      seqNo: 1,
+      transactionInfo: {
+        transactionId: "123"
+      }
+    },
+    invalidData: { eventType: "Ended" }
+  },
+  {
+    fun: isValidTriggerMessageResponseV201,
+    validData: { status: "Accepted" },
+    invalidData: {}
+  },
+  {
+    fun: isValidTriggerMessageRequestV201,
+    validData: {
+      evse: { id: 1, connectorId: 2 },
+      requestedMessage: "LogStatusNotification"
+    },
+    invalidData: {}
+  },
+  {
+    fun: isValidUnlockConnectorResponseV201,
+    validData: { status: "UnlockFailed" },
+    invalidData: {}
+  },
+  {
+    fun: isValidUnlockConnectorRequestV201,
+    validData: { evseId: 1, connectorId: 2 },
+    invalidData: {}
+  },
+  {
+    fun: isValidUnpublishFirmwareResponseV201,
+    validData: { status: "NoFirmware" },
+    invalidData: {}
+  },
+  {
+    fun: isValidUnpublishFirmwareRequestV201,
+    validData: { checksum: "0x25" },
+    invalidData: {}
+  },
+  {
+    fun: isValidUpdateFirmwareResponseV201,
+    validData: { status: "InvalidCertificate" },
+    invalidData: statusWithReason
+  },
+  {
+    fun: isValidUpdateFirmwareRequestV201,
+    validData: {
+      requestId: 23,
+      firmware: {
+        location: "http://example.com",
+        retrieveDateTime: new Date().toISOString()
+      },
+      retries: 3,
+      retryInterval: 30
+    },
+    invalidData: {}
+  }
 ];
 
 describe("Validation for OCPP v2.0.1 payloads", () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  test.each(tests)("$fun", ({ fun, validData }) => {
+  test.each(tests)("$fun", ({ fun, validData, invalidData }) => {
     expect(fun(validData)).toBe(true);
-    //expect(fun(invalidData)).toBe(false);
+    expect(fun(invalidData)).toBe(false);
   });
 });

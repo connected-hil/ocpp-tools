@@ -28,7 +28,7 @@ export const importJsonSchemaAST = (
       undefined
     ),
     factory.createStringLiteral(
-      ["src", "schemas", version, schemafile].join("/")
+      ["..", "..", "schemas", version, schemafile].join("/")
     ),
 
     undefined
@@ -69,7 +69,7 @@ const schemaMapAST = (version: string, names: string[]): Node =>
 export const generateSchemaFile = (
   version: string,
   definitions: GeneratorDefinition[]
-) => {
+): void => {
   const filename = ["src", "generated", version, "schemas.ts"].join("/");
   const printer = createPrinter({ newLine: NewLineKind.LineFeed });
   const sourceFile = createSourceFile(

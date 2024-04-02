@@ -11,10 +11,10 @@ import {
   ScriptKind,
   createSourceFile,
   EmitHint,
-  ListFormat,
+  ListFormat
 } from "typescript";
 import fs from "fs";
-import { GeneratorDefinition, capitalize } from "./common";
+import { type GeneratorDefinition, capitalize } from "./common";
 
 const errorCodes = {
   v16: [
@@ -63,10 +63,10 @@ const importAST = (name: string, path: string): Node =>
       undefined,
       factory.createNamedImports([
         factory.createImportSpecifier(
-          false,
+          true,
           undefined,
           factory.createIdentifier(name)
-        ),
+        )
       ])
     ),
     factory.createStringLiteral(path),
@@ -75,7 +75,7 @@ const importAST = (name: string, path: string): Node =>
 
 const importsAST = (definitions: GeneratorDefinition[]): Node[] =>
   definitions.map(({ title, typeFile }) =>
-    importAST(title, typeFile.replace(/\.ts$/, ""))
+    importAST(title, [".", typeFile.split("/").reverse()[0].replace(/\.ts$/, "")].join("/"))
   );
 
 export const generateTypesIndex = (
@@ -140,10 +140,10 @@ export const generateTypesIndex = (
       unionTypeAST(["OCPPRpcMessage", upperCaseVersion].join(""), [
         ["RpcCall", upperCaseVersion].join(""),
         ["RpcCallResult", upperCaseVersion].join(""),
-        ["RpcCallError", upperCaseVersion].join(""),
+        ["RpcCallError", upperCaseVersion].join("")
       ]),
       sourceFile
-    ),
+    )
   ];
 
   fs.writeFileSync(filename, types.join("\n"), { encoding: "utf-8" });

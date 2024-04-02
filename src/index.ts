@@ -1,8 +1,5 @@
-export * from "./generated/v16";
-export * from "./generated/v201";
-export { validateOCPPPayload } from "./validation";
-export { validateOCPPMessage } from "./validation";
-
+export { validateOCPPPayload, validationErrors, validateOCPPMessage } from "./validation";
+export { schemas } from "./generated/schemas"
 export * from './message/ocpp-call'
 export * from './message/ocpp-call-error'
 export * from './message/ocpp-call-result'

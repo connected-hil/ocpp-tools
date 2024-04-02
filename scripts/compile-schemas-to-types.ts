@@ -1,4 +1,4 @@
-import {  compile } from "json-schema-to-typescript";
+import { compile, type JSONSchema } from "json-schema-to-typescript";
 import fs from "fs";
 import path from "path";
 import { generateSchemaFile } from "./schema-ast";
@@ -28,29 +28,30 @@ const generate = (): void => {
         // Postfix interface name with version
         const jsonSchema = {
           title: `${name}${capitalize(version)}`,
-          ...rest,
+          ...rest
         };
 
         const typeFile = [
-          "src",
+          "..",
+          "..",
           "generated",
           version,
           "types",
-          `${schema}.ts`,
+          `${schema}.ts`
         ].join("/");
         schemasDefinitions.push({
           version,
           title: jsonSchema.title,
           schemaFile: [schema, ".json"].join(""),
-          typeFile,
+          typeFile
         });
 
-        compile(jsonSchema, schema).then((ts) =>
+        compile(jsonSchema as JSONSchema, schema).then((ts) => {
           fs.writeFileSync(
             [basePath, "generated", version, "types", `${schema}.ts`].join("/"),
             ts
-          )
-        );
+          );
+        }).catch((error) => { console.error("Caught error in generate", error) });
       });
     generateValidators(version, schemasDefinitions);
     generateTypesIndex(version, schemasDefinitions);
