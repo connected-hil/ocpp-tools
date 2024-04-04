@@ -4,25 +4,28 @@ import { OCPPCallError } from "./ocpp-call-error";
 import { OCPPMessageType, ocppVersion } from "./types";
 import { validateOCPPMessage } from "src/validation";
 
-type OCPPMessageParserOptions = {
-  validateMessage?: boolean;
-  validatePayload?: boolean;
-  ocppVersion: ocppVersion;
-};
+interface OCPPMessageParserOptions {
+  // Validate the message structure
+  validateMessage?: boolean
+  // Validate message OCPP Payload, only for RPC CALL type
+  validatePayload?: boolean
+  // OCPP version
+  ocppVersion: ocppVersion
+}
 
 export const parseOCPPMessage = (
   rawMessage: string,
   options: OCPPMessageParserOptions = {
     ocppVersion: ocppVersion.ocpp16,
     validateMessage: true,
-    validatePayload: false,
+    validatePayload: false
   }
 ): OCPPCallError | OCPPCallResult | OCPPCall => {
   const parsed = JSON.parse(rawMessage);
   const [messageTypeId, messageId, ...attributes] = parsed;
 
-  if (options.validateMessage) {
-    if (validateOCPPMessage(options.ocppVersion, parsed) === false) {
+  if (options.validateMessage ?? false) {
+    if (!validateOCPPMessage(options.ocppVersion, parsed as unknown[])) {
       throw new Error("Invalid OCPP message");
     }
   }
@@ -31,7 +34,7 @@ export const parseOCPPMessage = (
       return new OCPPCall({
         messageId,
         action: attributes[0],
-        payload: attributes[1],
+        payload: attributes[1]
       });
     }
     case OCPPMessageType.CALL_RESULT: {
@@ -42,7 +45,7 @@ export const parseOCPPMessage = (
         messageId,
         errorCode: attributes[0],
         errorDescription: attributes[1],
-        errorDetails: attributes[2] ?? {},
+        errorDetails: attributes[2] ?? {}
       });
     }
     default:

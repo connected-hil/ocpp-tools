@@ -1,20 +1,19 @@
 import {
-  //addSyntheticLeadingComment,
+  // addSyntheticLeadingComment,
   factory,
   NodeFlags,
   SyntaxKind,
-  Node,
+  type Node,
   ListFormat,
   createPrinter,
   NewLineKind,
   ScriptTarget,
   ScriptKind,
   createSourceFile,
-  EmitHint,
+  EmitHint
 } from "typescript";
 import fs from "fs";
-import { GeneratorDefinition, toLowerCaseCamelCase } from "./common";
-
+import { type GeneratorDefinition, toLowerCaseCamelCase } from "./common";
 
 export const importJsonSchemaAST = (
   version: string,
@@ -57,11 +56,11 @@ const schemaMapAST = (version: string, names: string[]): Node =>
                   ),
                   true
                 )
-              ),
+              )
             ],
             true
           )
-        ),
+        )
       ],
       NodeFlags.Const
     )
@@ -70,7 +69,7 @@ const schemaMapAST = (version: string, names: string[]): Node =>
 export const generateSchemaFile = (
   version: string,
   definitions: GeneratorDefinition[]
-) => {
+): void => {
   const filename = ["src", "generated", "schemas.ts"].join("/");
   const printer = createPrinter({ newLine: NewLineKind.LineFeed });
   const sourceFile = createSourceFile(
@@ -100,7 +99,7 @@ export const generateSchemaFile = (
           definitions.map(({ title }) => toLowerCaseCamelCase(title))
         ),
         sourceFile
-      ),
+      )
     ].join("\n")
   );
 };

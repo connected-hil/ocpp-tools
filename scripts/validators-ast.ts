@@ -1,20 +1,22 @@
 import {
-  //addSyntheticLeadingComment,
+  // addSyntheticLeadingComment,
   factory,
   NodeFlags,
   SyntaxKind,
-  Node,
+  type Node,
   ListFormat,
   createPrinter,
   NewLineKind,
   ScriptTarget,
   ScriptKind,
-  createSourceFile,
+  createSourceFile
 } from "typescript";
 import fs from "fs";
-import { GeneratorDefinition } from "./common";
+import { type GeneratorDefinition } from "./common";
 
-export const validationImportsAST = (definitions: GeneratorDefinition[]): Node[] => [
+export const validationImportsAST = (
+  definitions: GeneratorDefinition[]
+): Node[] => [
   factory.createImportDeclaration(
     undefined,
     factory.createImportClause(
@@ -25,7 +27,7 @@ export const validationImportsAST = (definitions: GeneratorDefinition[]): Node[]
           false,
           undefined,
           factory.createIdentifier("schemas")
-        ),
+        )
       ])
     ),
     factory.createStringLiteral(["src", "generated", "schemas"].join("/")),
@@ -41,14 +43,13 @@ export const validationImportsAST = (definitions: GeneratorDefinition[]): Node[]
           false,
           undefined,
           factory.createIdentifier("validateOCPPPayload")
-        ),
+        )
       ])
     ),
     factory.createStringLiteral("src/validation"),
     undefined
   ),
-  ...definitions.map(({title, typeFile}) => {
-
+  ...definitions.map(({ title, typeFile }) => {
     return factory.createImportDeclaration(
       undefined,
       factory.createImportClause(
@@ -59,80 +60,83 @@ export const validationImportsAST = (definitions: GeneratorDefinition[]): Node[]
             false,
             undefined,
             factory.createIdentifier(title)
-          ),
+          )
         ])
       ),
-      factory.createStringLiteral(
-        typeFile.replace(/.ts$/,"")
-      ),
+      factory.createStringLiteral(typeFile.replace(/.ts$/, "")),
       undefined
     );
   })
-]
+];
 
-export const validatorFunctionAST = (title:string): Node[] => [
-
-  factory.createJSDocComment([[
-    "Validation function for ", title, " using JSON included schema."].join(""),
-    " @param { unknown } data JSON decoded payload to validate",
-    " @returns { boolean } true if payload is valid against schema, false otherwise\n"
-  ].join("\n")),
-  factory.createVariableStatement(
-  [factory.createToken(SyntaxKind.ExportKeyword)],
-  factory.createVariableDeclarationList(
+export const validatorFunctionAST = (title: string): Node[] => [
+  factory.createJSDocComment(
     [
-      factory.createVariableDeclaration(
-        factory.createIdentifier(["isValid", title].join("")),
-        undefined,
-        undefined,
-        factory.createArrowFunction(
+      ["Validation function for ", title, " using JSON included schema."].join(
+        ""
+      ),
+      " @param { unknown } data JSON decoded payload to validate",
+      " @returns { boolean } true if payload is valid against schema, false otherwise\n"
+    ].join("\n")
+  ),
+  factory.createVariableStatement(
+    [factory.createToken(SyntaxKind.ExportKeyword)],
+    factory.createVariableDeclarationList(
+      [
+        factory.createVariableDeclaration(
+          factory.createIdentifier(["isValid", title].join("")),
           undefined,
           undefined,
-          [
-            factory.createParameterDeclaration(
-              undefined,
-              undefined,
-              factory.createIdentifier("data"),
-              undefined,
-              factory.createKeywordTypeNode(SyntaxKind.UnknownKeyword),
-              undefined
-            ),
-          ],
-          factory.createTypePredicateNode(
+          factory.createArrowFunction(
             undefined,
-            factory.createIdentifier("data"),
-            factory.createTypeReferenceNode(
-              factory.createIdentifier(title),
-              undefined
-            )
-          ),
-          factory.createToken(SyntaxKind.EqualsGreaterThanToken),
-          factory.createCallExpression(
-            factory.createIdentifier("validateOCPPPayload"),
             undefined,
             [
-              factory.createPropertyAccessExpression(
-                factory.createPropertyAccessExpression(
-                  factory.createIdentifier("schemas"),
-                  factory.createIdentifier("v16")
-                ),
-                factory.createIdentifier(
-                  title.charAt(0).toLowerCase() + title.slice(1)
-                )
-              ),
+              factory.createParameterDeclaration(
+                undefined,
+                undefined,
+                factory.createIdentifier("data"),
+                undefined,
+                factory.createKeywordTypeNode(SyntaxKind.UnknownKeyword),
+                undefined
+              )
+            ],
+            factory.createTypePredicateNode(
+              undefined,
               factory.createIdentifier("data"),
-            ]
+              factory.createTypeReferenceNode(
+                factory.createIdentifier(title),
+                undefined
+              )
+            ),
+            factory.createToken(SyntaxKind.EqualsGreaterThanToken),
+            factory.createCallExpression(
+              factory.createIdentifier("validateOCPPPayload"),
+              undefined,
+              [
+                factory.createPropertyAccessExpression(
+                  factory.createPropertyAccessExpression(
+                    factory.createIdentifier("schemas"),
+                    factory.createIdentifier("v16")
+                  ),
+                  factory.createIdentifier(
+                    title.charAt(0).toLowerCase() + title.slice(1)
+                  )
+                ),
+                factory.createIdentifier("data")
+              ]
+            )
           )
         )
-      ),
-    ],
-    NodeFlags.Const
+      ],
+      NodeFlags.Const
+    )
   )
-)
-]
+];
 
-
-export const generateValidators = (version: string, definitions: GeneratorDefinition[]) => {
+export const generateValidators = (
+  version: string,
+  definitions: GeneratorDefinition[]
+): void => {
   const filename = ["src", "generated", version, "validators.ts"].join("/");
   const printer = createPrinter({ newLine: NewLineKind.LineFeed });
   const sourceFile = createSourceFile(
@@ -151,7 +155,7 @@ export const generateValidators = (version: string, definitions: GeneratorDefini
         factory.createNodeArray(validationImportsAST(definitions)),
         sourceFile
       ),
-      ...definitions.map(({title}) =>
+      ...definitions.map(({ title }) =>
         printer.printList(
           ListFormat.MultiLine,
           factory.createNodeArray(validatorFunctionAST(title)),
