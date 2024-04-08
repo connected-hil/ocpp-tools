@@ -28,6 +28,6 @@ jobs:
           commit: false
       - run: |
           pnpm build
-          pnpm publish --access public --publish-branch main --no-git-checks
+          pnpm custom:publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

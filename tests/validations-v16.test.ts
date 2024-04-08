@@ -56,8 +56,10 @@ import {
   isValidUnlockConnectorRequestV16,
   isValidUpdateFirmwareResponseV16,
   isValidUpdateFirmwareRequestV16,
-} from "../src/generated/v16/";
-import { ocppVersion } from "src/message/types";
+} from "../src/validation/v16/";
+import { ocppVersion } from "src/message/common";
+import { schemas } from "src/schemas";
+import { validationErrors } from "src/validation";
 
 interface TestCase {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -402,6 +404,17 @@ describe("Validation for OCPP v1.6 payloads", () => {
   });
 });
 
+describe(".validationErrors", () => {
+  test("returns error descriptions for invalid payload", () => {
+    const errors = validationErrors(schemas.v16.authorizeRequestV16, {});
+    expect(errors).toEqual(
+      expect.arrayContaining([
+        "#/required: must have required property 'idTag'",
+      ])
+    );
+  });
+});
+
 describe(".parseOCPPMessage", () => {
   test("throws error on invalid message", () => {
     expect(() => {
@@ -418,7 +431,7 @@ describe(".parseOCPPMessage", () => {
         JSON.stringify([6, "abc123", "GenericError", "description"]),
         {
           validateMessage: false,
-          ocppVersion: ocppVersion.ocpp16,
+          version: ocppVersion.ocpp16,
         }
       );
     }).toThrow("Unknown message type: 6");

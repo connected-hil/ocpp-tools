@@ -1,7 +1,7 @@
 name: Merge to main
 on:
   push:
-    branches: [main]
+    branches: [main, release]
   pull_request:
     branches: [main]
 
@@ -27,4 +27,4 @@ jobs:
           run_install: true
       - run: pnpm check-types
       - run: pnpm run lint
-      - run: pnpm run test
+      - run: pnpm run test:coverage

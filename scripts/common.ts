@@ -6,4 +6,7 @@ export interface GeneratorDefinition {
 }
 
 export const toLowerCaseCamelCase = (str: string): string =>
-  str.charAt(0).toLowerCase() + str.slice(1)
+  str.charAt(0).toLowerCase() + str.slice(1);
+
+export const capitalize = (str: string): string =>
+  str.charAt(0).toUpperCase() + str.slice(1);

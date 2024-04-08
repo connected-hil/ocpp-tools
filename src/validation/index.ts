@@ -1,18 +1,15 @@
 import ajv, { type Schema } from "ajv";
 import addFormats from "ajv-formats";
-import callSchemav16 from "src/schemas/v16/ocpp-call.json";
-import callResponseSchemav16 from "src/schemas/v16/ocpp-call-result.json";
-import callErrorSchemav16 from "src/schemas/v16/ocpp-call-error.json";
-import { OCPPMessageType, ocppVersion } from "src/message/types";
+import { schemas } from "../schemas";
+import { OCPPMessageType, ocppVersion } from "../message/common";
 
-const validator = new ajv({ allErrors: true });
+const validator = new ajv({
+  allErrors: true,
+  strict: false,
+  strictSchema: false
+});
 addFormats(validator);
 
-const ocppMessageSchemasV16 = {
-  [OCPPMessageType.CALL]: callSchemav16,
-  [OCPPMessageType.CALL_RESULT]: callResponseSchemav16,
-  [OCPPMessageType.CALL_ERROR]: callErrorSchemav16
-};
 /**
  *
  * @param schema JSON schema
@@ -25,24 +22,44 @@ export const validateOCPPPayload = (schema: Schema, data: unknown): boolean => {
   }
 
   const validate = validator.compile(schema);
-  const valid = validate(data);
-  if (!valid) {
-    console.warn(validate.errors);
-  }
-
-  return valid;
+  return validate(data);
 };
 
-const getSchemaForMessage = (
-  version: ocppVersion,
-  messageTypeId: OCPPMessageType
+/**
+ *
+ * @param schema JSON schema
+ * @param data Object to validate against the schema
+ * @returns [String] array of schema validation errors
+ */
+export const validationErrors = (schema: Schema, data: unknown): string[] => {
+  const validate = validator.compile(schema);
+  return validate(data)
+    ? []
+    : (validate.errors ?? [])?.map((e) => [e.schemaPath, e.message].join(": "));
+};
+
+const resolveSchema = (
+  ocppversion: ocppVersion,
+  messageType: OCPPMessageType
 ): Schema => {
-  switch (version) {
-    case ocppVersion.ocpp16:
-      return ocppMessageSchemasV16[messageTypeId];
-    case ocppVersion.ocpp20:
-    case ocppVersion.ocpp201:
-      throw new Error("ocpp version not supported");
+  if (ocppversion === ocppVersion.ocpp16) {
+    switch (messageType) {
+      case OCPPMessageType.CALL:
+        return schemas.v16.rpcCallV16;
+      case OCPPMessageType.CALL_RESULT:
+        return schemas.v16.rpcCallResultV16;
+      case OCPPMessageType.CALL_ERROR:
+        return schemas.v16.rpcCallErrorV16;
+    }
+  } else {
+    switch (messageType) {
+      case OCPPMessageType.CALL:
+        return schemas.v201.rpcCallV201;
+      case OCPPMessageType.CALL_RESULT:
+        return schemas.v201.rpcCallResultV201;
+      case OCPPMessageType.CALL_ERROR:
+        return schemas.v201.rpcCallErrorV201;
+    }
   }
 };
 
@@ -50,20 +67,11 @@ export const validateOCPPMessage = (
   ocppversion: ocppVersion,
   data: unknown[]
 ): boolean => {
-  if (data == null) {
-    return false;
-  }
-
   if (!Object.values(OCPPMessageType).includes(Number(data[0]))) {
     return false;
   }
 
-  const schema = getSchemaForMessage(ocppversion, data[0] as OCPPMessageType);
+  const schema = resolveSchema(ocppversion, data[0] as OCPPMessageType);
   const validate = validator.compile(schema);
-  const valid = validate(data);
-  if (!valid) {
-    console.warn(validate.errors);
-  }
-
-  return valid;
+  return validate(data);
 };

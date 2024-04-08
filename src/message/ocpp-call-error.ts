@@ -1,31 +1,26 @@
-import { OCPPMessageType } from './types'
-import { type OCPPErrorCodeV16 } from './../generated/v16'
-import { randomUUID } from 'crypto'
-import { type OCPPCallErrorV16 } from 'src/generated/v16/types/ocpp-call-error'
+import { type RpcCallErrorV16 } from "./../types/v16";
+import { OCPPMessageType, type OCPPErrorCodeType } from "./common";
 
-interface iOCPPCallError {
-  messageId?: string
-  errorCode: OCPPErrorCodeV16
-  errorDescription: string
-  errorDetails?: Record<string, unknown>
-}
+import { randomUUID } from "crypto";
+import { type RpcCallErrorV201 } from "./../types/v201";
+import { type OCPPErrorCodeV16, type OCPPErrorCodeV201 } from "./../types";
 
-export class OCPPCallError {
-  public messageTypeId: OCPPMessageType.CALL_ERROR
-  public messageId: string
+export class OCPPCallError<T extends OCPPErrorCodeType> {
+  public messageTypeId: OCPPMessageType.CALL_ERROR;
+  public messageId: string;
 
-  public errorCode: OCPPErrorCodeV16
-  public errorDescription: string
-  public errorDetails: Record<string, unknown>
+  public errorCode: T;
+  public errorDescription: string;
+  public errorDetails: Record<string, unknown>;
 
-  public toRPCObject (): OCPPCallErrorV16 {
+  public toRPCObject (): RpcCallErrorV16 | RpcCallErrorV201 {
     return [
       OCPPMessageType.CALL_ERROR,
       this.messageId,
       this.errorCode,
       this.errorDescription,
       this.errorDetails
-    ]
+    ];
   }
 
   public constructor ({
@@ -33,11 +28,19 @@ export class OCPPCallError {
     errorCode,
     errorDescription,
     errorDetails
-  }: iOCPPCallError) {
-    this.messageTypeId = OCPPMessageType.CALL_ERROR
-    this.messageId = messageId ?? randomUUID()
-    this.errorCode = errorCode
-    this.errorDescription = errorDescription
-    this.errorDetails = errorDetails ?? {}
+  }: {
+    messageId?: string
+    errorCode: T
+    errorDescription: string
+    errorDetails?: Record<string, unknown>
+  }) {
+    this.messageTypeId = OCPPMessageType.CALL_ERROR;
+    this.messageId = messageId ?? randomUUID();
+    this.errorCode = errorCode;
+    this.errorDescription = errorDescription;
+    this.errorDetails = errorDetails ?? {};
   }
 }
+
+export class OCPPCallErrorV16 extends OCPPCallError<OCPPErrorCodeV16> {}
+export class OCPPCallErrorV201 extends OCPPCallError<OCPPErrorCodeV201> {}
