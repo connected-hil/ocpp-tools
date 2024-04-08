@@ -4,9 +4,7 @@
   "description": "A package containing schemas, types and validations for OCPP protocol version 1.6.x",
   "main": "./index.js",
   "types": "./index.d.ts",
-  "files": [
-    "*"
-  ],
+  "files": ["*"],
   "repository": {
     "type": "git",
     "url": "https://github.com/connected-hil/ocpp-tools.git"
@@ -17,16 +15,12 @@
     "check-types": "tsc --noEmit",
     "generate": "pnpm ts-node scripts/compile-schemas-to-types.ts",
     "build": "rimraf dist; tsc --project tsconfig.build.json",
-    "postbuild": "cp -rf package.json dist/",
-    "custom:publish": "cd dist && pnpm publish --access public --publish-branch main --no-git-checks",
-    "custom:pack": "cd dist && pnpm pack --pack-destination ../",
+    "custom:publish": "cp package.json dist && cd dist && pnpm publish --access public --publish-branch main --no-git-checks",
+    "custom:pack": "cp packge.json dist/ && cd dist && pnpm pack --pack-destination ../",
     "test": "jest --no-coverage",
     "test:coverage": "jest"
   },
-  "keywords": [
-    "OCPP",
-    "schema"
-  ],
+  "keywords": ["OCPP", "schema"],
   "author": "l-arte <lauri.arte@gmail.com>",
   "license": "MIT",
   "devDependencies": {
