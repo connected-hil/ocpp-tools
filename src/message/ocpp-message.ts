@@ -10,7 +10,7 @@ interface OCPPMessageParserOptions {
   version: ocppVersion
 }
 
-type ReturnType =
+type OCPPRpcMessage =
   | OCPPCallV16
   | OCPPCallErrorV16
   | OCPPCallResultV16
@@ -34,7 +34,7 @@ export const parseOCPPMessage = (
     validateMessage: true,
     validatePayload: false
   }
-): ReturnType => {
+): OCPPRpcMessage => {
   const parsed = JSON.parse(rawMessage);
   const [messageTypeId, messageId, ...attributes] = parsed;
   const { version, validateMessage, validatePayload } = options;
