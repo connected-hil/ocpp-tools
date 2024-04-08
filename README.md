@@ -33,7 +33,12 @@
     <li>
       <a href="#usage">Usage</a>
       <ul>
-        <li><a href="#validating-ocpp-json-messages">Validating OCPP JSON messages</a></li>
+        <li><a href="#validating-ocpp-json-messages">Typescript interfaces, types and utilities</a></li>
+        <li><a href="#parse-ocpp-rpc-messages">Parse OCPP RPC messages</a></li>
+        <li><a href="#construct-a-response">Construct a response</a></li>
+        <li><a href="#create-a-new-rpc">Create a new RPC</a></li>
+        <li><a href="#validating-ocpp-json-message-payloads">Validating OCPP JSON message payloads</a></li>
+        <li><a href="#get-validation-errors">Get validation errors</a></li>
         <li><a href="#using-ocpp-interfaces">Using OCPP interfaces</a></li>
       </ul>
     </li>
@@ -72,11 +77,11 @@ npm install @cshil/ocpp-tools
 
 This project includes
 
-- All OCPP v1.6 payloads have [interfaces](src/generated/v16/types) generated from JSON schema files.
-- All OCPP v2.0.1 payloads have [interfaces](src/generated/v201/types) generated from JSON schema files.
-- Types for valid CALL actions, request and response types as well as error code types for [v1.6](src/generated/v16/types/index.ts) and [v2.0.1](src/generated/v201/types/index.ts)
+- All OCPP v1.6 payloads have [interfaces](src/types/v16) generated from JSON schema files.
+- All OCPP v2.0.1 payloads have [interfaces](src/types/v201/) generated from JSON schema files.
+- Types for valid CALL actions, request and response types as well as error code types for [v1.6](src/types/v16/index.ts) and [v2.0.1](src/types/v201/index.ts)
 - Utility classes for RPC requests for [CALL](src/message/ocpp-call.ts), [CALL_RESULT](src/message/ocpp-call-result.ts) and [CALL ERROR](src/message/ocpp-call-error.ts).
-- Parsers for [OCPP RPC calls](src/validation/index.ts) and [OCPP message payloads](src/generated/v16/validators.ts).
+- Parsers for [OCPP RPC calls](src/validation/index.ts) and OCPP message payload validation for [V1.6](src/validation/v16/index.ts) and [v2.0.1](src/validation/v201/index.ts).
 
 ### Parse a OCPP RPC message
 
@@ -103,7 +108,7 @@ OCPPCallV16 {
 */
 ```
 
-### Construct a response to a RPC call
+### Construct a response
 
 ```typescript
 import { parseOCPPMessage, AuthorizeResponseV16, OCPPCall} from "@cshil/ocpp-tools";
@@ -118,7 +123,7 @@ console.info(callResult).toRPCObject)
 
 ```
 
-## Create a new OCPP RPC Call
+## Create a new RPC
 
 using the general ocpp call:
 
@@ -152,9 +157,9 @@ const result = isValidHeartbeatRequestV16(data) //  => true
 ### Get validation errors
 
 ```typescript
-import { validationErrors, schemas } from '@cshil/ocpp-tools'
+import { validationErrors, schemas } from "@cshil/ocpp-tools";
 
-const errors = validationErrors(schemas.v16.authorizeRequest, {})
+const errors = validationErrors(schemas.v16.authorizeRequest, {});
 // => ["#/required: must have required property 'idTag'"]
 ```
 
@@ -164,7 +169,7 @@ const errors = validationErrors(schemas.v16.authorizeRequest, {})
 import { AuthorizeResponseV16 } from "@cshil/ocpp-tools";
 
 const message: AuthorizeResponseV16 = {
-  idTagInfo: { status: "Accepted" }
+  idTagInfo: { status: "Accepted" },
 };
 ```
 

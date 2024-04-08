@@ -1,7 +1,7 @@
 import { OCPPCallV16, OCPPCallV201 } from "./ocpp-call";
 import { OCPPCallResultV16, OCPPCallResultV201 } from "./ocpp-call-result";
 import { OCPPCallErrorV16, OCPPCallErrorV201 } from "./ocpp-call-error";
-import { OCPPMessageType, ocppVersion } from "./types";
+import { OCPPMessageType, ocppVersion } from "./common";
 import { validateOCPPMessage } from "./../validation";
 
 interface OCPPMessageParserOptions {
@@ -10,7 +10,13 @@ interface OCPPMessageParserOptions {
   version: ocppVersion
 }
 
-type ReturnType = OCPPCallV16 | OCPPCallErrorV16 | OCPPCallResultV16 | OCPPCallV201 | OCPPCallResultV201 | OCPPCallErrorV201
+type ReturnType =
+  | OCPPCallV16
+  | OCPPCallErrorV16
+  | OCPPCallResultV16
+  | OCPPCallV201
+  | OCPPCallResultV201
+  | OCPPCallErrorV201;
 
 /**
  * Parse and optionally validate a string JSON object as OCPP RPC.
@@ -45,13 +51,14 @@ export const parseOCPPMessage = (
         action: attributes[0],
         payload: attributes[1]
       };
-      const call = version === ocppVersion.ocpp16
-        ? new OCPPCallV16(attr)
-        : new OCPPCallV201(attr);
+      const call =
+        version === ocppVersion.ocpp16
+          ? new OCPPCallV16(attr)
+          : new OCPPCallV201(attr);
       if (validatePayload === true && !call.validatePayload()) {
-        throw new Error("Invalid OCPP Call payload")
+        throw new Error("Invalid OCPP Call payload");
       }
-      return call
+      return call;
     }
     case OCPPMessageType.CALL_RESULT: {
       const attr = { messageId, payload: attributes[0] };

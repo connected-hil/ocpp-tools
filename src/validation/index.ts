@@ -1,7 +1,7 @@
 import ajv, { type Schema } from "ajv";
 import addFormats from "ajv-formats";
-import { schemas } from "./../generated/schemas";
-import { OCPPMessageType, ocppVersion } from "./../message/types";
+import { schemas } from "../schemas";
+import { OCPPMessageType, ocppVersion } from "../message/common";
 
 const validator = new ajv({
   allErrors: true,
@@ -32,9 +32,11 @@ export const validateOCPPPayload = (schema: Schema, data: unknown): boolean => {
  * @returns [String] array of schema validation errors
  */
 export const validationErrors = (schema: Schema, data: unknown): string[] => {
-  const validate = validator.compile(schema)
-  return validate(data) ? [] : (validate.errors ?? [])?.map((e) => [e.schemaPath, e.message].join(": "));
-}
+  const validate = validator.compile(schema);
+  return validate(data)
+    ? []
+    : (validate.errors ?? [])?.map((e) => [e.schemaPath, e.message].join(": "));
+};
 
 const resolveSchema = (
   ocppversion: ocppVersion,

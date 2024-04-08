@@ -1,27 +1,25 @@
 import {
   OCPPMessageType,
-  type OCPPRequestPayloadType,
+  ocppVersion,
   type CallActionType,
-  type OCPPResponsePayloadType,
-  ocppVersion
-} from "./types";
+  type OCPPRequestPayloadType,
+  type OCPPResponsePayloadType
+} from "./common";
 import {
   type ActionV16,
-  type OCPPRequestTypeV16,
-  type OCPPRpcMessageV16,
-  type RpcCallV16,
-  actionValidatorV16
-} from "./../generated/v16";
-import {
   type ActionV201,
-  type OCPPRequestTypeV201,
   type OCPPRpcMessageV201,
-  type RpcCallV201,
-  actionValidatorV201
-} from "./../generated/v201";
+  type OCPPRpcMessageV16,
+  type OCPPRequestTypeV16,
+  type OCPPRequestTypeV201
+} from "./../types";
 
 import { randomUUID } from "crypto";
 import { OCPPCallResult } from "./ocpp-call-result";
+import { actionValidatorV16 } from "src/validation/v16";
+import { actionValidatorV201 } from "src/validation/v201";
+import { type RpcCallV16 } from "src/types/v16";
+import { type RpcCallV201 } from "src/types/v201";
 
 export interface iOCPPCall<
   RequestPayloadType extends OCPPRequestPayloadType,
@@ -57,7 +55,7 @@ export class OCPPCall<
     return new OCPPCallResult<T>({
       messageId: this.messageId,
       payload
-    })
+    });
   }
 
   /*

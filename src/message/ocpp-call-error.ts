@@ -1,8 +1,9 @@
-import { type OCPPErrorCodeV16, type RpcCallErrorV16 } from "./../generated/v16";
-import { OCPPMessageType, type OCPPErrorCodeType } from "./types";
+import { type RpcCallErrorV16 } from "./../types/v16";
+import { OCPPMessageType, type OCPPErrorCodeType } from "./common";
 
 import { randomUUID } from "crypto";
-import { type OCPPErrorCodeV201, type RpcCallErrorV201 } from "./../generated/v201";
+import { type RpcCallErrorV201 } from "./../types/v201";
+import { type OCPPErrorCodeV16, type OCPPErrorCodeV201 } from "./../types";
 
 export class OCPPCallError<T extends OCPPErrorCodeType> {
   public messageTypeId: OCPPMessageType.CALL_ERROR;
@@ -19,7 +20,7 @@ export class OCPPCallError<T extends OCPPErrorCodeType> {
       this.errorCode,
       this.errorDescription,
       this.errorDetails
-    ]
+    ];
   }
 
   public constructor ({

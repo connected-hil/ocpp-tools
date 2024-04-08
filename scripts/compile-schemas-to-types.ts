@@ -12,9 +12,14 @@ const ocppVersions = ["v16", "v201"];
 const basePath = path.resolve([__dirname, "/../src/"].join(""));
 
 const generate = (): void => {
+  const typesIndex = [basePath, "types", "index.ts"].join("/");
+  fs.rmSync(typesIndex, { force: true });
   ocppVersions.forEach((version) => {
     const path = [basePath, "schemas", version].join("/");
-    const schemas = fs.readdirSync(path).map((file) => file.split(".")[0]);
+    const schemas = fs
+      .readdirSync(path)
+      .filter((file) => /.json$/.exec(file))
+      .map((file) => file.split(".")[0]);
 
     const schemasDefinitions: GeneratorDefinition[] = [];
 
@@ -46,14 +51,19 @@ const generate = (): void => {
           typeFile
         });
 
-        compile(jsonSchema as JSONSchema, schema).then((ts) => {
-          fs.writeFileSync(
-            [basePath, "generated", version, "types", `${schema}.ts`].join("/"),
-            ts
-          );
-        }).catch((error) => { console.error("Caught error in generate", error) });
+        compile(jsonSchema as JSONSchema, schema)
+          .then((ts) => {
+            fs.writeFileSync(
+              [basePath, "types", version, `${schema}.ts`].join("/"),
+              ts
+            );
+          })
+          .catch((error) => {
+            console.error("Caught error in generate", error);
+          });
       });
     generateValidators(version, schemasDefinitions);
+
     generateTypesIndex(version, schemasDefinitions);
     generateSchemaFile(version, schemasDefinitions);
     generateVersionIndex(version, schemasDefinitions);

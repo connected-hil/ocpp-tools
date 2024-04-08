@@ -1,16 +1,15 @@
 import { validateOCPPMessage } from "src/validation";
 import { parseOCPPMessage } from "../src/message/ocpp-message";
 import { OCPPCall, OCPPCallV16 } from "src/message/ocpp-call";
-import { OCPPMessageType, ocppVersion } from "src/message/types";
+import { OCPPMessageType, ocppVersion } from "src/message/common";
 import { OCPPCallResultV16 } from "src/message/ocpp-call-result";
 import { OCPPCallErrorV16 } from "src/message/ocpp-call-error";
+import { ActionV16, OCPPErrorCodeV16, OCPPRequestTypeV16 } from "../src/types";
 import {
-  ActionV16,
   AuthorizeResponseV16,
-  OCPPErrorCodeV16,
-  OCPPRequestTypeV16,
-  BootNotificationRequestV16
-} from "src/generated/v16";
+  BootNotificationRequestV16,
+} from "src/types/v16";
+
 type TestCase<T> = {
   input: string;
   expected: Partial<T>;
@@ -149,29 +148,29 @@ describe("OCPP CALL V16", () => {
   });
 
   describe("Validating call payloads", () => {
-
     test("Detects invalid payload for action", () => {
-      expect(() => parseOCPPMessage(JSON.stringify([2, "abv13", "Authorize", {}]),
-        {version: ocppVersion.ocpp16, validatePayload: true}
-      )).toThrow(Error)
-       expect(1).toBe(1)
+      expect(() =>
+        parseOCPPMessage(JSON.stringify([2, "abv13", "Authorize", {}]), {
+          version: ocppVersion.ocpp16,
+          validatePayload: true,
+        })
+      ).toThrow(Error);
+      expect(1).toBe(1);
     });
 
     test("Accepts valid payload for action", () => {
       const payload: BootNotificationRequestV16 = {
         chargePointModel: "Model1",
-        chargePointVendor: "Vendor1"
-      }
-      expect(() => parseOCPPMessage(
-          JSON.stringify(
-            [2, "abc", "BootNotification", payload]
-          ),
-          {version: ocppVersion.ocpp16, validatePayload: true}
-      )).not.toThrow(Error)
+        chargePointVendor: "Vendor1",
+      };
+      expect(() =>
+        parseOCPPMessage(
+          JSON.stringify([2, "abc", "BootNotification", payload]),
+          { version: ocppVersion.ocpp16, validatePayload: true }
+        )
+      ).not.toThrow(Error);
     });
-
-  })
-
+  });
 });
 
 describe("OCPP CALL_RESULT V16", () => {

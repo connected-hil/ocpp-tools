@@ -2,14 +2,12 @@ import {
   type ActionV16,
   type OCPPErrorCodeV16,
   type OCPPRequestTypeV16,
-  type OCPPResponseTypeV16
-} from "src/generated/v16";
-import {
+  type OCPPResponseTypeV16,
   type ActionV201,
   type OCPPErrorCodeV201,
   type OCPPRequestTypeV201,
   type OCPPResponseTypeV201
-} from "./../generated/v201";
+} from "../types";
 
 export enum OCPPMessageType {
   CALL = 2,

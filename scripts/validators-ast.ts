@@ -9,8 +9,7 @@ import {
   ScriptTarget,
   ScriptKind,
   createSourceFile,
-  EmitHint,
-  addSyntheticLeadingComment
+  EmitHint
 } from "typescript";
 import fs from "fs";
 import { type GeneratorDefinition } from "./common";
@@ -32,9 +31,7 @@ export const validationImportsAST = (
         )
       ])
     ),
-    factory.createStringLiteral(
-      ["..", "..", "generated", version, "schemas"].join("/")
-    ),
+    factory.createStringLiteral(["..", "..", "schemas"].join("/")),
     undefined
   ),
   factory.createImportDeclaration(
@@ -60,18 +57,15 @@ export const validationImportsAST = (
       undefined,
       factory.createNamedImports(
         definitions.map(({ title }) =>
-          addSyntheticLeadingComment(
-            factory.createImportSpecifier(
-              true,
-              undefined,
-              factory.createIdentifier(title)
-            ),
-            SyntaxKind.SingleLineCommentTrivia, '', true
+          factory.createImportSpecifier(
+            true,
+            undefined,
+            factory.createIdentifier(title)
           )
         )
       )
     ),
-    factory.createStringLiteral("./index"),
+    factory.createStringLiteral([".", "..", "..", "types", version].join("/")),
     undefined
   )
 ];
@@ -143,54 +137,67 @@ export const validatorFunctionAST = (
   )
 ];
 
-export const actiopToValidatorAST = (version: string, titles: string[]): Node => factory.createVariableStatement(
-  [factory.createToken(SyntaxKind.ExportKeyword)],
-  factory.createVariableDeclarationList(
-    [factory.createVariableDeclaration(
-      factory.createIdentifier(["actionValidator", version.toUpperCase()].join("")),
-      undefined,
-      factory.createTypeLiteralNode([factory.createIndexSignature(
-        undefined,
-        [factory.createParameterDeclaration(
+export const actiopToValidatorAST = (version: string, titles: string[]): Node =>
+  factory.createVariableStatement(
+    [factory.createToken(SyntaxKind.ExportKeyword)],
+    factory.createVariableDeclarationList(
+      [
+        factory.createVariableDeclaration(
+          factory.createIdentifier(
+            ["actionValidator", version.toUpperCase()].join("")
+          ),
           undefined,
-          undefined,
-          factory.createIdentifier("key"),
-          undefined,
-          factory.createKeywordTypeNode(SyntaxKind.StringKeyword),
-          undefined
-        )],
-        factory.createFunctionTypeNode(
-          undefined,
-          [factory.createParameterDeclaration(
-            undefined,
-            undefined,
-            factory.createIdentifier("data"),
-            undefined,
-            factory.createKeywordTypeNode(SyntaxKind.UnknownKeyword),
-            undefined
-          )],
-          factory.createKeywordTypeNode(SyntaxKind.BooleanKeyword)
-        )
-      )]),
-      factory.createObjectLiteralExpression(
-        titles.map((title) =>
-          factory.createPropertyAssignment(
-            factory.createStringLiteral(title),
-            factory.createIdentifier(["isValid", title, "Request", version.toUpperCase()].join(""))
+          factory.createTypeLiteralNode([
+            factory.createIndexSignature(
+              undefined,
+              [
+                factory.createParameterDeclaration(
+                  undefined,
+                  undefined,
+                  factory.createIdentifier("key"),
+                  undefined,
+                  factory.createKeywordTypeNode(SyntaxKind.StringKeyword),
+                  undefined
+                )
+              ],
+              factory.createFunctionTypeNode(
+                undefined,
+                [
+                  factory.createParameterDeclaration(
+                    undefined,
+                    undefined,
+                    factory.createIdentifier("data"),
+                    undefined,
+                    factory.createKeywordTypeNode(SyntaxKind.UnknownKeyword),
+                    undefined
+                  )
+                ],
+                factory.createKeywordTypeNode(SyntaxKind.BooleanKeyword)
+              )
+            )
+          ]),
+          factory.createObjectLiteralExpression(
+            titles.map((title) =>
+              factory.createPropertyAssignment(
+                factory.createStringLiteral(title),
+                factory.createIdentifier(
+                  ["isValid", title, "Request", version.toUpperCase()].join("")
+                )
+              )
+            ),
+            true
           )
-        ),
-        true
-      )
-    )],
-    NodeFlags.Const
-  )
-)
+        )
+      ],
+      NodeFlags.Const
+    )
+  );
 
 export const generateValidators = (
   version: string,
   definitions: GeneratorDefinition[]
 ): void => {
-  const filename = ["src", "generated", version, "validators.ts"].join("/");
+  const filename = ["src", "validation", version, "index.ts"].join("/");
   const printer = createPrinter({ newLine: NewLineKind.LineFeed });
   const sourceFile = createSourceFile(
     filename,
@@ -200,11 +207,18 @@ export const generateValidators = (
     ScriptKind.TS
   );
 
-  const actions = definitions.filter((t) => /RequestV\d+$/.exec(t.title)).map(({ title }) => title.replace(/RequestV\d+$/, ""));
+  const actions = definitions
+    .filter((t) => /RequestV\d+$/.exec(t.title))
+    .map(({ title }) => title.replace(/RequestV\d+$/, ""));
 
   fs.writeFileSync(
     filename,
     [
+      printer.printNode(
+        EmitHint.Unspecified,
+        factory.createJSDocComment("Generated by scripts/validators-ast.ts"),
+        sourceFile
+      ),
       printer.printList(
         ListFormat.MultiLine,
         factory.createNodeArray(validationImportsAST(version, definitions)),
