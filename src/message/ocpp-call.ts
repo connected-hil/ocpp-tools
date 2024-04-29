@@ -16,10 +16,10 @@ import {
 
 import { randomUUID } from "crypto";
 import { OCPPCallResult } from "./ocpp-call-result";
-import { actionValidatorV16 } from "src/validation/v16";
-import { actionValidatorV201 } from "src/validation/v201";
-import { type RpcCallV16 } from "src/types/v16";
-import { type RpcCallV201 } from "src/types/v201";
+import { actionValidatorV16 } from "./../validation/v16";
+import { actionValidatorV201 } from "./../validation/v201";
+import { type RpcCallV16 } from "./../types/v16";
+import { type RpcCallV201 } from "./../types/v201";
 
 export interface iOCPPCall<
   RequestPayloadType extends OCPPRequestPayloadType,
