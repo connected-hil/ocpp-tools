@@ -23,7 +23,7 @@ export const importJsonSchemaAST = (title: string, schemafile: string): Node =>
       factory.createIdentifier(toLowerCaseCamelCase(title)),
       undefined
     ),
-    factory.createStringLiteral(["./", schemafile].join("/")),
+    factory.createStringLiteral([".", schemafile].join("/")),
 
     undefined
   );
