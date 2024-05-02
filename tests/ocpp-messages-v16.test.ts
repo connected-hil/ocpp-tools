@@ -42,6 +42,15 @@ const exampleRequests: Array<TestCase<OCPPCallV16>> = [
       action: "Heartbeat",
       payload: {}
     }
+  },
+  {
+    input: "[2,\"5\",\"SecurityEventNotification\",{\"timestamp\":\"2024-04-25T23:04:15Z\",\"type\":\"InvalidMessages\"}]",
+    expected: {
+      messageId: "5",
+      messageTypeId: 2,
+      action: "SecurityEventNotification",
+      payload: { timestamp: "2024-04-25T23:04:15Z", type: "InvalidMessages" }
+    }
   }
 ];
 
