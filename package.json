@@ -53,5 +53,5 @@
   "directories": {
     "test": "test"
   },
-  "packageManager": "pnpm@8"
+  "packageManager": "pnpm@8.15.2"
 }
