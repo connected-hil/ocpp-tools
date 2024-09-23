@@ -51,6 +51,15 @@ const exampleRequests: Array<TestCase<OCPPCallV16>> = [
       action: "SecurityEventNotification",
       payload: { timestamp: "2024-04-25T23:04:15Z", type: "InvalidMessages" }
     }
+  },
+  {
+    input: "[2,\"829cc6c0-25c8-4a8c-a7fb-ad31fb25d66b\",\"StatusNotification\",{\"connectorId\":2,\"status\":\"Available\",\"errorCode\":\"NoError\"}]",
+    expected: {
+      messageId: "829cc6c0-25c8-4a8c-a7fb-ad31fb25d66b",
+      messageTypeId: 2,
+      action: "StatusNotification",
+      payload: { connectorId: 2, status: "Available", errorCode: "NoError" }
+    }
   }
 ];
 
