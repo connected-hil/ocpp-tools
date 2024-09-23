@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "urn:RpcCallV201",
+  "$id": "urn:OCPP:Cp:2:2020:3:RpcCallV201",
   "title": "RpcCall",
   "type": "array",
   "minItems": 4,

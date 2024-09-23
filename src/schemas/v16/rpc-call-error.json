@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "urn:RpcCallErrorV16",
+  "$id": "urn:OCPP:1.6:2019:12:RpcCallErrorV16",
   "title": "RpcCallError",
   "type": "array",
   "minItems": 5,
