@@ -1265,7 +1265,7 @@ const tests: TestCase[] = [
 ];
 
 describe("Validation for OCPP v2.0.1 payloads", () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   test.each(tests)("$fun", ({ fun, validData, invalidData }) => {
     expect(fun(validData)).toBe(true);
     expect(fun(invalidData)).toBe(false);

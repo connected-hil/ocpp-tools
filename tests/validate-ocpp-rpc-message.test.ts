@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+ 
 import { ocppVersion } from "src/message/common";
 import { validateOCPPMessage } from "src/validation";
 
