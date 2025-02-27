@@ -597,7 +597,7 @@ describe(".validationErrors", () => {
 describe(".parseOCPPMessage", () => {
   test("throws error on invalid message", () => {
     expect(() => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+       
       parseOCPPMessage(
         JSON.stringify([4, "abc123", "GenericError", "description"])
       );
@@ -605,7 +605,7 @@ describe(".parseOCPPMessage", () => {
   });
   test("throws error on invalid messageType ID", () => {
     expect(() => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+       
       parseOCPPMessage(
         JSON.stringify([6, "abc123", "GenericError", "description"]),
         {
