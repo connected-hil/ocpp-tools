@@ -8,7 +8,7 @@ import {
   ScriptKind,
   createSourceFile,
   EmitHint,
-  ListFormat
+  ListFormat,
 } from "typescript";
 import fs from "fs";
 import { type GeneratorDefinition, capitalize } from "./common";
@@ -24,8 +24,8 @@ const errorCodes = {
     "PropertyConstraintViolation",
     "OccurenceConstraintViolation",
     "TypeConstraintViolation",
-    "GenericError"
-  ]
+    "GenericError",
+  ],
 };
 
 const unionTypeAST = (name: string, types: string[]): Node =>
@@ -63,7 +63,7 @@ const importAST = (name: string, path: string): Node =>
           true,
           undefined,
           factory.createIdentifier(name)
-        )
+        ),
       ])
     ),
     factory.createStringLiteral(path),
@@ -77,7 +77,7 @@ const importsAST = (definitions: GeneratorDefinition[]): Node[] =>
       [
         ".",
         version,
-        typeFile.split("/").reverse()[0].replace(/\.ts$/, "")
+        typeFile.split("/").reverse()[0].replace(/\.ts$/, ""),
       ].join("/")
     )
   );
@@ -120,6 +120,17 @@ export const generateTypesIndex = (
     ),
     printer.printNode(
       EmitHint.Unspecified,
+      enumAST(
+        ["ActionName", upperCaseVersion].join(""),
+        titles
+          .filter((t) => /Request/.exec(t))
+          .map((t) => t.replace(capitalize(version), ""))
+          .map((a) => `${a.replace(/Request/, "")}`)
+      ),
+      sourceFile
+    ),
+    printer.printNode(
+      EmitHint.Unspecified,
       unionTypeAST(
         ["OCPPRequestType", upperCaseVersion].join(""),
         titles.filter((t) => /Request/.exec(t))
@@ -147,13 +158,13 @@ export const generateTypesIndex = (
       unionTypeAST(["OCPPRpcMessage", upperCaseVersion].join(""), [
         ["RpcCall", upperCaseVersion].join(""),
         ["RpcCallResult", upperCaseVersion].join(""),
-        ["RpcCallError", upperCaseVersion].join("")
+        ["RpcCallError", upperCaseVersion].join(""),
       ]),
       sourceFile
     ),
     "",
     "",
-    ""
+    "",
   ];
 
   fs.appendFileSync(filename, types.join("\n"), { encoding: "utf-8" });
