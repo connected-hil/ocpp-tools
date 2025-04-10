@@ -16,6 +16,9 @@ dependencies:
   ajv-formats:
     specifier: ^3.0.1
     version: 3.0.1(ajv@8.17.1)
+  uuid:
+    specifier: ^9.0.1
+    version: 9.0.1
 
 devDependencies:
   '@eslint/js':
@@ -30,6 +33,9 @@ devDependencies:
   '@types/node':
     specifier: ^22.10.7
     version: 22.14.0
+  '@types/uuid':
+    specifier: ^9.0.8
+    version: 9.0.8
   eslint:
     specifier: ^9.18.0
     version: 9.24.0
@@ -962,6 +968,10 @@ packages:
 
   /@types/unist@3.0.3:
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
+    dev: true
+
+  /@types/uuid@9.0.8:
+    resolution: {integrity: sha512-jg+97EGIcY9AGHJJRaaPVgetKDsrTgbRjQ5Msgjh/DQKEFl0DtyRr/VCOyD1T2R1MNeWPK/u7JoGhlDZnKBAfA==}
     dev: true
 
   /@types/yargs-parser@21.0.3:
@@ -3312,6 +3322,11 @@ packages:
     dependencies:
       punycode: 2.3.1
     dev: true
+
+  /uuid@9.0.1:
+    resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
+    hasBin: true
+    dev: false
 
   /v8-compile-cache-lib@3.0.1:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}
