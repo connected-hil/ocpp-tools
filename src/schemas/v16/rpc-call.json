@@ -1,55 +1,40 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "urn:OCPP:1.6:2019:12:RpcCallV16",
+  "$id": "urn:OCPP:1.6:2019:12:RpcCall",
   "title": "RpcCall",
-  "type": "array",
-  "minItems": 4,
-  "maxItems": 4,
-  "items": [
-    {
+  "definitions": {
+    "MessageTypeId": {
       "type": "integer",
+      "additionalProperties": false,
       "enum": [2]
     },
-    {
+    "Action": {
       "type": "string",
-      "maxLength": 36
-    },
-    {
-      "type": "string",
+      "additionalProperties": false,
       "enum": [
         "Authorize",
         "BootNotification",
         "CancelReservation",
-        "CertificateSigned",
         "ChangeAvailability",
         "ChangeConfiguration",
         "ClearCache",
         "ClearChargingProfile",
         "DataTransfer",
-        "DeleteCertificate",
         "DiagnosticsStatusNotification",
-        "ExtendedTriggerMessage",
         "FirmwareStatusNotification",
         "GetCompositeSchedule",
         "GetConfiguration",
         "GetDiagnostics",
-        "GetInstalledCertificateIds",
         "GetLocalListVersion",
-        "GetLog",
         "Heartbeat",
-        "InstallCertificate",
         "LogStatusNotification",
         "MeterValues",
         "RemoteStartTransaction",
         "RemoteStopTransaction",
         "ReserveNow",
         "Reset",
-        "SecurityEventNotification",
         "SendLocalList",
         "SetChargingProfile",
-        "SignCertificate",
-        "SignedFirmwareStatusNotification",
-        "SignedUpdateFirmware",
         "StartTransaction",
         "StatusNotification",
         "StopTransaction",
@@ -57,9 +42,23 @@
         "UnlockConnector",
         "UpdateFirmware"
       ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "messageTypeId": {
+      "$ref": "#/definitions/MessageTypeId"
     },
-    {
+    "uniqueId": {
+      "type": "string"
+    },
+    "action": {
+      "$ref": "#/definitions/Action"
+    },
+    "payload": {
       "type": "object"
     }
-  ]
+  },
+  "additionalProperties": false,
+  "required": ["messageTypeId", "uniqueId", "action"]
 }

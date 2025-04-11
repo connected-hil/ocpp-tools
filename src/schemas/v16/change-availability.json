@@ -2,15 +2,20 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "urn:OCPP:1.6:2019:12:ChangeAvailabilityRequest",
   "title": "ChangeAvailabilityRequest",
+  "definitions": {
+    "ChangeAvailabilityType": {
+      "type": "string",
+      "additionalProperties": false,
+      "enum": ["Inoperative", "Operative"]
+    }
+  },
   "type": "object",
   "properties": {
     "connectorId": {
       "type": "integer"
     },
     "type": {
-      "type": "string",
-      "additionalProperties": false,
-      "enum": ["Inoperative", "Operative"]
+      "$ref": "#/definitions/ChangeAvailabilityType"
     }
   },
   "additionalProperties": false,

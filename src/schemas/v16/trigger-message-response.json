@@ -2,12 +2,17 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "urn:OCPP:1.6:2019:12:TriggerMessageResponse",
   "title": "TriggerMessageResponse",
-  "type": "object",
-  "properties": {
-    "status": {
+  "definitions": {
+    "TriggerMessageStatus": {
       "type": "string",
       "additionalProperties": false,
       "enum": ["Accepted", "Rejected", "NotImplemented"]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "status": {
+      "$ref": "#/definitions/TriggerMessageStatus"
     }
   },
   "additionalProperties": false,

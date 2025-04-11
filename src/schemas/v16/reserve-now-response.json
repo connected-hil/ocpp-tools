@@ -2,12 +2,17 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "urn:OCPP:1.6:2019:12:ReserveNowResponse",
   "title": "ReserveNowResponse",
-  "type": "object",
-  "properties": {
-    "status": {
+  "definitions": {
+    "ReserveNowStatus": {
       "type": "string",
       "additionalProperties": false,
       "enum": ["Accepted", "Faulted", "Occupied", "Rejected", "Unavailable"]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "status": {
+      "$ref": "#/definitions/ReserveNowStatus"
     }
   },
   "additionalProperties": false,

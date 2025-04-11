@@ -2,12 +2,17 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "urn:OCPP:1.6:2019:12:ResetRequest",
   "title": "ResetRequest",
-  "type": "object",
-  "properties": {
-    "type": {
+  "definitions": {
+    "ResetType": {
       "type": "string",
       "additionalProperties": false,
       "enum": ["Hard", "Soft"]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/definitions/ResetType"
     }
   },
   "additionalProperties": false,

@@ -1,22 +1,26 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "urn:OCPP:1.6:2019:12:RpcCallResultV16",
+  "$id": "urn:OCPP:1.6:2019:12:RpcCallResult",
   "title": "RpcCallResult",
-  "type": "array",
-  "minItems": 3,
-  "maxItems": 3,
-  "items": [
-    {
+  "definitions": {
+    "MessageTypeId": {
       "type": "integer",
+      "additionalProperties": false,
       "enum": [3]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "messageTypeId": {
+      "$ref": "#/definitions/MessageTypeId"
     },
-    {
-      "type": "string",
-      "maxLength": 36
+    "uniqueId": {
+      "type": "string"
     },
-    {
+    "payload": {
       "type": "object"
     }
-  ],
-  "additionalItems": false
+  },
+  "additionalProperties": false,
+  "required": ["messageTypeId", "uniqueId"]
 }

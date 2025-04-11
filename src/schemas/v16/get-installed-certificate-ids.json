@@ -1,25 +1,26 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "urn:OCPP:Cp:1.6:2020:3:GetInstalledCertificateIds.req",
+  "$id": "urn:OCPP:1.6:2019:12:GetInstalledCertificateIdsRequest",
   "title": "GetInstalledCertificateIdsRequest",
   "definitions": {
-    "CertificateUseEnumType": {
+    "CertificateType": {
       "type": "string",
       "additionalProperties": false,
       "enum": [
-        "CentralSystemRootCertificate",
+        "V2GRootCertificate",
+        "MORootCertificate",
+        "CSMSRootCertificate",
+        "V2GCertificateChain",
         "ManufacturerRootCertificate"
       ]
     }
   },
   "type": "object",
-  "additionalProperties": false,
   "properties": {
     "certificateType": {
-      "$ref": "#/definitions/CertificateUseEnumType"
+      "$ref": "#/definitions/CertificateType"
     }
   },
-  "required": [
-    "certificateType"
-  ]
+  "additionalProperties": false,
+  "required": ["certificateType"]
 }

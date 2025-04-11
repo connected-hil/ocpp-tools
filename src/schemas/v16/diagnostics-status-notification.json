@@ -1,13 +1,18 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "urn:OCPP:1.6:2019:12:DiagnosticsStatusNotificationRequest",
-  "title": "DiagnosticsStatusNotificationRequest",
-  "type": "object",
-  "properties": {
-    "status": {
+  "$id": "urn:OCPP:1.6:2019:12:DiagnosticsStatusNotification",
+  "title": "DiagnosticsStatusNotification",
+  "definitions": {
+    "DiagnosticsStatus": {
       "type": "string",
       "additionalProperties": false,
       "enum": ["Idle", "Uploaded", "UploadFailed", "Uploading"]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "status": {
+      "$ref": "#/definitions/DiagnosticsStatus"
     }
   },
   "additionalProperties": false,

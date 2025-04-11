@@ -2,6 +2,13 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "urn:OCPP:1.6:2019:12:ClearChargingProfileRequest",
   "title": "ClearChargingProfileRequest",
+  "definitions": {
+    "ChargingProfilePurpose": {
+      "type": "string",
+      "additionalProperties": false,
+      "enum": ["ChargePointMaxProfile", "TxDefaultProfile", "TxProfile"]
+    }
+  },
   "type": "object",
   "properties": {
     "id": {
@@ -11,9 +18,7 @@
       "type": "integer"
     },
     "chargingProfilePurpose": {
-      "type": "string",
-      "additionalProperties": false,
-      "enum": ["ChargePointMaxProfile", "TxDefaultProfile", "TxProfile"]
+      "$ref": "#/definitions/ChargingProfilePurpose"
     },
     "stackLevel": {
       "type": "integer"

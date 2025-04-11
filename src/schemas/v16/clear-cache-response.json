@@ -2,12 +2,17 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "urn:OCPP:1.6:2019:12:ClearCacheResponse",
   "title": "ClearCacheResponse",
-  "type": "object",
-  "properties": {
-    "status": {
+  "definitions": {
+    "ClearCacheStatus": {
       "type": "string",
       "additionalProperties": false,
       "enum": ["Accepted", "Rejected"]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "status": {
+      "$ref": "#/definitions/ClearCacheStatus"
     }
   },
   "additionalProperties": false,

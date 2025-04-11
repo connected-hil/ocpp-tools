@@ -1,21 +1,16 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "urn:OCPP:1.6:2019:12:RpcCallErrorV16",
+  "$id": "urn:OCPP:1.6:2019:12:RpcCallError",
   "title": "RpcCallError",
-  "type": "array",
-  "minItems": 5,
-  "maxItems": 5,
-  "items": [
-    {
+  "definitions": {
+    "MessageTypeId": {
       "type": "integer",
+      "additionalProperties": false,
       "enum": [4]
     },
-    {
+    "ErrorCode": {
       "type": "string",
-      "maxLength": 36
-    },
-    {
-      "type": "string",
+      "additionalProperties": false,
       "enum": [
         "NotImplemented",
         "NotSupported",
@@ -28,14 +23,26 @@
         "TypeConstraintViolation",
         "GenericError"
       ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "messageTypeId": {
+      "$ref": "#/definitions/MessageTypeId"
     },
-    {
-      "type": "string",
-      "maxLength": 255
+    "uniqueId": {
+      "type": "string"
     },
-    {
+    "errorCode": {
+      "$ref": "#/definitions/ErrorCode"
+    },
+    "errorDescription": {
+      "type": "string"
+    },
+    "errorDetails": {
       "type": "object"
     }
-  ],
-  "additionalItems": false
+  },
+  "additionalProperties": false,
+  "required": ["messageTypeId", "uniqueId", "errorCode"]
 }

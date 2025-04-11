@@ -1,24 +1,17 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "urn:OCPP:Cp:1.6:2020:3:GetInstalledCertificateIds.conf",
+  "$id": "urn:OCPP:1.6:2019:12:GetInstalledCertificateIdsResponse",
   "title": "GetInstalledCertificateIdsResponse",
   "definitions": {
-    "GetInstalledCertificateStatusEnumType": {
+    "GetInstalledCertificateIdsStatus": {
       "type": "string",
       "additionalProperties": false,
-      "enum": [
-        "Accepted",
-        "NotFound"
-      ]
+      "enum": ["Accepted", "Failed"]
     },
     "HashAlgorithmEnumType": {
       "type": "string",
       "additionalProperties": false,
-      "enum": [
-        "SHA256",
-        "SHA384",
-        "SHA512"
-      ]
+      "enum": ["SHA256", "SHA384", "SHA512"]
     },
     "CertificateHashDataType": {
       "javaType": "CertificateHashData",
@@ -52,6 +45,9 @@
   "type": "object",
   "additionalProperties": false,
   "properties": {
+    "status": {
+      "$ref": "#/definitions/GetInstalledCertificateIdsStatus"
+    },
     "certificateHashData": {
       "type": "array",
       "additionalItems": false,
@@ -59,12 +55,7 @@
         "$ref": "#/definitions/CertificateHashDataType"
       },
       "minItems": 1
-    },
-    "status": {
-      "$ref": "#/definitions/GetInstalledCertificateStatusEnumType"
     }
   },
-  "required": [
-    "status"
-  ]
+  "required": ["status"]
 }

@@ -1,13 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "urn:OCPP:1.6:2019:12:StatusNotificationRequest",
-  "title": "StatusNotificationRequest",
-  "type": "object",
-  "properties": {
-    "connectorId": {
-      "type": "integer"
-    },
-    "errorCode": {
+  "$id": "urn:OCPP:1.6:2019:12:StatusNotification",
+  "title": "StatusNotification",
+  "definitions": {
+    "ChargePointErrorCode": {
       "type": "string",
       "additionalProperties": false,
       "enum": [
@@ -29,24 +25,36 @@
         "WeakSignal"
       ]
     },
-    "info": {
-      "type": "string",
-      "maxLength": 50
-    },
-    "status": {
+    "ChargePointStatus": {
       "type": "string",
       "additionalProperties": false,
       "enum": [
         "Available",
         "Preparing",
         "Charging",
-        "SuspendedEVSE",
         "SuspendedEV",
+        "SuspendedEVSE",
         "Finishing",
         "Reserved",
         "Unavailable",
         "Faulted"
       ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "connectorId": {
+      "type": "integer"
+    },
+    "errorCode": {
+      "$ref": "#/definitions/ChargePointErrorCode"
+    },
+    "info": {
+      "type": "string",
+      "maxLength": 50
+    },
+    "status": {
+      "$ref": "#/definitions/ChargePointStatus"
     },
     "timestamp": {
       "type": "string",

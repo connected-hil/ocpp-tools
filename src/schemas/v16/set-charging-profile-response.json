@@ -2,12 +2,17 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "urn:OCPP:1.6:2019:12:SetChargingProfileResponse",
   "title": "SetChargingProfileResponse",
-  "type": "object",
-  "properties": {
-    "status": {
+  "definitions": {
+    "SetChargingProfileStatus": {
       "type": "string",
       "additionalProperties": false,
       "enum": ["Accepted", "Rejected", "NotSupported"]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "status": {
+      "$ref": "#/definitions/SetChargingProfileStatus"
     }
   },
   "additionalProperties": false,

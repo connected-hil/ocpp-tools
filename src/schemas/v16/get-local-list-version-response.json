@@ -8,6 +8,6 @@
       "type": "integer"
     }
   },
-  "additionalProperties": false,
-  "required": ["listVersion"]
+  "required": ["listVersion"],
+  "additionalProperties": false
 }
