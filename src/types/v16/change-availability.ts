@@ -6,5 +6,10 @@
 
 export interface ChangeAvailabilityRequestV16 {
   connectorId: number;
-  type: "Inoperative" | "Operative";
+  type: ChangeAvailabilityType;
+}
+
+export const enum ChangeAvailabilityType {
+  Inoperative = "Inoperative",
+  Operative = "Operative"
 }

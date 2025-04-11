@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Status indicating whether Charging Station accepts the request to stop a transaction.
- *
- */
-export type RequestStartStopStatusEnumType = "Accepted" | "Rejected";
-
 export interface RequestStopTransactionResponseV201 {
   customData?: CustomDataType;
   status: RequestStartStopStatusEnumType;
@@ -38,4 +32,13 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * Status indicating whether Charging Station accepts the request to stop a transaction.
+ *
+ */
+export const enum RequestStartStopStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected"
 }

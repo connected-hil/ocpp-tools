@@ -5,5 +5,15 @@
  */
 
 export interface FirmwareStatusNotificationRequestV16 {
-  status: "Downloaded" | "DownloadFailed" | "Downloading" | "Idle" | "InstallationFailed" | "Installing" | "Installed";
+  status: FirmwareStatus;
+}
+
+export const enum FirmwareStatus {
+  Downloaded = "Downloaded",
+  DownloadFailed = "DownloadFailed",
+  Downloading = "Downloading",
+  Idle = "Idle",
+  InstallationFailed = "InstallationFailed",
+  Installing = "Installing",
+  Installed = "Installed"
 }

@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * This indicates the success or failure of the reservation.
- *
- */
-export type ReserveNowStatusEnumType = "Accepted" | "Faulted" | "Occupied" | "Rejected" | "Unavailable";
-
 export interface ReserveNowResponseV201 {
   customData?: CustomDataType;
   status: ReserveNowStatusEnumType;
@@ -38,4 +32,16 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * This indicates the success or failure of the reservation.
+ *
+ */
+export const enum ReserveNowStatusEnumType {
+  Accepted = "Accepted",
+  Faulted = "Faulted",
+  Occupied = "Occupied",
+  Rejected = "Rejected",
+  Unavailable = "Unavailable"
 }

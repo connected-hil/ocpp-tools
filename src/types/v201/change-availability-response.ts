@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * This indicates whether the Charging Station is able to perform the availability change.
- *
- */
-export type ChangeAvailabilityStatusEnumType = "Accepted" | "Rejected" | "Scheduled";
-
 export interface ChangeAvailabilityResponseV201 {
   customData?: CustomDataType;
   status: ChangeAvailabilityStatusEnumType;
@@ -38,4 +32,14 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * This indicates whether the Charging Station is able to perform the availability change.
+ *
+ */
+export const enum ChangeAvailabilityStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected",
+  Scheduled = "Scheduled"
 }

@@ -5,7 +5,13 @@
  */
 
 export interface BootNotificationResponseV16 {
-  status: "Accepted" | "Pending" | "Rejected";
+  status: BootNotificationResponseStatusEnumType;
   currentTime: string;
   interval: number;
+}
+
+export const enum BootNotificationResponseStatusEnumType {
+  Accepted = "Accepted",
+  Pending = "Pending",
+  Rejected = "Rejected"
 }

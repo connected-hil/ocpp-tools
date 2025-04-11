@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * This indicates the success or failure of the data transfer.
- *
- */
-export type DataTransferStatusEnumType = "Accepted" | "Rejected" | "UnknownMessageId" | "UnknownVendorId";
-
 export interface DataTransferResponseV201 {
   customData?: CustomDataType;
   status: DataTransferStatusEnumType;
@@ -45,4 +39,15 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * This indicates the success or failure of the data transfer.
+ *
+ */
+export const enum DataTransferStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected",
+  UnknownMessageId = "UnknownMessageId",
+  UnknownVendorId = "UnknownVendorId"
 }

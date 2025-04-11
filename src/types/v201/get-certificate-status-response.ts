@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * This indicates whether the charging station was able to retrieve the OCSP certificate status.
- *
- */
-export type GetCertificateStatusEnumType = "Accepted" | "Failed";
-
 export interface GetCertificateStatusResponseV201 {
   customData?: CustomDataType;
   status: GetCertificateStatusEnumType;
@@ -43,4 +37,13 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * This indicates whether the charging station was able to retrieve the OCSP certificate status.
+ *
+ */
+export const enum GetCertificateStatusEnumType {
+  Accepted = "Accepted",
+  Failed = "Failed"
 }

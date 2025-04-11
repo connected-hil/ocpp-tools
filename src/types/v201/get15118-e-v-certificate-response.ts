@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Indicates whether the message was processed properly.
- *
- */
-export type Iso15118EVCertificateStatusEnumType = "Accepted" | "Failed";
-
 export interface Get15118EVCertificateResponseV201 {
   customData?: CustomDataType;
   status: Iso15118EVCertificateStatusEnumType;
@@ -43,4 +37,13 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * Indicates whether the message was processed properly.
+ *
+ */
+export const enum Iso15118EVCertificateStatusEnumType {
+  Accepted = "Accepted",
+  Failed = "Failed"
 }

@@ -6,35 +6,40 @@
 
 export interface StatusNotificationRequestV16 {
   connectorId: number;
-  errorCode:
-    | "ConnectorLockFailure"
-    | "EVCommunicationError"
-    | "GroundFailure"
-    | "HighTemperature"
-    | "InternalError"
-    | "LocalListConflict"
-    | "NoError"
-    | "OtherError"
-    | "OverCurrentFailure"
-    | "PowerMeterFailure"
-    | "PowerSwitchFailure"
-    | "ReaderFailure"
-    | "ResetFailure"
-    | "UnderVoltage"
-    | "OverVoltage"
-    | "WeakSignal";
+  errorCode: ChargePointErrorCode;
   info?: string;
-  status:
-    | "Available"
-    | "Preparing"
-    | "Charging"
-    | "SuspendedEVSE"
-    | "SuspendedEV"
-    | "Finishing"
-    | "Reserved"
-    | "Unavailable"
-    | "Faulted";
+  status: ChargePointStatus;
   timestamp?: string;
   vendorId?: string;
   vendorErrorCode?: string;
+}
+
+export const enum ChargePointErrorCode {
+  ConnectorLockFailure = "ConnectorLockFailure",
+  EVCommunicationError = "EVCommunicationError",
+  GroundFailure = "GroundFailure",
+  HighTemperature = "HighTemperature",
+  InternalError = "InternalError",
+  LocalListConflict = "LocalListConflict",
+  NoError = "NoError",
+  OtherError = "OtherError",
+  OverCurrentFailure = "OverCurrentFailure",
+  PowerMeterFailure = "PowerMeterFailure",
+  PowerSwitchFailure = "PowerSwitchFailure",
+  ReaderFailure = "ReaderFailure",
+  ResetFailure = "ResetFailure",
+  UnderVoltage = "UnderVoltage",
+  OverVoltage = "OverVoltage",
+  WeakSignal = "WeakSignal"
+}
+export const enum ChargePointStatus {
+  Available = "Available",
+  Preparing = "Preparing",
+  Charging = "Charging",
+  SuspendedEV = "SuspendedEV",
+  SuspendedEVSE = "SuspendedEVSE",
+  Finishing = "Finishing",
+  Reserved = "Reserved",
+  Unavailable = "Unavailable",
+  Faulted = "Faulted"
 }

@@ -4,14 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Charging_ Needs. Requested. Energy_ Transfer_ Mode_ Code
- * urn:x-oca:ocpp:uid:1:569209
- * Mode of energy transfer requested by the EV.
- *
- */
-export type EnergyTransferModeEnumType = "DC" | "AC_single_phase" | "AC_two_phase" | "AC_three_phase";
-
 export interface NotifyEVChargingNeedsRequestV201 {
   customData?: CustomDataType;
   /**
@@ -155,4 +147,17 @@ export interface DCChargingParametersType {
    *
    */
   bulkSoC?: number;
+}
+
+/**
+ * Charging_ Needs. Requested. Energy_ Transfer_ Mode_ Code
+ * urn:x-oca:ocpp:uid:1:569209
+ * Mode of energy transfer requested by the EV.
+ *
+ */
+export const enum EnergyTransferModeEnumType {
+  DC = "DC",
+  AC_single_phase = "AC_single_phase",
+  AC_two_phase = "AC_two_phase",
+  AC_three_phase = "AC_three_phase"
 }

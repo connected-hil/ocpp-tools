@@ -25,24 +25,25 @@
       ]
     }
   },
-  "type": "object",
-  "properties": {
-    "messageTypeId": {
+  "type": "array",
+  "minItems": 5,
+  "maxItems": 5,
+  "items": [
+    {
       "$ref": "#/definitions/MessageTypeId"
     },
-    "uniqueId": {
+    {
       "type": "string"
     },
-    "errorCode": {
+    {
       "$ref": "#/definitions/ErrorCode"
     },
-    "errorDescription": {
-      "type": "string"
+    {
+      "type": "string",
+      "maxLength": 255
     },
-    "errorDetails": {
+    {
       "type": "object"
     }
-  },
-  "additionalProperties": false,
-  "required": ["messageTypeId", "uniqueId", "errorCode"]
+  ]
 }

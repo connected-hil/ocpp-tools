@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Indicates whether the request was accepted.
- *
- */
-export type CustomerInformationStatusEnumType = "Accepted" | "Rejected" | "Invalid";
-
 export interface CustomerInformationResponseV201 {
   customData?: CustomDataType;
   status: CustomerInformationStatusEnumType;
@@ -38,4 +32,14 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * Indicates whether the request was accepted.
+ *
+ */
+export const enum CustomerInformationStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected",
+  Invalid = "Invalid"
 }

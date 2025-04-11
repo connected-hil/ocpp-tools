@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * This indicates whether the Charging Station has successfully received and applied the update of the Local Authorization List.
- *
- */
-export type SendLocalListStatusEnumType = "Accepted" | "Failed" | "VersionMismatch";
-
 export interface SendLocalListResponseV201 {
   customData?: CustomDataType;
   status: SendLocalListStatusEnumType;
@@ -38,4 +32,14 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * This indicates whether the Charging Station has successfully received and applied the update of the Local Authorization List.
+ *
+ */
+export const enum SendLocalListStatusEnumType {
+  Accepted = "Accepted",
+  Failed = "Failed",
+  VersionMismatch = "VersionMismatch"
 }

@@ -4,13 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * The type of this monitor, e.g. a threshold, delta or periodic monitor.
- *
- *
- */
-export type MonitorEnumType = "UpperThreshold" | "LowerThreshold" | "Delta" | "Periodic" | "PeriodicClockAligned";
-
 export interface SetVariableMonitoringRequestV201 {
   customData?: CustomDataType;
   /**
@@ -137,4 +130,17 @@ export interface VariableType {
    *
    */
   instance?: string;
+}
+
+/**
+ * The type of this monitor, e.g. a threshold, delta or periodic monitor.
+ *
+ *
+ */
+export const enum MonitorEnumType {
+  UpperThreshold = "UpperThreshold",
+  LowerThreshold = "LowerThreshold",
+  Delta = "Delta",
+  Periodic = "Periodic",
+  PeriodicClockAligned = "PeriodicClockAligned"
 }

@@ -5,12 +5,15 @@
  */
 
 export interface TriggerMessageRequestV16 {
-  requestedMessage:
-    | "BootNotification"
-    | "DiagnosticsStatusNotification"
-    | "FirmwareStatusNotification"
-    | "Heartbeat"
-    | "MeterValues"
-    | "StatusNotification";
+  requestedMessage: RequestedMessage;
   connectorId?: number;
+}
+
+export const enum RequestedMessage {
+  BootNotification = "BootNotification",
+  DiagnosticsStatusNotification = "DiagnosticsStatusNotification",
+  FirmwareStatusNotification = "FirmwareStatusNotification",
+  Heartbeat = "Heartbeat",
+  MeterValues = "MeterValues",
+  StatusNotification = "StatusNotification"
 }

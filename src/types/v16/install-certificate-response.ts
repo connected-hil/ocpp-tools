@@ -4,8 +4,12 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type InstallCertificateStatusEnumType = "Accepted" | "Failed" | "Rejected";
-
 export interface InstallCertificateResponseV16 {
   status: InstallCertificateStatusEnumType;
+}
+
+export const enum InstallCertificateStatusEnumType {
+  Accepted = "Accepted",
+  Failed = "Failed",
+  Rejected = "Rejected"
 }

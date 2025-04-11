@@ -4,26 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * This contains the progress status of the firmware installation.
- *
- */
-export type FirmwareStatusEnumType =
-  | "Downloaded"
-  | "DownloadFailed"
-  | "Downloading"
-  | "DownloadScheduled"
-  | "DownloadPaused"
-  | "Idle"
-  | "InstallationFailed"
-  | "Installing"
-  | "Installed"
-  | "InstallRebooting"
-  | "InstallScheduled"
-  | "InstallVerificationFailed"
-  | "InvalidSignature"
-  | "SignatureVerified";
-
 export interface FirmwareStatusNotificationRequestV201 {
   customData?: CustomDataType;
   status: FirmwareStatusEnumType;
@@ -41,4 +21,25 @@ export interface FirmwareStatusNotificationRequestV201 {
 export interface CustomDataType {
   vendorId: string;
   [k: string]: unknown;
+}
+
+/**
+ * This contains the progress status of the firmware installation.
+ *
+ */
+export const enum FirmwareStatusEnumType {
+  Downloaded = "Downloaded",
+  DownloadFailed = "DownloadFailed",
+  Downloading = "Downloading",
+  DownloadScheduled = "DownloadScheduled",
+  DownloadPaused = "DownloadPaused",
+  Idle = "Idle",
+  InstallationFailed = "InstallationFailed",
+  Installing = "Installing",
+  Installed = "Installed",
+  InstallRebooting = "InstallRebooting",
+  InstallScheduled = "InstallScheduled",
+  InstallVerificationFailed = "InstallVerificationFailed",
+  InvalidSignature = "InvalidSignature",
+  SignatureVerified = "SignatureVerified"
 }

@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Returns whether certificate signing has been accepted, otherwise rejected.
- *
- */
-export type CertificateSignedStatusEnumType = "Accepted" | "Rejected";
-
 export interface CertificateSignedResponseV201 {
   customData?: CustomDataType;
   status: CertificateSignedStatusEnumType;
@@ -38,4 +32,13 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * Returns whether certificate signing has been accepted, otherwise rejected.
+ *
+ */
+export const enum CertificateSignedStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected"
 }

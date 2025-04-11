@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Charging Station indicates if it can process the request.
- *
- */
-export type DeleteCertificateStatusEnumType = "Accepted" | "Failed" | "NotFound";
-
 export interface DeleteCertificateResponseV201 {
   customData?: CustomDataType;
   status: DeleteCertificateStatusEnumType;
@@ -38,4 +32,14 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * Charging Station indicates if it can process the request.
+ *
+ */
+export const enum DeleteCertificateStatusEnumType {
+  Accepted = "Accepted",
+  Failed = "Failed",
+  NotFound = "NotFound"
 }

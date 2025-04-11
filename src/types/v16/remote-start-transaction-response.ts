@@ -5,5 +5,10 @@
  */
 
 export interface RemoteStartTransactionResponseV16 {
-  status: "Accepted" | "Rejected";
+  status: RemoteStartTransactionStatus;
+}
+
+export const enum RemoteStartTransactionStatus {
+  Accepted = "Accepted",
+  Rejected = "Rejected"
 }

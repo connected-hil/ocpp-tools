@@ -5,5 +5,10 @@
  */
 
 export interface ClearCacheResponseV16 {
-  status: "Accepted" | "Rejected";
+  status: ClearCacheStatus;
+}
+
+export const enum ClearCacheStatus {
+  Accepted = "Accepted",
+  Rejected = "Rejected"
 }

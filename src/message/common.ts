@@ -1,12 +1,12 @@
 import {
   type ActionV16,
-  type OCPPErrorCodeV16,
+  type ErrorCodeV16,
   type OCPPRequestTypeV16,
   type OCPPResponseTypeV16,
   type ActionV201,
-  type OCPPErrorCodeV201,
+  type ErrorCodeV201,
   type OCPPRequestTypeV201,
-  type OCPPResponseTypeV201
+  type OCPPResponseTypeV201,
 } from "../types";
 
 export enum OCPPMessageType {
@@ -24,4 +24,4 @@ export type OCPPRequestPayloadType = OCPPRequestTypeV16 | OCPPRequestTypeV201;
 export type OCPPResponsePayloadType =
   | OCPPResponseTypeV16
   | OCPPResponseTypeV201;
-export type OCPPErrorCodeType = OCPPErrorCodeV16 | OCPPErrorCodeV201;
+export type OCPPErrorCodeType = ErrorCodeV16 | ErrorCodeV201;

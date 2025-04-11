@@ -7,5 +7,10 @@
 export interface GetCompositeScheduleRequestV16 {
   connectorId: number;
   duration: number;
-  chargingRateUnit?: "A" | "W";
+  chargingRateUnit?: ChargingRateUnit;
+}
+
+export const enum ChargingRateUnit {
+  A = "A",
+  W = "W"
 }

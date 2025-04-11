@@ -5,5 +5,11 @@
  */
 
 export interface SetChargingProfileResponseV16 {
-  status: "Accepted" | "Rejected" | "NotSupported";
+  status: SetChargingProfileStatus;
+}
+
+export const enum SetChargingProfileStatus {
+  Accepted = "Accepted",
+  Rejected = "Rejected",
+  NotSupported = "NotSupported"
 }

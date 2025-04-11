@@ -5,5 +5,11 @@
  */
 
 export interface TriggerMessageResponseV16 {
-  status: "Accepted" | "Rejected" | "NotImplemented";
+  status: TriggerMessageStatus;
+}
+
+export const enum TriggerMessageStatus {
+  Accepted = "Accepted",
+  Rejected = "Rejected",
+  NotImplemented = "NotImplemented"
 }

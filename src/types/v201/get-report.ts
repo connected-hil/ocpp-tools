@@ -4,8 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type ComponentCriterionEnumType = "Active" | "Available" | "Enabled" | "Problem";
-
 export interface GetReportRequestV201 {
   customData?: CustomDataType;
   /**
@@ -101,4 +99,11 @@ export interface VariableType {
    *
    */
   instance?: string;
+}
+
+export const enum ComponentCriterionEnumType {
+  Active = "Active",
+  Available = "Available",
+  Enabled = "Enabled",
+  Problem = "Problem"
 }

@@ -9,77 +9,80 @@
  * @maxItems 4
  */
 export type RpcCallV201 = [
-  2,
+  MessageTypeId,
   string,
-  (
-    | "Authorize"
-    | "BootNotification"
-    | "CancelReservation"
-    | "CertificateSigned"
-    | "ChangeAvailability"
-    | "ClearCache"
-    | "ClearChargingProfile"
-    | "ClearDisplayMessage"
-    | "ClearVariableMonitoring"
-    | "ClearedChargingLimit"
-    | "CostUpdated"
-    | "CustomerInformation"
-    | "DataTransfer"
-    | "DeleteCertificate"
-    | "FirmwareStatusNotification"
-    | "GetBaseReport"
-    | "GetCertificateStatus"
-    | "GetChargingProfiles"
-    | "GetCompositeSchedule"
-    | "GetDisplayMessages"
-    | "GetInstalledCertificateIds"
-    | "GetLocalListVersion"
-    | "GetLog"
-    | "GetMonitoringReport"
-    | "GetReport"
-    | "GetTransactionStatus"
-    | "GetVariables"
-    | "Get15118EVCertificate"
-    | "Heartbeat"
-    | "InstallCertificate"
-    | "LogStatusNotification"
-    | "MeterValues"
-    | "NotifyChargingLimit"
-    | "NotifyCustomerInformation"
-    | "NotifyDisplayMessages"
-    | "NotifyEVChargingNeeds"
-    | "NotifyEVChargingSchedule"
-    | "NotifyEvent"
-    | "NotifyMonitoringReport"
-    | "NotifyReport"
-    | "PublishFirmwareStatusNotification"
-    | "PublishFirmware"
-    | "ReportChargingProfiles"
-    | "ReservationStatusUpdate"
-    | "ReserveNow"
-    | "Reset"
-    | "SecurityEventNotification"
-    | "SendLocalList"
-    | "SetChargingProfile"
-    | "SetDisplayMessage"
-    | "SetMonitoringBase"
-    | "SetMonitoringLevel"
-    | "SetNetworkProfile"
-    | "SetVariableMonitoring"
-    | "SetVariables"
-    | "SignCertificate"
-    | "StartTransactionResponse"
-    | "StartTransactionRequest"
-    | "StatusNotification"
-    | "StopTransactionResponse"
-    | "StopTransactionRequest"
-    | "TransactionEvent"
-    | "TriggerMessage"
-    | "UnlockConnector"
-    | "UnpublishFirmware"
-    | "UpdateFirmware"
-  ),
+  Action,
   {
     [k: string]: unknown;
   }
 ];
+export type MessageTypeId = 2;
+
+export const enum Action {
+  Authorize = "Authorize",
+  BootNotification = "BootNotification",
+  CancelReservation = "CancelReservation",
+  CertificateSigned = "CertificateSigned",
+  ChangeAvailability = "ChangeAvailability",
+  ClearCache = "ClearCache",
+  ClearChargingProfile = "ClearChargingProfile",
+  ClearDisplayMessage = "ClearDisplayMessage",
+  ClearVariableMonitoring = "ClearVariableMonitoring",
+  ClearedChargingLimit = "ClearedChargingLimit",
+  CostUpdated = "CostUpdated",
+  CustomerInformation = "CustomerInformation",
+  DataTransfer = "DataTransfer",
+  DeleteCertificate = "DeleteCertificate",
+  FirmwareStatusNotification = "FirmwareStatusNotification",
+  GetBaseReport = "GetBaseReport",
+  GetCertificateStatus = "GetCertificateStatus",
+  GetChargingProfiles = "GetChargingProfiles",
+  GetCompositeSchedule = "GetCompositeSchedule",
+  GetDisplayMessages = "GetDisplayMessages",
+  GetInstalledCertificateIds = "GetInstalledCertificateIds",
+  GetLocalListVersion = "GetLocalListVersion",
+  GetLog = "GetLog",
+  GetMonitoringReport = "GetMonitoringReport",
+  GetReport = "GetReport",
+  GetTransactionStatus = "GetTransactionStatus",
+  GetVariables = "GetVariables",
+  Get15118EVCertificate = "Get15118EVCertificate",
+  Heartbeat = "Heartbeat",
+  InstallCertificate = "InstallCertificate",
+  LogStatusNotification = "LogStatusNotification",
+  MeterValues = "MeterValues",
+  NotifyChargingLimit = "NotifyChargingLimit",
+  NotifyCustomerInformation = "NotifyCustomerInformation",
+  NotifyDisplayMessages = "NotifyDisplayMessages",
+  NotifyEVChargingNeeds = "NotifyEVChargingNeeds",
+  NotifyEVChargingSchedule = "NotifyEVChargingSchedule",
+  NotifyEvent = "NotifyEvent",
+  NotifyMonitoringReport = "NotifyMonitoringReport",
+  NotifyReport = "NotifyReport",
+  PublishFirmwareStatusNotification = "PublishFirmwareStatusNotification",
+  PublishFirmware = "PublishFirmware",
+  ReportChargingProfiles = "ReportChargingProfiles",
+  ReservationStatusUpdate = "ReservationStatusUpdate",
+  ReserveNow = "ReserveNow",
+  Reset = "Reset",
+  SecurityEventNotification = "SecurityEventNotification",
+  SendLocalList = "SendLocalList",
+  SetChargingProfile = "SetChargingProfile",
+  SetDisplayMessage = "SetDisplayMessage",
+  SetMonitoringBase = "SetMonitoringBase",
+  SetMonitoringLevel = "SetMonitoringLevel",
+  SetNetworkProfile = "SetNetworkProfile",
+  SetVariableMonitoring = "SetVariableMonitoring",
+  SetVariables = "SetVariables",
+  SignCertificate = "SignCertificate",
+  StartTransactionResponse = "StartTransactionResponse",
+  StartTransactionRequest = "StartTransactionRequest",
+  StatusNotification = "StatusNotification",
+  StopTransactionResponse = "StopTransactionResponse",
+  StopTransactionRequest = "StopTransactionRequest",
+  TransactionEvent = "TransactionEvent",
+  TriggerMessage = "TriggerMessage",
+  UnlockConnector = "UnlockConnector",
+  UnpublishFirmware = "UnpublishFirmware",
+  UpdateFirmware = "UpdateFirmware"
+}

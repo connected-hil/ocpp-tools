@@ -4,23 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Type of message to be triggered.
- *
- */
-export type MessageTriggerEnumType =
-  | "BootNotification"
-  | "LogStatusNotification"
-  | "FirmwareStatusNotification"
-  | "Heartbeat"
-  | "MeterValues"
-  | "SignChargingStationCertificate"
-  | "SignV2GCertificate"
-  | "StatusNotification"
-  | "TransactionEvent"
-  | "SignCombinedCertificate"
-  | "PublishFirmwareStatusNotification";
-
 export interface TriggerMessageRequestV201 {
   customData?: CustomDataType;
   evse?: EVSEType;
@@ -53,4 +36,22 @@ export interface EVSEType {
    *
    */
   connectorId?: number;
+}
+
+/**
+ * Type of message to be triggered.
+ *
+ */
+export const enum MessageTriggerEnumType {
+  BootNotification = "BootNotification",
+  LogStatusNotification = "LogStatusNotification",
+  FirmwareStatusNotification = "FirmwareStatusNotification",
+  Heartbeat = "Heartbeat",
+  MeterValues = "MeterValues",
+  SignChargingStationCertificate = "SignChargingStationCertificate",
+  SignV2GCertificate = "SignV2GCertificate",
+  StatusNotification = "StatusNotification",
+  TransactionEvent = "TransactionEvent",
+  SignCombinedCertificate = "SignCombinedCertificate",
+  PublishFirmwareStatusNotification = "PublishFirmwareStatusNotification"
 }

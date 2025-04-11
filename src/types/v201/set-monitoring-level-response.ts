@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Indicates whether the Charging Station was able to accept the request.
- *
- */
-export type GenericStatusEnumType = "Accepted" | "Rejected";
-
 export interface SetMonitoringLevelResponseV201 {
   customData?: CustomDataType;
   status: GenericStatusEnumType;
@@ -38,4 +32,13 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * Indicates whether the Charging Station was able to accept the request.
+ *
+ */
+export const enum GenericStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected"
 }

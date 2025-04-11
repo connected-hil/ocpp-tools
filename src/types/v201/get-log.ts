@@ -4,13 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * This contains the type of log file that the Charging Station
- * should send.
- *
- */
-export type LogEnumType = "DiagnosticsLog" | "SecurityLog";
-
 export interface GetLogRequestV201 {
   customData?: CustomDataType;
   log: LogParametersType;
@@ -67,4 +60,14 @@ export interface LogParametersType {
    *
    */
   latestTimestamp?: string;
+}
+
+/**
+ * This contains the type of log file that the Charging Station
+ * should send.
+ *
+ */
+export const enum LogEnumType {
+  DiagnosticsLog = "DiagnosticsLog",
+  SecurityLog = "SecurityLog"
 }

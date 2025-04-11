@@ -4,27 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Charging Station indicates if it can process the request.
- *
- */
-export type GetInstalledCertificateStatusEnumType = "Accepted" | "NotFound";
-/**
- * Used algorithms for the hashes provided.
- *
- */
-export type HashAlgorithmEnumType = "SHA256" | "SHA384" | "SHA512";
-/**
- * Indicates the type of the requested certificate(s).
- *
- */
-export type GetCertificateIdUseEnumType =
-  | "V2GRootCertificate"
-  | "MORootCertificate"
-  | "CSMSRootCertificate"
-  | "V2GCertificateChain"
-  | "ManufacturerRootCertificate";
-
 export interface GetInstalledCertificateIdsResponseV201 {
   customData?: CustomDataType;
   status: GetInstalledCertificateStatusEnumType;
@@ -91,4 +70,33 @@ export interface CertificateHashDataType {
    *
    */
   serialNumber: string;
+}
+
+/**
+ * Charging Station indicates if it can process the request.
+ *
+ */
+export const enum GetInstalledCertificateStatusEnumType {
+  Accepted = "Accepted",
+  NotFound = "NotFound"
+}
+/**
+ * Used algorithms for the hashes provided.
+ *
+ */
+export const enum HashAlgorithmEnumType {
+  SHA256 = "SHA256",
+  SHA384 = "SHA384",
+  SHA512 = "SHA512"
+}
+/**
+ * Indicates the type of the requested certificate(s).
+ *
+ */
+export const enum GetCertificateIdUseEnumType {
+  V2GRootCertificate = "V2GRootCertificate",
+  MORootCertificate = "MORootCertificate",
+  CSMSRootCertificate = "CSMSRootCertificate",
+  V2GCertificateChain = "V2GCertificateChain",
+  ManufacturerRootCertificate = "ManufacturerRootCertificate"
 }

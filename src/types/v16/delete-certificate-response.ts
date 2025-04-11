@@ -4,8 +4,12 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type DeleteCertificateStatusEnumType = "Accepted" | "Failed" | "NotFound";
-
 export interface DeleteCertificateResponseV16 {
   status: DeleteCertificateStatusEnumType;
+}
+
+export const enum DeleteCertificateStatusEnumType {
+  Accepted = "Accepted",
+  Failed = "Failed",
+  NotFound = "NotFound"
 }

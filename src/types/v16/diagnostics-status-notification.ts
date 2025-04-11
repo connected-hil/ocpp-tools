@@ -5,5 +5,12 @@
  */
 
 export interface DiagnosticsStatusNotificationRequestV16 {
-  status: "Idle" | "Uploaded" | "UploadFailed" | "Uploading";
+  status: DiagnosticsStatus;
+}
+
+export const enum DiagnosticsStatus {
+  Idle = "Idle",
+  Uploaded = "Uploaded",
+  UploadFailed = "UploadFailed",
+  Uploading = "Uploading"
 }

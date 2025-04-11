@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Used algorithms for the hashes provided.
- *
- */
-export type HashAlgorithmEnumType = "SHA256" | "SHA384" | "SHA512";
-
 export interface GetCertificateStatusRequestV201 {
   customData?: CustomDataType;
   ocspRequestData: OCSPRequestDataType;
@@ -46,4 +40,14 @@ export interface OCSPRequestDataType {
    *
    */
   responderURL: string;
+}
+
+/**
+ * Used algorithms for the hashes provided.
+ *
+ */
+export const enum HashAlgorithmEnumType {
+  SHA256 = "SHA256",
+  SHA384 = "SHA384",
+  SHA512 = "SHA512"
 }

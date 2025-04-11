@@ -11,15 +11,15 @@ export interface RemoteStartTransactionRequestV16 {
     chargingProfileId: number;
     transactionId?: number;
     stackLevel: number;
-    chargingProfilePurpose: "ChargePointMaxProfile" | "TxDefaultProfile" | "TxProfile";
-    chargingProfileKind: "Absolute" | "Recurring" | "Relative";
-    recurrencyKind?: "Daily" | "Weekly";
+    chargingProfilePurpose: ChargingProfilePurpose;
+    chargingProfileKind?: ChargingProfileKind;
+    recurrencyKind?: RecurringKind;
     validFrom?: string;
     validTo?: string;
     chargingSchedule: {
       duration?: number;
       startSchedule?: string;
-      chargingRateUnit: "A" | "W";
+      chargingRateUnit: ChargingRateUnit;
       chargingSchedulePeriod: {
         startPeriod: number;
         limit: number;
@@ -28,4 +28,23 @@ export interface RemoteStartTransactionRequestV16 {
       minChargingRate?: number;
     };
   };
+}
+
+export const enum ChargingProfilePurpose {
+  ChargePointMaxProfile = "ChargePointMaxProfile",
+  TxDefaultProfile = "TxDefaultProfile",
+  TxProfile = "TxProfile"
+}
+export const enum ChargingProfileKind {
+  Absolute = "Absolute",
+  Recurring = "Recurring",
+  Relative = "Relative"
+}
+export const enum RecurringKind {
+  Daily = "Daily",
+  Weekly = "Weekly"
+}
+export const enum ChargingRateUnit {
+  A = "A",
+  W = "W"
 }

@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * This field specifies the report base.
- *
- */
-export type ReportBaseEnumType = "ConfigurationInventory" | "FullInventory" | "SummaryInventory";
-
 export interface GetBaseReportRequestV201 {
   customData?: CustomDataType;
   /**
@@ -25,4 +19,14 @@ export interface GetBaseReportRequestV201 {
 export interface CustomDataType {
   vendorId: string;
   [k: string]: unknown;
+}
+
+/**
+ * This field specifies the report base.
+ *
+ */
+export const enum ReportBaseEnumType {
+  ConfigurationInventory = "ConfigurationInventory",
+  FullInventory = "FullInventory",
+  SummaryInventory = "SummaryInventory"
 }

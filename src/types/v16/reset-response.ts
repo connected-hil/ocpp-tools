@@ -5,5 +5,10 @@
  */
 
 export interface ResetResponseV16 {
-  status: "Accepted" | "Rejected";
+  status: ResetStatus;
+}
+
+export const enum ResetStatus {
+  Accepted = "Accepted",
+  Rejected = "Rejected"
 }

@@ -4,13 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Can be used to force a power or current profile.
- *
- *
- */
-export type ChargingRateUnitEnumType = "W" | "A";
-
 export interface GetCompositeScheduleRequestV201 {
   customData?: CustomDataType;
   /**
@@ -32,4 +25,14 @@ export interface GetCompositeScheduleRequestV201 {
 export interface CustomDataType {
   vendorId: string;
   [k: string]: unknown;
+}
+
+/**
+ * Can be used to force a power or current profile.
+ *
+ *
+ */
+export const enum ChargingRateUnitEnumType {
+  W = "W",
+  A = "A"
 }

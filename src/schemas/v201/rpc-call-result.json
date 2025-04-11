@@ -2,13 +2,19 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "urn:OCPP:Cp:2:2020:3:RpcCallResultV201",
   "title": "RpcCallResult",
+  "definitions": {
+    "MessageTypeId": {
+      "type": "integer",
+      "additionalProperties": false,
+      "enum": [3]
+    }
+  },
   "type": "array",
   "minItems": 3,
   "maxItems": 3,
   "items": [
     {
-      "type": "integer",
-      "enum": [3]
+      "$ref": "#/definitions/MessageTypeId"
     },
     {
       "type": "string",

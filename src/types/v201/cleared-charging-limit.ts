@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Source of the charging limit.
- *
- */
-export type ChargingLimitSourceEnumType = "EMS" | "Other" | "SO" | "CSO";
-
 export interface ClearedChargingLimitRequestV201 {
   customData?: CustomDataType;
   chargingLimitSource: ChargingLimitSourceEnumType;
@@ -25,4 +19,15 @@ export interface ClearedChargingLimitRequestV201 {
 export interface CustomDataType {
   vendorId: string;
   [k: string]: unknown;
+}
+
+/**
+ * Source of the charging limit.
+ *
+ */
+export const enum ChargingLimitSourceEnumType {
+  EMS = "EMS",
+  Other = "Other",
+  SO = "SO",
+  CSO = "CSO"
 }

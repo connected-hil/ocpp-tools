@@ -5,5 +5,10 @@
  */
 
 export interface ResetRequestV16 {
-  type: "Hard" | "Soft";
+  type: ResetType;
+}
+
+export const enum ResetType {
+  Hard = "Hard",
+  Soft = "Soft"
 }

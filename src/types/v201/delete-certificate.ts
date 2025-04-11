@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Used algorithms for the hashes provided.
- *
- */
-export type HashAlgorithmEnumType = "SHA256" | "SHA384" | "SHA512";
-
 export interface DeleteCertificateRequestV201 {
   customData?: CustomDataType;
   certificateHashData: CertificateHashDataType;
@@ -40,4 +34,14 @@ export interface CertificateHashDataType {
    *
    */
   serialNumber: string;
+}
+
+/**
+ * Used algorithms for the hashes provided.
+ *
+ */
+export const enum HashAlgorithmEnumType {
+  SHA256 = "SHA256",
+  SHA384 = "SHA384",
+  SHA512 = "SHA512"
 }

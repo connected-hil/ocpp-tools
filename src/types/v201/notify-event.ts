@@ -4,23 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Type of monitor that triggered this event, e.g. exceeding a threshold value.
- *
- *
- */
-export type EventTriggerEnumType = "Alerting" | "Delta" | "Periodic";
-/**
- * Specifies the event notification type of the message.
- *
- *
- */
-export type EventNotificationEnumType =
-  | "HardWiredNotification"
-  | "HardWiredMonitor"
-  | "PreconfiguredMonitor"
-  | "CustomMonitor";
-
 export interface NotifyEventRequestV201 {
   customData?: CustomDataType;
   /**
@@ -167,4 +150,26 @@ export interface VariableType {
    *
    */
   instance?: string;
+}
+
+/**
+ * Type of monitor that triggered this event, e.g. exceeding a threshold value.
+ *
+ *
+ */
+export const enum EventTriggerEnumType {
+  Alerting = "Alerting",
+  Delta = "Delta",
+  Periodic = "Periodic"
+}
+/**
+ * Specifies the event notification type of the message.
+ *
+ *
+ */
+export const enum EventNotificationEnumType {
+  HardWiredNotification = "HardWiredNotification",
+  HardWiredMonitor = "HardWiredMonitor",
+  PreconfiguredMonitor = "PreconfiguredMonitor",
+  CustomMonitor = "CustomMonitor"
 }

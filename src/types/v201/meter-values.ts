@@ -5,69 +5,6 @@
  */
 
 /**
- * Sampled_ Value. Context. Reading_ Context_ Code
- * urn:x-oca:ocpp:uid:1:569261
- * Type of detail value: start, end or sample. Default = "Sample.Periodic"
- *
- */
-export type ReadingContextEnumType =
-  | "Interruption.Begin"
-  | "Interruption.End"
-  | "Other"
-  | "Sample.Clock"
-  | "Sample.Periodic"
-  | "Transaction.Begin"
-  | "Transaction.End"
-  | "Trigger";
-/**
- * Sampled_ Value. Measurand. Measurand_ Code
- * urn:x-oca:ocpp:uid:1:569263
- * Type of measurement. Default = "Energy.Active.Import.Register"
- *
- */
-export type MeasurandEnumType =
-  | "Current.Export"
-  | "Current.Import"
-  | "Current.Offered"
-  | "Energy.Active.Export.Register"
-  | "Energy.Active.Import.Register"
-  | "Energy.Reactive.Export.Register"
-  | "Energy.Reactive.Import.Register"
-  | "Energy.Active.Export.Interval"
-  | "Energy.Active.Import.Interval"
-  | "Energy.Active.Net"
-  | "Energy.Reactive.Export.Interval"
-  | "Energy.Reactive.Import.Interval"
-  | "Energy.Reactive.Net"
-  | "Energy.Apparent.Net"
-  | "Energy.Apparent.Import"
-  | "Energy.Apparent.Export"
-  | "Frequency"
-  | "Power.Active.Export"
-  | "Power.Active.Import"
-  | "Power.Factor"
-  | "Power.Offered"
-  | "Power.Reactive.Export"
-  | "Power.Reactive.Import"
-  | "SoC"
-  | "Voltage";
-/**
- * Sampled_ Value. Phase. Phase_ Code
- * urn:x-oca:ocpp:uid:1:569264
- * Indicates how the measured value is to be interpreted. For instance between L1 and neutral (L1-N) Please note that not all values of phase are applicable to all Measurands. When phase is absent, the measured value is interpreted as an overall value.
- *
- */
-export type PhaseEnumType = "L1" | "L2" | "L3" | "N" | "L1-N" | "L2-N" | "L3-N" | "L1-L2" | "L2-L3" | "L3-L1";
-/**
- * Sampled_ Value. Location. Location_ Code
- * urn:x-oca:ocpp:uid:1:569265
- * Indicates where the measured value has been sampled. Default =  "Outlet"
- *
- *
- */
-export type LocationEnumType = "Body" | "Cable" | "EV" | "Inlet" | "Outlet";
-
-/**
  * Request_ Body
  * urn:x-enexis:ecdm:uid:2:234744
  *
@@ -183,4 +120,86 @@ export interface UnitOfMeasureType {
    *
    */
   multiplier?: number;
+}
+
+/**
+ * Sampled_ Value. Context. Reading_ Context_ Code
+ * urn:x-oca:ocpp:uid:1:569261
+ * Type of detail value: start, end or sample. Default = "Sample.Periodic"
+ *
+ */
+export const enum ReadingContextEnumType {
+  "Interruption.Begin" = "Interruption.Begin",
+  "Interruption.End" = "Interruption.End",
+  Other = "Other",
+  "Sample.Clock" = "Sample.Clock",
+  "Sample.Periodic" = "Sample.Periodic",
+  "Transaction.Begin" = "Transaction.Begin",
+  "Transaction.End" = "Transaction.End",
+  Trigger = "Trigger"
+}
+/**
+ * Sampled_ Value. Measurand. Measurand_ Code
+ * urn:x-oca:ocpp:uid:1:569263
+ * Type of measurement. Default = "Energy.Active.Import.Register"
+ *
+ */
+export const enum MeasurandEnumType {
+  "Current.Export" = "Current.Export",
+  "Current.Import" = "Current.Import",
+  "Current.Offered" = "Current.Offered",
+  "Energy.Active.Export.Register" = "Energy.Active.Export.Register",
+  "Energy.Active.Import.Register" = "Energy.Active.Import.Register",
+  "Energy.Reactive.Export.Register" = "Energy.Reactive.Export.Register",
+  "Energy.Reactive.Import.Register" = "Energy.Reactive.Import.Register",
+  "Energy.Active.Export.Interval" = "Energy.Active.Export.Interval",
+  "Energy.Active.Import.Interval" = "Energy.Active.Import.Interval",
+  "Energy.Active.Net" = "Energy.Active.Net",
+  "Energy.Reactive.Export.Interval" = "Energy.Reactive.Export.Interval",
+  "Energy.Reactive.Import.Interval" = "Energy.Reactive.Import.Interval",
+  "Energy.Reactive.Net" = "Energy.Reactive.Net",
+  "Energy.Apparent.Net" = "Energy.Apparent.Net",
+  "Energy.Apparent.Import" = "Energy.Apparent.Import",
+  "Energy.Apparent.Export" = "Energy.Apparent.Export",
+  Frequency = "Frequency",
+  "Power.Active.Export" = "Power.Active.Export",
+  "Power.Active.Import" = "Power.Active.Import",
+  "Power.Factor" = "Power.Factor",
+  "Power.Offered" = "Power.Offered",
+  "Power.Reactive.Export" = "Power.Reactive.Export",
+  "Power.Reactive.Import" = "Power.Reactive.Import",
+  SoC = "SoC",
+  Voltage = "Voltage"
+}
+/**
+ * Sampled_ Value. Phase. Phase_ Code
+ * urn:x-oca:ocpp:uid:1:569264
+ * Indicates how the measured value is to be interpreted. For instance between L1 and neutral (L1-N) Please note that not all values of phase are applicable to all Measurands. When phase is absent, the measured value is interpreted as an overall value.
+ *
+ */
+export const enum PhaseEnumType {
+  L1 = "L1",
+  L2 = "L2",
+  L3 = "L3",
+  N = "N",
+  "L1-N" = "L1-N",
+  "L2-N" = "L2-N",
+  "L3-N" = "L3-N",
+  "L1-L2" = "L1-L2",
+  "L2-L3" = "L2-L3",
+  "L3-L1" = "L3-L1"
+}
+/**
+ * Sampled_ Value. Location. Location_ Code
+ * urn:x-oca:ocpp:uid:1:569265
+ * Indicates where the measured value has been sampled. Default =  "Outlet"
+ *
+ *
+ */
+export const enum LocationEnumType {
+  Body = "Body",
+  Cable = "Cable",
+  EV = "EV",
+  Inlet = "Inlet",
+  Outlet = "Outlet"
 }

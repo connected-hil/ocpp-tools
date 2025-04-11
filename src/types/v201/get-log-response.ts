@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * This field indicates whether the Charging Station was able to accept the request.
- *
- */
-export type LogStatusEnumType = "Accepted" | "Rejected" | "AcceptedCanceled";
-
 export interface GetLogResponseV201 {
   customData?: CustomDataType;
   status: LogStatusEnumType;
@@ -43,4 +37,14 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * This field indicates whether the Charging Station was able to accept the request.
+ *
+ */
+export const enum LogStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected",
+  AcceptedCanceled = "AcceptedCanceled"
 }

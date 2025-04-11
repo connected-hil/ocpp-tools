@@ -4,8 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type LogEnumType = "DiagnosticsLog" | "SecurityLog";
-
 export interface GetLogRequestV16 {
   log: LogParametersType;
   logType: LogEnumType;
@@ -17,4 +15,9 @@ export interface LogParametersType {
   remoteLocation: string;
   oldestTimestamp?: string;
   latestTimestamp?: string;
+}
+
+export const enum LogEnumType {
+  DiagnosticsLog = "DiagnosticsLog",
+  SecurityLog = "SecurityLog"
 }

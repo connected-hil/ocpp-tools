@@ -1,13 +1,12 @@
- 
 import { ocppVersion } from "src/message/common";
 import { validateOCPPMessage } from "src/validation";
 
 interface TestCase {
-  data: unknown[]
+  data: unknown[];
   expected: {
-    valid: boolean
-    messageType: string
-  }
+    valid: boolean;
+    messageType: string;
+  };
 }
 
 describe("validate OCPP v1.6 RPC messages", () => {
@@ -19,11 +18,11 @@ describe("validate OCPP v1.6 RPC messages", () => {
   const tests: TestCase[] = [
     {
       data: [2, "abc123", "BootNotification", { chargePointVendor: "VendorX" }],
-      expected: { messageType: "CALL", valid: true }
+      expected: { messageType: "CALL", valid: true },
     },
     {
       data: [3, "abc123", { status: "Accepted" }],
-      expected: { messageType: "CALL_RESULT", valid: true }
+      expected: { messageType: "CALL_RESULT", valid: true },
     },
     {
       // v2.0.1 message
@@ -31,24 +30,24 @@ describe("validate OCPP v1.6 RPC messages", () => {
         2,
         "abc123",
         "NotifyChargingLimit",
-        { chargingLimit: { chargingLimitSource: "Other" } }
+        { chargingLimit: { chargingLimitSource: "Other" } },
       ],
-      expected: { messageType: "CALL", valid: false }
+      expected: { messageType: "CALL", valid: false },
     },
     {
       data: [4, "abc123", "NoSuchError", "Error description", {}],
       expected: {
         messageType: "CALL_ERROR",
-        valid: false
-      }
+        valid: false,
+      },
     },
     {
       data: [4, "abc123", "GenericError", "Error description", { detail: 123 }],
       expected: {
         messageType: "CALL_ERROR",
-        valid: true
-      }
-    }
+        valid: true,
+      },
+    },
   ];
 
   test.each(tests)("validates $expected.messageType", ({ data, expected }) => {
@@ -65,11 +64,11 @@ describe("validate OCPP v2.0.1 RPC messages", () => {
   const tests: TestCase[] = [
     {
       data: [2, "abc123", "BootNotification", { chargePointVendor: "VendorX" }],
-      expected: { messageType: "CALL", valid: true }
+      expected: { messageType: "CALL", valid: true },
     },
     {
       data: [3, "abc123", { status: "Accepted" }],
-      expected: { messageType: "CALL_RESULT", valid: true }
+      expected: { messageType: "CALL_RESULT", valid: true },
     },
     {
       // v2.0.1 message
@@ -77,24 +76,24 @@ describe("validate OCPP v2.0.1 RPC messages", () => {
         2,
         "abc13",
         "NotifyChargingLimit",
-        { chargingLimit: { chargingLimitSource: "Other" } }
+        { chargingLimit: { chargingLimitSource: "Other" } },
       ],
-      expected: { messageType: "CALL", valid: true }
+      expected: { messageType: "CALL", valid: true },
     },
     {
       data: [4, "abc123", "NoSuchError", "Error description", {}],
       expected: {
         messageType: "CALL_ERROR",
-        valid: false
-      }
+        valid: false,
+      },
     },
     {
       data: [4, "abc123", "GenericError", "Error description", { detail: 123 }],
       expected: {
         messageType: "CALL_ERROR",
-        valid: true
-      }
-    }
+        valid: true,
+      },
+    },
   ];
 
   test.each(tests)("validates $expected.messageType", ({ data, expected }) => {

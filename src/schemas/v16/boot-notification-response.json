@@ -1,29 +1,27 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:OCPP:1.6:2019:12:BootNotificationResponse",
   "title": "BootNotificationResponse",
+  "definitions": {
+    "BootNotificationResponseStatusEnumType": {
+      "type": "string",
+      "additionalProperties": false,
+      "enum": ["Accepted", "Pending", "Rejected"]
+    }
+  },
   "type": "object",
   "properties": {
-      "status": {
-          "type": "string",
-          "additionalProperties": false,
-          "enum": [
-              "Accepted",
-              "Pending",
-              "Rejected"
-          ]
-      },
-      "currentTime": {
-          "type": "string",
-          "format": "date-time"
-      },
-      "interval": {
-          "type": "integer"
-      }
+    "status": {
+      "$ref": "#/definitions/BootNotificationResponseStatusEnumType"
+    },
+    "currentTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "interval": {
+      "type": "integer"
+    }
   },
   "additionalProperties": false,
-  "required": [
-      "status",
-      "currentTime",
-      "interval"
-  ]
+  "required": ["status", "currentTime", "interval"]
 }

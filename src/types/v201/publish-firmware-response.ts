@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Indicates whether the request was accepted.
- *
- */
-export type GenericStatusEnumType = "Accepted" | "Rejected";
-
 export interface PublishFirmwareResponseV201 {
   customData?: CustomDataType;
   status: GenericStatusEnumType;
@@ -38,4 +32,13 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * Indicates whether the request was accepted.
+ *
+ */
+export const enum GenericStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected"
 }

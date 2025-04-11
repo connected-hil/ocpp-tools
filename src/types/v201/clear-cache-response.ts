@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Accepted if the Charging Station has executed the request, otherwise rejected.
- *
- */
-export type ClearCacheStatusEnumType = "Accepted" | "Rejected";
-
 export interface ClearCacheResponseV201 {
   customData?: CustomDataType;
   status: ClearCacheStatusEnumType;
@@ -38,4 +32,13 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * Accepted if the Charging Station has executed the request, otherwise rejected.
+ *
+ */
+export const enum ClearCacheStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected"
 }

@@ -4,19 +4,26 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type HashAlgorithmEnumType = "SHA256" | "SHA384" | "SHA512";
-export type GetInstalledCertificateStatusEnumType = "Accepted" | "NotFound";
-
 export interface GetInstalledCertificateIdsResponseV16 {
+  status: GetInstalledCertificateIdsStatus;
   /**
    * @minItems 1
    */
   certificateHashData?: [CertificateHashDataType, ...CertificateHashDataType[]];
-  status: GetInstalledCertificateStatusEnumType;
 }
 export interface CertificateHashDataType {
   hashAlgorithm: HashAlgorithmEnumType;
   issuerNameHash: string;
   issuerKeyHash: string;
   serialNumber: string;
+}
+
+export const enum GetInstalledCertificateIdsStatus {
+  Accepted = "Accepted",
+  Failed = "Failed"
+}
+export const enum HashAlgorithmEnumType {
+  SHA256 = "SHA256",
+  SHA384 = "SHA384",
+  SHA512 = "SHA512"
 }

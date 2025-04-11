@@ -4,48 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * APN. APN_ Authentication. APN_ Authentication_ Code
- * urn:x-oca:ocpp:uid:1:568828
- * Authentication method.
- *
- */
-export type APNAuthenticationEnumType = "CHAP" | "NONE" | "PAP" | "AUTO";
-/**
- * Communication_ Function. OCPP_ Version. OCPP_ Version_ Code
- * urn:x-oca:ocpp:uid:1:569355
- * Defines the OCPP version used for this communication function.
- *
- */
-export type OCPPVersionEnumType = "OCPP12" | "OCPP15" | "OCPP16" | "OCPP20";
-/**
- * Communication_ Function. OCPP_ Transport. OCPP_ Transport_ Code
- * urn:x-oca:ocpp:uid:1:569356
- * Defines the transport protocol (e.g. SOAP or JSON). Note: SOAP is not supported in OCPP 2.0, but is supported by other versions of OCPP.
- *
- */
-export type OCPPTransportEnumType = "JSON" | "SOAP";
-/**
- * Applicable Network Interface.
- *
- */
-export type OCPPInterfaceEnumType =
-  | "Wired0"
-  | "Wired1"
-  | "Wired2"
-  | "Wired3"
-  | "Wireless0"
-  | "Wireless1"
-  | "Wireless2"
-  | "Wireless3";
-/**
- * VPN. Type. VPN_ Code
- * urn:x-oca:ocpp:uid:1:569277
- * Type of VPN
- *
- */
-export type VPNEnumType = "IKEv2" | "IPSec" | "L2TP" | "PPTP";
-
 export interface SetNetworkProfileRequestV201 {
   customData?: CustomDataType;
   /**
@@ -194,4 +152,65 @@ export interface VPNType {
    */
   key: string;
   type: VPNEnumType;
+}
+
+/**
+ * APN. APN_ Authentication. APN_ Authentication_ Code
+ * urn:x-oca:ocpp:uid:1:568828
+ * Authentication method.
+ *
+ */
+export const enum APNAuthenticationEnumType {
+  CHAP = "CHAP",
+  NONE = "NONE",
+  PAP = "PAP",
+  AUTO = "AUTO"
+}
+/**
+ * Communication_ Function. OCPP_ Version. OCPP_ Version_ Code
+ * urn:x-oca:ocpp:uid:1:569355
+ * Defines the OCPP version used for this communication function.
+ *
+ */
+export const enum OCPPVersionEnumType {
+  OCPP12 = "OCPP12",
+  OCPP15 = "OCPP15",
+  OCPP16 = "OCPP16",
+  OCPP20 = "OCPP20"
+}
+/**
+ * Communication_ Function. OCPP_ Transport. OCPP_ Transport_ Code
+ * urn:x-oca:ocpp:uid:1:569356
+ * Defines the transport protocol (e.g. SOAP or JSON). Note: SOAP is not supported in OCPP 2.0, but is supported by other versions of OCPP.
+ *
+ */
+export const enum OCPPTransportEnumType {
+  JSON = "JSON",
+  SOAP = "SOAP"
+}
+/**
+ * Applicable Network Interface.
+ *
+ */
+export const enum OCPPInterfaceEnumType {
+  Wired0 = "Wired0",
+  Wired1 = "Wired1",
+  Wired2 = "Wired2",
+  Wired3 = "Wired3",
+  Wireless0 = "Wireless0",
+  Wireless1 = "Wireless1",
+  Wireless2 = "Wireless2",
+  Wireless3 = "Wireless3"
+}
+/**
+ * VPN. Type. VPN_ Code
+ * urn:x-oca:ocpp:uid:1:569277
+ * Type of VPN
+ *
+ */
+export const enum VPNEnumType {
+  IKEv2 = "IKEv2",
+  IPSec = "IPSec",
+  L2TP = "L2TP",
+  PPTP = "PPTP"
 }

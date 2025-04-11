@@ -4,18 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Charging_ Profile. Charging_ Profile_ Purpose. Charging_ Profile_ Purpose_ Code
- * urn:x-oca:ocpp:uid:1:569231
- * Specifies to purpose of the charging profiles that will be cleared, if they meet the other criteria in the request.
- *
- */
-export type ChargingProfilePurposeEnumType =
-  | "ChargingStationExternalConstraints"
-  | "ChargingStationMaxProfile"
-  | "TxDefaultProfile"
-  | "TxProfile";
-
 export interface ClearChargingProfileRequestV201 {
   customData?: CustomDataType;
   /**
@@ -56,4 +44,17 @@ export interface ClearChargingProfileType {
    *
    */
   stackLevel?: number;
+}
+
+/**
+ * Charging_ Profile. Charging_ Profile_ Purpose. Charging_ Profile_ Purpose_ Code
+ * urn:x-oca:ocpp:uid:1:569231
+ * Specifies to purpose of the charging profiles that will be cleared, if they meet the other criteria in the request.
+ *
+ */
+export const enum ChargingProfilePurposeEnumType {
+  ChargingStationExternalConstraints = "ChargingStationExternalConstraints",
+  ChargingStationMaxProfile = "ChargingStationMaxProfile",
+  TxDefaultProfile = "TxDefaultProfile",
+  TxProfile = "TxProfile"
 }

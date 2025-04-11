@@ -4,13 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type GetCertificateIdUseEnumType =
-  | "V2GRootCertificate"
-  | "MORootCertificate"
-  | "CSMSRootCertificate"
-  | "V2GCertificateChain"
-  | "ManufacturerRootCertificate";
-
 export interface GetInstalledCertificateIdsRequestV201 {
   customData?: CustomDataType;
   /**
@@ -27,4 +20,12 @@ export interface GetInstalledCertificateIdsRequestV201 {
 export interface CustomDataType {
   vendorId: string;
   [k: string]: unknown;
+}
+
+export const enum GetCertificateIdUseEnumType {
+  V2GRootCertificate = "V2GRootCertificate",
+  MORootCertificate = "MORootCertificate",
+  CSMSRootCertificate = "CSMSRootCertificate",
+  V2GCertificateChain = "V2GCertificateChain",
+  ManufacturerRootCertificate = "ManufacturerRootCertificate"
 }

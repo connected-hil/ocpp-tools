@@ -5,5 +5,11 @@
  */
 
 export interface ChangeAvailabilityResponseV16 {
-  status: "Accepted" | "Rejected" | "Scheduled";
+  status: ChangeAvailabilityStatus;
+}
+
+export const enum ChangeAvailabilityStatus {
+  Accepted = "Accepted",
+  Rejected = "Rejected",
+  Scheduled = "Scheduled"
 }

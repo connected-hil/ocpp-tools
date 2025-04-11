@@ -4,20 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * This contains the status of the log upload.
- *
- */
-export type UploadLogStatusEnumType =
-  | "BadMessage"
-  | "Idle"
-  | "NotSupportedOperation"
-  | "PermissionDenied"
-  | "Uploaded"
-  | "UploadFailure"
-  | "Uploading"
-  | "AcceptedCanceled";
-
 export interface LogStatusNotificationRequestV201 {
   customData?: CustomDataType;
   status: UploadLogStatusEnumType;
@@ -34,4 +20,19 @@ export interface LogStatusNotificationRequestV201 {
 export interface CustomDataType {
   vendorId: string;
   [k: string]: unknown;
+}
+
+/**
+ * This contains the status of the log upload.
+ *
+ */
+export const enum UploadLogStatusEnumType {
+  BadMessage = "BadMessage",
+  Idle = "Idle",
+  NotSupportedOperation = "NotSupportedOperation",
+  PermissionDenied = "PermissionDenied",
+  Uploaded = "Uploaded",
+  UploadFailure = "UploadFailure",
+  Uploading = "Uploading",
+  AcceptedCanceled = "AcceptedCanceled"
 }

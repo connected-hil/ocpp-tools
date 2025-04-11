@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * This indicates whether the Charging Station is able to perform the reset.
- *
- */
-export type ResetStatusEnumType = "Accepted" | "Rejected" | "Scheduled";
-
 export interface ResetResponseV201 {
   customData?: CustomDataType;
   status: ResetStatusEnumType;
@@ -38,4 +32,14 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * This indicates whether the Charging Station is able to perform the reset.
+ *
+ */
+export const enum ResetStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected",
+  Scheduled = "Scheduled"
 }

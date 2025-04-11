@@ -4,24 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Status is OK if a value could be returned. Otherwise this will indicate the reason why a value could not be returned.
- *
- */
-export type SetMonitoringStatusEnumType =
-  | "Accepted"
-  | "UnknownComponent"
-  | "UnknownVariable"
-  | "UnsupportedMonitorType"
-  | "Rejected"
-  | "Duplicate";
-/**
- * The type of this monitor, e.g. a threshold, delta or periodic monitor.
- *
- *
- */
-export type MonitorEnumType = "UpperThreshold" | "LowerThreshold" | "Delta" | "Periodic" | "PeriodicClockAligned";
-
 export interface SetVariableMonitoringResponseV201 {
   customData?: CustomDataType;
   /**
@@ -153,4 +135,29 @@ export interface VariableType {
    *
    */
   instance?: string;
+}
+
+/**
+ * Status is OK if a value could be returned. Otherwise this will indicate the reason why a value could not be returned.
+ *
+ */
+export const enum SetMonitoringStatusEnumType {
+  Accepted = "Accepted",
+  UnknownComponent = "UnknownComponent",
+  UnknownVariable = "UnknownVariable",
+  UnsupportedMonitorType = "UnsupportedMonitorType",
+  Rejected = "Rejected",
+  Duplicate = "Duplicate"
+}
+/**
+ * The type of this monitor, e.g. a threshold, delta or periodic monitor.
+ *
+ *
+ */
+export const enum MonitorEnumType {
+  UpperThreshold = "UpperThreshold",
+  LowerThreshold = "LowerThreshold",
+  Delta = "Delta",
+  Periodic = "Periodic",
+  PeriodicClockAligned = "PeriodicClockAligned"
 }

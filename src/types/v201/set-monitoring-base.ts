@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Specify which monitoring base will be set
- *
- */
-export type MonitoringBaseEnumType = "All" | "FactoryDefault" | "HardWiredOnly";
-
 export interface SetMonitoringBaseRequestV201 {
   customData?: CustomDataType;
   monitoringBase: MonitoringBaseEnumType;
@@ -20,4 +14,14 @@ export interface SetMonitoringBaseRequestV201 {
 export interface CustomDataType {
   vendorId: string;
   [k: string]: unknown;
+}
+
+/**
+ * Specify which monitoring base will be set
+ *
+ */
+export const enum MonitoringBaseEnumType {
+  All = "All",
+  FactoryDefault = "FactoryDefault",
+  HardWiredOnly = "HardWiredOnly"
 }

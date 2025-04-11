@@ -5,5 +5,10 @@
  */
 
 export interface ClearChargingProfileResponseV16 {
-  status: "Accepted" | "Unknown";
+  status: ClearChargingProfileStatus;
+}
+
+export const enum ClearChargingProfileStatus {
+  Accepted = "Accepted",
+  Unknown = "Unknown"
 }

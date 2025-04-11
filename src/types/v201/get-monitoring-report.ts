@@ -4,8 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type MonitoringCriterionEnumType = "ThresholdMonitoring" | "DeltaMonitoring" | "PeriodicMonitoring";
-
 export interface GetMonitoringReportRequestV201 {
   customData?: CustomDataType;
   /**
@@ -100,4 +98,10 @@ export interface VariableType {
    *
    */
   instance?: string;
+}
+
+export const enum MonitoringCriterionEnumType {
+  ThresholdMonitoring = "ThresholdMonitoring",
+  DeltaMonitoring = "DeltaMonitoring",
+  PeriodicMonitoring = "PeriodicMonitoring"
 }

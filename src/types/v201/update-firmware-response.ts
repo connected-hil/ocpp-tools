@@ -4,18 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * This field indicates whether the Charging Station was able to accept the request.
- *
- *
- */
-export type UpdateFirmwareStatusEnumType =
-  | "Accepted"
-  | "Rejected"
-  | "AcceptedCanceled"
-  | "InvalidCertificate"
-  | "RevokedCertificate";
-
 export interface UpdateFirmwareResponseV201 {
   customData?: CustomDataType;
   status: UpdateFirmwareStatusEnumType;
@@ -44,4 +32,17 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * This field indicates whether the Charging Station was able to accept the request.
+ *
+ *
+ */
+export const enum UpdateFirmwareStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected",
+  AcceptedCanceled = "AcceptedCanceled",
+  InvalidCertificate = "InvalidCertificate",
+  RevokedCertificate = "RevokedCertificate"
 }

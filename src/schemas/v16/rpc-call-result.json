@@ -9,18 +9,18 @@
       "enum": [3]
     }
   },
-  "type": "object",
-  "properties": {
-    "messageTypeId": {
+  "type": "array",
+  "minItems": 3,
+  "maxItems": 3,
+  "items": [
+    {
       "$ref": "#/definitions/MessageTypeId"
     },
-    "uniqueId": {
+    {
       "type": "string"
     },
-    "payload": {
+    {
       "type": "object"
     }
-  },
-  "additionalProperties": false,
-  "required": ["messageTypeId", "uniqueId"]
+  ]
 }

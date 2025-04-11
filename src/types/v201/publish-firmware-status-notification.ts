@@ -4,23 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * This contains the progress status of the publishfirmware
- * installation.
- *
- */
-export type PublishFirmwareStatusEnumType =
-  | "Idle"
-  | "DownloadScheduled"
-  | "Downloading"
-  | "Downloaded"
-  | "Published"
-  | "DownloadFailed"
-  | "DownloadPaused"
-  | "InvalidChecksum"
-  | "ChecksumVerified"
-  | "PublishFailed";
-
 export interface PublishFirmwareStatusNotificationRequestV201 {
   customData?: CustomDataType;
   status: PublishFirmwareStatusEnumType;
@@ -46,4 +29,22 @@ export interface PublishFirmwareStatusNotificationRequestV201 {
 export interface CustomDataType {
   vendorId: string;
   [k: string]: unknown;
+}
+
+/**
+ * This contains the progress status of the publishfirmware
+ * installation.
+ *
+ */
+export const enum PublishFirmwareStatusEnumType {
+  Idle = "Idle",
+  DownloadScheduled = "DownloadScheduled",
+  Downloading = "Downloading",
+  Downloaded = "Downloaded",
+  Published = "Published",
+  DownloadFailed = "DownloadFailed",
+  DownloadPaused = "DownloadPaused",
+  InvalidChecksum = "InvalidChecksum",
+  ChecksumVerified = "ChecksumVerified",
+  PublishFailed = "PublishFailed"
 }

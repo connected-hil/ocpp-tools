@@ -4,58 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * ID_ Token. Status. Authorization_ Status
- * urn:x-oca:ocpp:uid:1:569372
- * Current status of the ID Token.
- *
- */
-export type AuthorizationStatusEnumType =
-  | "Accepted"
-  | "Blocked"
-  | "ConcurrentTx"
-  | "Expired"
-  | "Invalid"
-  | "NoCredit"
-  | "NotAllowedTypeEVSE"
-  | "NotAtThisLocation"
-  | "NotAtThisTime"
-  | "Unknown";
-/**
- * Enumeration of possible idToken types.
- *
- */
-export type IdTokenEnumType =
-  | "Central"
-  | "eMAID"
-  | "ISO14443"
-  | "ISO15693"
-  | "KeyCode"
-  | "Local"
-  | "MacAddress"
-  | "NoAuthorization";
-/**
- * Message_ Content. Format. Message_ Format_ Code
- * urn:x-enexis:ecdm:uid:1:570848
- * Format of the message.
- *
- */
-export type MessageFormatEnumType = "ASCII" | "HTML" | "URI" | "UTF8";
-/**
- * Certificate status information.
- * - if all certificates are valid: return 'Accepted'.
- * - if one of the certificates was revoked, return 'CertificateRevoked'.
- *
- */
-export type AuthorizeCertificateStatusEnumType =
-  | "Accepted"
-  | "SignatureError"
-  | "CertificateExpired"
-  | "CertificateRevoked"
-  | "NoCertificateAvailable"
-  | "CertChainError"
-  | "ContractCancelled";
-
 export interface AuthorizeResponseV201 {
   customData?: CustomDataType;
   idTokenInfo: IdTokenInfoType;
@@ -175,4 +123,64 @@ export interface MessageContentType {
    *
    */
   content: string;
+}
+
+/**
+ * ID_ Token. Status. Authorization_ Status
+ * urn:x-oca:ocpp:uid:1:569372
+ * Current status of the ID Token.
+ *
+ */
+export const enum AuthorizationStatusEnumType {
+  Accepted = "Accepted",
+  Blocked = "Blocked",
+  ConcurrentTx = "ConcurrentTx",
+  Expired = "Expired",
+  Invalid = "Invalid",
+  NoCredit = "NoCredit",
+  NotAllowedTypeEVSE = "NotAllowedTypeEVSE",
+  NotAtThisLocation = "NotAtThisLocation",
+  NotAtThisTime = "NotAtThisTime",
+  Unknown = "Unknown"
+}
+/**
+ * Enumeration of possible idToken types.
+ *
+ */
+export const enum IdTokenEnumType {
+  Central = "Central",
+  eMAID = "eMAID",
+  ISO14443 = "ISO14443",
+  ISO15693 = "ISO15693",
+  KeyCode = "KeyCode",
+  Local = "Local",
+  MacAddress = "MacAddress",
+  NoAuthorization = "NoAuthorization"
+}
+/**
+ * Message_ Content. Format. Message_ Format_ Code
+ * urn:x-enexis:ecdm:uid:1:570848
+ * Format of the message.
+ *
+ */
+export const enum MessageFormatEnumType {
+  ASCII = "ASCII",
+  HTML = "HTML",
+  URI = "URI",
+  UTF8 = "UTF8"
+}
+/**
+ * Certificate status information.
+ * - if all certificates are valid: return 'Accepted'.
+ * - if one of the certificates was revoked, return 'CertificateRevoked'.
+ *
+ */
+export const enum AuthorizeCertificateStatusEnumType {
+  Accepted = "Accepted",
+  SignatureError = "SignatureError",
+  CertificateExpired = "CertificateExpired",
+  CertificateRevoked = "CertificateRevoked",
+  NoCertificateAvailable = "NoCertificateAvailable",
+  CertChainError = "CertChainError",
+  ContractCancelled = "ContractCancelled"
 }

@@ -4,17 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * If provided the Charging Station shall return Display Messages with the given priority only.
- *
- */
-export type MessagePriorityEnumType = "AlwaysFront" | "InFront" | "NormalCycle";
-/**
- * If provided the Charging Station shall return Display Messages with the given state only.
- *
- */
-export type MessageStateEnumType = "Charging" | "Faulted" | "Idle" | "Unavailable";
-
 export interface GetDisplayMessagesRequestV201 {
   customData?: CustomDataType;
   /**
@@ -39,4 +28,24 @@ export interface GetDisplayMessagesRequestV201 {
 export interface CustomDataType {
   vendorId: string;
   [k: string]: unknown;
+}
+
+/**
+ * If provided the Charging Station shall return Display Messages with the given priority only.
+ *
+ */
+export const enum MessagePriorityEnumType {
+  AlwaysFront = "AlwaysFront",
+  InFront = "InFront",
+  NormalCycle = "NormalCycle"
+}
+/**
+ * If provided the Charging Station shall return Display Messages with the given state only.
+ *
+ */
+export const enum MessageStateEnumType {
+  Charging = "Charging",
+  Faulted = "Faulted",
+  Idle = "Idle",
+  Unavailable = "Unavailable"
 }

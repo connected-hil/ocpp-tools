@@ -4,13 +4,14 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type UpdateFirmwareStatusEnumType =
-  | "Accepted"
-  | "Rejected"
-  | "AcceptedCanceled"
-  | "InvalidCertificate"
-  | "RevokedCertificate";
-
 export interface SignedUpdateFirmwareResponseV16 {
-  status: UpdateFirmwareStatusEnumType;
+  status: SignedUpdateFirmwareStatus;
+}
+
+export const enum SignedUpdateFirmwareStatus {
+  Accepted = "Accepted",
+  Rejected = "Rejected",
+  AcceptedCanceled = "AcceptedCanceled",
+  InvalidCertificate = "InvalidCertificate",
+  RevokedCertificate = "RevokedCertificate"
 }

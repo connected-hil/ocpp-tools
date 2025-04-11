@@ -5,5 +5,12 @@
  */
 
 export interface SendLocalListResponseV16 {
-  status: "Accepted" | "Failed" | "NotSupported" | "VersionMismatch";
+  status: SendLocalListStatus;
+}
+
+export const enum SendLocalListStatus {
+  Accepted = "Accepted",
+  Failed = "Failed",
+  NotSupported = "NotSupported",
+  VersionMismatch = "VersionMismatch"
 }

@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Indicates whether the Charging Station will send the requested notification or not.
- *
- */
-export type TriggerMessageStatusEnumType = "Accepted" | "Rejected" | "NotImplemented";
-
 export interface TriggerMessageResponseV201 {
   customData?: CustomDataType;
   status: TriggerMessageStatusEnumType;
@@ -38,4 +32,14 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * Indicates whether the Charging Station will send the requested notification or not.
+ *
+ */
+export const enum TriggerMessageStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected",
+  NotImplemented = "NotImplemented"
 }

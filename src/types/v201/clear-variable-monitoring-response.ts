@@ -4,13 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Result of the clear request for this monitor, identified by its Id.
- *
- *
- */
-export type ClearMonitoringStatusEnumType = "Accepted" | "Rejected" | "NotFound";
-
 export interface ClearVariableMonitoringResponseV201 {
   customData?: CustomDataType;
   /**
@@ -52,4 +45,15 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * Result of the clear request for this monitor, identified by its Id.
+ *
+ *
+ */
+export const enum ClearMonitoringStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected",
+  NotFound = "NotFound"
 }

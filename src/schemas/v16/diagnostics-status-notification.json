@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "urn:OCPP:1.6:2019:12:DiagnosticsStatusNotification",
-  "title": "DiagnosticsStatusNotification",
+  "title": "DiagnosticsStatusNotificationRequest",
   "definitions": {
     "DiagnosticsStatus": {
       "type": "string",

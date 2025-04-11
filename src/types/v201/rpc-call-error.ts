@@ -9,22 +9,25 @@
  * @maxItems 5
  */
 export type RpcCallErrorV201 = [
-  4,
+  MessageTypeId,
   string,
-  (
-    | "NotImplemented"
-    | "NotSupported"
-    | "InternalError"
-    | "ProtocolError"
-    | "SecurityError"
-    | "FormationViolation"
-    | "PropertyConstraintViolation"
-    | "OccurenceConstraintViolation"
-    | "TypeConstraintViolation"
-    | "GenericError"
-  ),
+  ErrorCode,
   string,
   {
     [k: string]: unknown;
   }
 ];
+export type MessageTypeId = 4;
+
+export const enum ErrorCode {
+  NotImplemented = "NotImplemented",
+  NotSupported = "NotSupported",
+  InternalError = "InternalError",
+  ProtocolError = "ProtocolError",
+  SecurityError = "SecurityError",
+  FormationViolation = "FormationViolation",
+  PropertyConstraintViolation = "PropertyConstraintViolation",
+  OccurenceConstraintViolation = "OccurenceConstraintViolation",
+  TypeConstraintViolation = "TypeConstraintViolation",
+  GenericError = "GenericError"
+}

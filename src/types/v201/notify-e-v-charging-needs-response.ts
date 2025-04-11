@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Returns whether the CSMS has been able to process the message successfully. It does not imply that the evChargingNeeds can be met with the current charging profile.
- *
- */
-export type NotifyEVChargingNeedsStatusEnumType = "Accepted" | "Rejected" | "Processing";
-
 export interface NotifyEVChargingNeedsResponseV201 {
   customData?: CustomDataType;
   status: NotifyEVChargingNeedsStatusEnumType;
@@ -38,4 +32,14 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * Returns whether the CSMS has been able to process the message successfully. It does not imply that the evChargingNeeds can be met with the current charging profile.
+ *
+ */
+export const enum NotifyEVChargingNeedsStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected",
+  Processing = "Processing"
 }

@@ -59,7 +59,10 @@ const generate = (): void => {
           typeFile,
         });
 
-        compile(jsonSchema as JSONSchema, schema, { bannerComment })
+        compile(jsonSchema as JSONSchema, schema, {
+          bannerComment,
+          inferStringEnumKeysFromValues: true,
+        })
           .then((ts) => {
             fs.writeFileSync(
               [basePath, "types", version, `${schema}.ts`].join("/"),

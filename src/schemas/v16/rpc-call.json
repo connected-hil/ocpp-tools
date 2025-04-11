@@ -15,26 +15,36 @@
         "Authorize",
         "BootNotification",
         "CancelReservation",
+        "CertificateSigned",
         "ChangeAvailability",
         "ChangeConfiguration",
         "ClearCache",
         "ClearChargingProfile",
         "DataTransfer",
+        "DeleteCertificate",
         "DiagnosticsStatusNotification",
+        "ExtendedTriggerMessage",
         "FirmwareStatusNotification",
         "GetCompositeSchedule",
         "GetConfiguration",
         "GetDiagnostics",
+        "GetInstalledCertificateIds",
         "GetLocalListVersion",
+        "GetLog",
         "Heartbeat",
+        "InstallCertificate",
         "LogStatusNotification",
         "MeterValues",
         "RemoteStartTransaction",
         "RemoteStopTransaction",
         "ReserveNow",
         "Reset",
+        "SecurityEventNotification",
         "SendLocalList",
         "SetChargingProfile",
+        "SignCertificate",
+        "SignedFirmwareStatusNotification",
+        "SignedUpdateFirmware",
         "StartTransaction",
         "StatusNotification",
         "StopTransaction",
@@ -44,21 +54,22 @@
       ]
     }
   },
-  "type": "object",
-  "properties": {
-    "messageTypeId": {
+  "type": "array",
+  "minItems": 4,
+  "maxItems": 4,
+  "items": [
+    {
       "$ref": "#/definitions/MessageTypeId"
     },
-    "uniqueId": {
-      "type": "string"
+    {
+      "type": "string",
+      "maxLength": 36
     },
-    "action": {
+    {
       "$ref": "#/definitions/Action"
     },
-    "payload": {
+    {
       "type": "object"
     }
-  },
-  "additionalProperties": false,
-  "required": ["messageTypeId", "uniqueId", "action"]
+  ]
 }

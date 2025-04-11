@@ -1,20 +1,31 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "urn:OCPP:1.6:2019:12:LogStatusNotification",
-  "title": "LogStatusNotification",
+  "$id": "urn:OCPP:Cp:1.6:2020:3:LogStatusNotification.req",
+  "title": "LogStatusNotificationRequest",
   "definitions": {
-    "LogStatus": {
+    "UploadLogStatusEnumType": {
       "type": "string",
       "additionalProperties": false,
-      "enum": ["Accepted", "Rejected", "AcceptedCanceled"]
+      "enum": [
+        "BadMessage",
+        "Idle",
+        "NotSupportedOperation",
+        "PermissionDenied",
+        "Uploaded",
+        "UploadFailure",
+        "Uploading"
+      ]
     }
   },
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "status": {
-      "$ref": "#/definitions/LogStatus"
+      "$ref": "#/definitions/UploadLogStatusEnumType"
+    },
+    "requestId": {
+      "type": "integer"
     }
   },
-  "additionalProperties": false,
   "required": ["status"]
 }

@@ -5,5 +5,11 @@
  */
 
 export interface UnlockConnectorResponseV16 {
-  status: "Unlocked" | "UnlockFailed" | "NotSupported";
+  status: UnlockConnectorStatus;
+}
+
+export const enum UnlockConnectorStatus {
+  Unlocked = "Unlocked",
+  UnlockFailed = "UnlockFailed",
+  NotSupported = "NotSupported"
 }

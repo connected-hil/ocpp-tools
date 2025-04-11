@@ -4,28 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Message_ Info. Priority. Message_ Priority_ Code
- * urn:x-enexis:ecdm:uid:1:569253
- * With what priority should this message be shown
- *
- */
-export type MessagePriorityEnumType = "AlwaysFront" | "InFront" | "NormalCycle";
-/**
- * Message_ Info. State. Message_ State_ Code
- * urn:x-enexis:ecdm:uid:1:569254
- * During what state should this message be shown. When omitted this message should be shown in any state of the Charging Station.
- *
- */
-export type MessageStateEnumType = "Charging" | "Faulted" | "Idle" | "Unavailable";
-/**
- * Message_ Content. Format. Message_ Format_ Code
- * urn:x-enexis:ecdm:uid:1:570848
- * Format of the message.
- *
- */
-export type MessageFormatEnumType = "ASCII" | "HTML" | "URI" | "UTF8";
-
 export interface NotifyDisplayMessagesRequestV201 {
   customData?: CustomDataType;
   /**
@@ -155,4 +133,40 @@ export interface MessageContentType {
    *
    */
   content: string;
+}
+
+/**
+ * Message_ Info. Priority. Message_ Priority_ Code
+ * urn:x-enexis:ecdm:uid:1:569253
+ * With what priority should this message be shown
+ *
+ */
+export const enum MessagePriorityEnumType {
+  AlwaysFront = "AlwaysFront",
+  InFront = "InFront",
+  NormalCycle = "NormalCycle"
+}
+/**
+ * Message_ Info. State. Message_ State_ Code
+ * urn:x-enexis:ecdm:uid:1:569254
+ * During what state should this message be shown. When omitted this message should be shown in any state of the Charging Station.
+ *
+ */
+export const enum MessageStateEnumType {
+  Charging = "Charging",
+  Faulted = "Faulted",
+  Idle = "Idle",
+  Unavailable = "Unavailable"
+}
+/**
+ * Message_ Content. Format. Message_ Format_ Code
+ * urn:x-enexis:ecdm:uid:1:570848
+ * Format of the message.
+ *
+ */
+export const enum MessageFormatEnumType {
+  ASCII = "ASCII",
+  HTML = "HTML",
+  URI = "URI",
+  UTF8 = "UTF8"
 }

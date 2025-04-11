@@ -4,19 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Charging_ Profile. Charging_ Profile_ Purpose. Charging_ Profile_ Purpose_ Code
- * urn:x-oca:ocpp:uid:1:569231
- * Defines the purpose of the schedule transferred by this profile
- *
- */
-export type ChargingProfilePurposeEnumType =
-  | "ChargingStationExternalConstraints"
-  | "ChargingStationMaxProfile"
-  | "TxDefaultProfile"
-  | "TxProfile";
-export type ChargingLimitSourceEnumType = "EMS" | "Other" | "SO" | "CSO";
-
 export interface GetChargingProfilesRequestV201 {
   customData?: CustomDataType;
   /**
@@ -79,4 +66,23 @@ export interface ChargingProfileCriterionType {
         ChargingLimitSourceEnumType,
         ChargingLimitSourceEnumType
       ];
+}
+
+/**
+ * Charging_ Profile. Charging_ Profile_ Purpose. Charging_ Profile_ Purpose_ Code
+ * urn:x-oca:ocpp:uid:1:569231
+ * Defines the purpose of the schedule transferred by this profile
+ *
+ */
+export const enum ChargingProfilePurposeEnumType {
+  ChargingStationExternalConstraints = "ChargingStationExternalConstraints",
+  ChargingStationMaxProfile = "ChargingStationMaxProfile",
+  TxDefaultProfile = "TxDefaultProfile",
+  TxProfile = "TxProfile"
+}
+export const enum ChargingLimitSourceEnumType {
+  EMS = "EMS",
+  Other = "Other",
+  SO = "SO",
+  CSO = "CSO"
 }

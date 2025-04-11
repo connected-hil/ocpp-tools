@@ -9,50 +9,53 @@
  * @maxItems 4
  */
 export type RpcCallV16 = [
-  2,
+  MessageTypeId,
   string,
-  (
-    | "Authorize"
-    | "BootNotification"
-    | "CancelReservation"
-    | "CertificateSigned"
-    | "ChangeAvailability"
-    | "ChangeConfiguration"
-    | "ClearCache"
-    | "ClearChargingProfile"
-    | "DataTransfer"
-    | "DeleteCertificate"
-    | "DiagnosticsStatusNotification"
-    | "ExtendedTriggerMessage"
-    | "FirmwareStatusNotification"
-    | "GetCompositeSchedule"
-    | "GetConfiguration"
-    | "GetDiagnostics"
-    | "GetInstalledCertificateIds"
-    | "GetLocalListVersion"
-    | "GetLog"
-    | "Heartbeat"
-    | "InstallCertificate"
-    | "LogStatusNotification"
-    | "MeterValues"
-    | "RemoteStartTransaction"
-    | "RemoteStopTransaction"
-    | "ReserveNow"
-    | "Reset"
-    | "SecurityEventNotification"
-    | "SendLocalList"
-    | "SetChargingProfile"
-    | "SignCertificate"
-    | "SignedFirmwareStatusNotification"
-    | "SignedUpdateFirmware"
-    | "StartTransaction"
-    | "StatusNotification"
-    | "StopTransaction"
-    | "TriggerMessage"
-    | "UnlockConnector"
-    | "UpdateFirmware"
-  ),
+  Action,
   {
     [k: string]: unknown;
   }
 ];
+export type MessageTypeId = 2;
+
+export const enum Action {
+  Authorize = "Authorize",
+  BootNotification = "BootNotification",
+  CancelReservation = "CancelReservation",
+  CertificateSigned = "CertificateSigned",
+  ChangeAvailability = "ChangeAvailability",
+  ChangeConfiguration = "ChangeConfiguration",
+  ClearCache = "ClearCache",
+  ClearChargingProfile = "ClearChargingProfile",
+  DataTransfer = "DataTransfer",
+  DeleteCertificate = "DeleteCertificate",
+  DiagnosticsStatusNotification = "DiagnosticsStatusNotification",
+  ExtendedTriggerMessage = "ExtendedTriggerMessage",
+  FirmwareStatusNotification = "FirmwareStatusNotification",
+  GetCompositeSchedule = "GetCompositeSchedule",
+  GetConfiguration = "GetConfiguration",
+  GetDiagnostics = "GetDiagnostics",
+  GetInstalledCertificateIds = "GetInstalledCertificateIds",
+  GetLocalListVersion = "GetLocalListVersion",
+  GetLog = "GetLog",
+  Heartbeat = "Heartbeat",
+  InstallCertificate = "InstallCertificate",
+  LogStatusNotification = "LogStatusNotification",
+  MeterValues = "MeterValues",
+  RemoteStartTransaction = "RemoteStartTransaction",
+  RemoteStopTransaction = "RemoteStopTransaction",
+  ReserveNow = "ReserveNow",
+  Reset = "Reset",
+  SecurityEventNotification = "SecurityEventNotification",
+  SendLocalList = "SendLocalList",
+  SetChargingProfile = "SetChargingProfile",
+  SignCertificate = "SignCertificate",
+  SignedFirmwareStatusNotification = "SignedFirmwareStatusNotification",
+  SignedUpdateFirmware = "SignedUpdateFirmware",
+  StartTransaction = "StartTransaction",
+  StatusNotification = "StatusNotification",
+  StopTransaction = "StopTransaction",
+  TriggerMessage = "TriggerMessage",
+  UnlockConnector = "UnlockConnector",
+  UpdateFirmware = "UpdateFirmware"
+}

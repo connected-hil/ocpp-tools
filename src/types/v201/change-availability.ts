@@ -4,13 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * This contains the type of availability change that the Charging Station should perform.
- *
- *
- */
-export type OperationalStatusEnumType = "Inoperative" | "Operative";
-
 export interface ChangeAvailabilityRequestV201 {
   customData?: CustomDataType;
   evse?: EVSEType;
@@ -43,4 +36,14 @@ export interface EVSEType {
    *
    */
   connectorId?: number;
+}
+
+/**
+ * This contains the type of availability change that the Charging Station should perform.
+ *
+ *
+ */
+export const enum OperationalStatusEnumType {
+  Inoperative = "Inoperative",
+  Operative = "Operative"
 }

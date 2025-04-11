@@ -4,31 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Attribute: Actual, MinSet, MaxSet, etc.
- * Defaults to Actual if absent.
- *
- */
-export type AttributeEnumType = "Actual" | "Target" | "MinSet" | "MaxSet";
-/**
- * Defines the mutability of this attribute. Default is ReadWrite when omitted.
- *
- */
-export type MutabilityEnumType = "ReadOnly" | "WriteOnly" | "ReadWrite";
-/**
- * Data type of this variable.
- *
- */
-export type DataEnumType =
-  | "string"
-  | "decimal"
-  | "integer"
-  | "dateTime"
-  | "boolean"
-  | "OptionList"
-  | "SequenceList"
-  | "MemberList";
-
 export interface NotifyReportRequestV201 {
   customData?: CustomDataType;
   /**
@@ -208,4 +183,39 @@ export interface VariableCharacteristicsType {
    *
    */
   supportsMonitoring: boolean;
+}
+
+/**
+ * Attribute: Actual, MinSet, MaxSet, etc.
+ * Defaults to Actual if absent.
+ *
+ */
+export const enum AttributeEnumType {
+  Actual = "Actual",
+  Target = "Target",
+  MinSet = "MinSet",
+  MaxSet = "MaxSet"
+}
+/**
+ * Defines the mutability of this attribute. Default is ReadWrite when omitted.
+ *
+ */
+export const enum MutabilityEnumType {
+  ReadOnly = "ReadOnly",
+  WriteOnly = "WriteOnly",
+  ReadWrite = "ReadWrite"
+}
+/**
+ * Data type of this variable.
+ *
+ */
+export const enum DataEnumType {
+  string = "string",
+  decimal = "decimal",
+  integer = "integer",
+  dateTime = "dateTime",
+  boolean = "boolean",
+  OptionList = "OptionList",
+  SequenceList = "SequenceList",
+  MemberList = "MemberList"
 }

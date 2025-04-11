@@ -4,18 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * This indicates whether the Charging Station is able to display the message.
- *
- */
-export type DisplayMessageStatusEnumType =
-  | "Accepted"
-  | "NotSupportedMessageFormat"
-  | "Rejected"
-  | "NotSupportedPriority"
-  | "NotSupportedState"
-  | "UnknownTransaction";
-
 export interface SetDisplayMessageResponseV201 {
   customData?: CustomDataType;
   status: DisplayMessageStatusEnumType;
@@ -44,4 +32,17 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * This indicates whether the Charging Station is able to display the message.
+ *
+ */
+export const enum DisplayMessageStatusEnumType {
+  Accepted = "Accepted",
+  NotSupportedMessageFormat = "NotSupportedMessageFormat",
+  Rejected = "Rejected",
+  NotSupportedPriority = "NotSupportedPriority",
+  NotSupportedState = "NotSupportedState",
+  UnknownTransaction = "UnknownTransaction"
 }

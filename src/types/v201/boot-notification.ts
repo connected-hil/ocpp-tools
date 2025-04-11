@@ -4,21 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * This contains the reason for sending this message to the CSMS.
- *
- */
-export type BootReasonEnumType =
-  | "ApplicationReset"
-  | "FirmwareUpdate"
-  | "LocalReset"
-  | "PowerUp"
-  | "RemoteReset"
-  | "ScheduledReset"
-  | "Triggered"
-  | "Unknown"
-  | "Watchdog";
-
 export interface BootNotificationRequestV201 {
   customData?: CustomDataType;
   chargingStation: ChargingStationType;
@@ -88,4 +73,20 @@ export interface ModemType {
    *
    */
   imsi?: string;
+}
+
+/**
+ * This contains the reason for sending this message to the CSMS.
+ *
+ */
+export const enum BootReasonEnumType {
+  ApplicationReset = "ApplicationReset",
+  FirmwareUpdate = "FirmwareUpdate",
+  LocalReset = "LocalReset",
+  PowerUp = "PowerUp",
+  RemoteReset = "RemoteReset",
+  ScheduledReset = "ScheduledReset",
+  Triggered = "Triggered",
+  Unknown = "Unknown",
+  Watchdog = "Watchdog"
 }

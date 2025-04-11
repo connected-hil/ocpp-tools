@@ -4,59 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Enumeration of possible idToken types.
- *
- */
-export type IdTokenEnumType =
-  | "Central"
-  | "eMAID"
-  | "ISO14443"
-  | "ISO15693"
-  | "KeyCode"
-  | "Local"
-  | "MacAddress"
-  | "NoAuthorization";
-/**
- * Charging_ Profile. Charging_ Profile_ Purpose. Charging_ Profile_ Purpose_ Code
- * urn:x-oca:ocpp:uid:1:569231
- * Defines the purpose of the schedule transferred by this profile
- *
- */
-export type ChargingProfilePurposeEnumType =
-  | "ChargingStationExternalConstraints"
-  | "ChargingStationMaxProfile"
-  | "TxDefaultProfile"
-  | "TxProfile";
-/**
- * Charging_ Profile. Charging_ Profile_ Kind. Charging_ Profile_ Kind_ Code
- * urn:x-oca:ocpp:uid:1:569232
- * Indicates the kind of schedule.
- *
- */
-export type ChargingProfileKindEnumType = "Absolute" | "Recurring" | "Relative";
-/**
- * Charging_ Profile. Recurrency_ Kind. Recurrency_ Kind_ Code
- * urn:x-oca:ocpp:uid:1:569233
- * Indicates the start point of a recurrence.
- *
- */
-export type RecurrencyKindEnumType = "Daily" | "Weekly";
-/**
- * Charging_ Schedule. Charging_ Rate_ Unit. Charging_ Rate_ Unit_ Code
- * urn:x-oca:ocpp:uid:1:569238
- * The unit of measure Limit is expressed in.
- *
- */
-export type ChargingRateUnitEnumType = "W" | "A";
-/**
- * Cost. Cost_ Kind. Cost_ Kind_ Code
- * urn:x-oca:ocpp:uid:1:569243
- * The kind of cost referred to in the message element amount
- *
- */
-export type CostKindEnumType = "CarbonDioxideEmission" | "RelativePricePercentage" | "RenewableGenerationPercentage";
-
 export interface RequestStartTransactionRequestV201 {
   customData?: CustomDataType;
   /**
@@ -368,4 +315,73 @@ export interface CostType {
    *
    */
   amountMultiplier?: number;
+}
+
+/**
+ * Enumeration of possible idToken types.
+ *
+ */
+export const enum IdTokenEnumType {
+  Central = "Central",
+  eMAID = "eMAID",
+  ISO14443 = "ISO14443",
+  ISO15693 = "ISO15693",
+  KeyCode = "KeyCode",
+  Local = "Local",
+  MacAddress = "MacAddress",
+  NoAuthorization = "NoAuthorization"
+}
+/**
+ * Charging_ Profile. Charging_ Profile_ Purpose. Charging_ Profile_ Purpose_ Code
+ * urn:x-oca:ocpp:uid:1:569231
+ * Defines the purpose of the schedule transferred by this profile
+ *
+ */
+export const enum ChargingProfilePurposeEnumType {
+  ChargingStationExternalConstraints = "ChargingStationExternalConstraints",
+  ChargingStationMaxProfile = "ChargingStationMaxProfile",
+  TxDefaultProfile = "TxDefaultProfile",
+  TxProfile = "TxProfile"
+}
+/**
+ * Charging_ Profile. Charging_ Profile_ Kind. Charging_ Profile_ Kind_ Code
+ * urn:x-oca:ocpp:uid:1:569232
+ * Indicates the kind of schedule.
+ *
+ */
+export const enum ChargingProfileKindEnumType {
+  Absolute = "Absolute",
+  Recurring = "Recurring",
+  Relative = "Relative"
+}
+/**
+ * Charging_ Profile. Recurrency_ Kind. Recurrency_ Kind_ Code
+ * urn:x-oca:ocpp:uid:1:569233
+ * Indicates the start point of a recurrence.
+ *
+ */
+export const enum RecurrencyKindEnumType {
+  Daily = "Daily",
+  Weekly = "Weekly"
+}
+/**
+ * Charging_ Schedule. Charging_ Rate_ Unit. Charging_ Rate_ Unit_ Code
+ * urn:x-oca:ocpp:uid:1:569238
+ * The unit of measure Limit is expressed in.
+ *
+ */
+export const enum ChargingRateUnitEnumType {
+  W = "W",
+  A = "A"
+}
+/**
+ * Cost. Cost_ Kind. Cost_ Kind_ Code
+ * urn:x-oca:ocpp:uid:1:569243
+ * The kind of cost referred to in the message element amount
+ *
+ */
+export const enum CostKindEnumType {
+  CarbonDioxideEmission = "CarbonDioxideEmission",
+  RelativePricePercentage = "RelativePricePercentage",
+  RenewableGenerationPercentage = "RenewableGenerationPercentage"
 }

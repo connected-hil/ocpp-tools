@@ -4,13 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * This contains whether the Charging Station has been registered
- * within the CSMS.
- *
- */
-export type RegistrationStatusEnumType = "Accepted" | "Pending" | "Rejected";
-
 export interface BootNotificationResponseV201 {
   customData?: CustomDataType;
   /**
@@ -49,4 +42,15 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * This contains whether the Charging Station has been registered
+ * within the CSMS.
+ *
+ */
+export const enum RegistrationStatusEnumType {
+  Accepted = "Accepted",
+  Pending = "Pending",
+  Rejected = "Rejected"
 }

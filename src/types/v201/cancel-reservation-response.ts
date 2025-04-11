@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * This indicates the success or failure of the canceling of a reservation by CSMS.
- *
- */
-export type CancelReservationStatusEnumType = "Accepted" | "Rejected";
-
 export interface CancelReservationResponseV201 {
   customData?: CustomDataType;
   status: CancelReservationStatusEnumType;
@@ -38,4 +32,13 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * This indicates the success or failure of the canceling of a reservation by CSMS.
+ *
+ */
+export const enum CancelReservationStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected"
 }

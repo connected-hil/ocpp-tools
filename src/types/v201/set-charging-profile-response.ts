@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Returns whether the Charging Station has been able to process the message successfully. This does not guarantee the schedule will be followed to the letter. There might be other constraints the Charging Station may need to take into account.
- *
- */
-export type ChargingProfileStatusEnumType = "Accepted" | "Rejected";
-
 export interface SetChargingProfileResponseV201 {
   customData?: CustomDataType;
   status: ChargingProfileStatusEnumType;
@@ -38,4 +32,13 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * Returns whether the Charging Station has been able to process the message successfully. This does not guarantee the schedule will be followed to the letter. There might be other constraints the Charging Station may need to take into account.
+ *
+ */
+export const enum ChargingProfileStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected"
 }

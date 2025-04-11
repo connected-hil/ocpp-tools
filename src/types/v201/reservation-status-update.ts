@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * The updated reservation status.
- *
- */
-export type ReservationUpdateStatusEnumType = "Expired" | "Removed";
-
 export interface ReservationStatusUpdateRequestV201 {
   customData?: CustomDataType;
   /**
@@ -25,4 +19,13 @@ export interface ReservationStatusUpdateRequestV201 {
 export interface CustomDataType {
   vendorId: string;
   [k: string]: unknown;
+}
+
+/**
+ * The updated reservation status.
+ *
+ */
+export const enum ReservationUpdateStatusEnumType {
+  Expired = "Expired",
+  Removed = "Removed"
 }

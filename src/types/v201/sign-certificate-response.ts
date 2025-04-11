@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Specifies whether the CSMS can process the request.
- *
- */
-export type GenericStatusEnumType = "Accepted" | "Rejected";
-
 export interface SignCertificateResponseV201 {
   customData?: CustomDataType;
   status: GenericStatusEnumType;
@@ -38,4 +32,13 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * Specifies whether the CSMS can process the request.
+ *
+ */
+export const enum GenericStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected"
 }

@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Defines whether certificate needs to be installed or updated.
- *
- */
-export type CertificateActionEnumType = "Install" | "Update";
-
 export interface Get15118EVCertificateRequestV201 {
   customData?: CustomDataType;
   /**
@@ -31,4 +25,13 @@ export interface Get15118EVCertificateRequestV201 {
 export interface CustomDataType {
   vendorId: string;
   [k: string]: unknown;
+}
+
+/**
+ * Defines whether certificate needs to be installed or updated.
+ *
+ */
+export const enum CertificateActionEnumType {
+  Install = "Install",
+  Update = "Update"
 }

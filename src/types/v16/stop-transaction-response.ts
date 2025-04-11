@@ -8,6 +8,14 @@ export interface StopTransactionResponseV16 {
   idTagInfo?: {
     expiryDate?: string;
     parentIdTag?: string;
-    status: "Accepted" | "Blocked" | "Expired" | "Invalid" | "ConcurrentTx";
+    status: AuthorizationStatus;
   };
+}
+
+export const enum AuthorizationStatus {
+  Accepted = "Accepted",
+  Blocked = "Blocked",
+  Expired = "Expired",
+  Invalid = "Invalid",
+  ConcurrentTx = "ConcurrentTx"
 }

@@ -11,8 +11,20 @@ export interface SendLocalListRequestV16 {
     idTagInfo?: {
       expiryDate?: string;
       parentIdTag?: string;
-      status: "Accepted" | "Blocked" | "Expired" | "Invalid" | "ConcurrentTx";
+      status: AuthorizationStatus;
     };
   }[];
-  updateType: "Differential" | "Full";
+  updateType: UpdateType;
+}
+
+export const enum AuthorizationStatus {
+  Accepted = "Accepted",
+  Blocked = "Blocked",
+  Expired = "Expired",
+  Invalid = "Invalid",
+  ConcurrentTx = "ConcurrentTx"
+}
+export const enum UpdateType {
+  Differential = "Differential",
+  Full = "Full"
 }

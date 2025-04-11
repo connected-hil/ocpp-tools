@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Charging Station indicates if installation was successful.
- *
- */
-export type InstallCertificateStatusEnumType = "Accepted" | "Rejected" | "Failed";
-
 export interface InstallCertificateResponseV201 {
   customData?: CustomDataType;
   status: InstallCertificateStatusEnumType;
@@ -38,4 +32,14 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * Charging Station indicates if installation was successful.
+ *
+ */
+export const enum InstallCertificateStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected",
+  Failed = "Failed"
 }

@@ -11,59 +11,87 @@ export interface MeterValuesRequestV16 {
     timestamp: string;
     sampledValue: {
       value: string;
-      context?:
-        | "Interruption.Begin"
-        | "Interruption.End"
-        | "Sample.Clock"
-        | "Sample.Periodic"
-        | "Transaction.Begin"
-        | "Transaction.End"
-        | "Trigger"
-        | "Other";
-      format?: "Raw" | "SignedData";
-      measurand?:
-        | "Energy.Active.Export.Register"
-        | "Energy.Active.Import.Register"
-        | "Energy.Reactive.Export.Register"
-        | "Energy.Reactive.Import.Register"
-        | "Energy.Active.Export.Interval"
-        | "Energy.Active.Import.Interval"
-        | "Energy.Reactive.Export.Interval"
-        | "Energy.Reactive.Import.Interval"
-        | "Power.Active.Export"
-        | "Power.Active.Import"
-        | "Power.Offered"
-        | "Power.Reactive.Export"
-        | "Power.Reactive.Import"
-        | "Power.Factor"
-        | "Current.Import"
-        | "Current.Export"
-        | "Current.Offered"
-        | "Voltage"
-        | "Frequency"
-        | "Temperature"
-        | "SoC"
-        | "RPM";
-      phase?: "L1" | "L2" | "L3" | "N" | "L1-N" | "L2-N" | "L3-N" | "L1-L2" | "L2-L3" | "L3-L1";
-      location?: "Cable" | "EV" | "Inlet" | "Outlet" | "Body";
-      unit?:
-        | "Wh"
-        | "kWh"
-        | "varh"
-        | "kvarh"
-        | "W"
-        | "kW"
-        | "VA"
-        | "kVA"
-        | "var"
-        | "kvar"
-        | "A"
-        | "V"
-        | "K"
-        | "Celcius"
-        | "Celsius"
-        | "Fahrenheit"
-        | "Percent";
+      context?: ReadingContext;
+      format?: ValueFormat;
+      measurand?: Measurand;
+      phase?: Phase;
+      location?: Location;
+      unit?: Unit;
     }[];
   }[];
+}
+
+export const enum ReadingContext {
+  "Interruption.Begin" = "Interruption.Begin",
+  "Interruption.End" = "Interruption.End",
+  "Sample.Clock" = "Sample.Clock",
+  "Sample.Periodic" = "Sample.Periodic",
+  "Transaction.Begin" = "Transaction.Begin",
+  "Transaction.End" = "Transaction.End",
+  Other = "Other"
+}
+export const enum ValueFormat {
+  Raw = "Raw",
+  SignedData = "SignedData"
+}
+export const enum Measurand {
+  "Energy.Active.Export.Register" = "Energy.Active.Export.Register",
+  "Energy.Active.Import.Register" = "Energy.Active.Import.Register",
+  "Energy.Reactive.Export.Register" = "Energy.Reactive.Export.Register",
+  "Energy.Reactive.Import.Register" = "Energy.Reactive.Import.Register",
+  "Energy.Active.Export.Interval" = "Energy.Active.Export.Interval",
+  "Energy.Active.Import.Interval" = "Energy.Active.Import.Interval",
+  "Energy.Reactive.Export.Interval" = "Energy.Reactive.Export.Interval",
+  "Energy.Reactive.Import.Interval" = "Energy.Reactive.Import.Interval",
+  "Power.Active.Export" = "Power.Active.Export",
+  "Power.Active.Import" = "Power.Active.Import",
+  "Power.Offered" = "Power.Offered",
+  "Power.Reactive.Export" = "Power.Reactive.Export",
+  "Power.Reactive.Import" = "Power.Reactive.Import",
+  "Power.Factor" = "Power.Factor",
+  "Current.Import" = "Current.Import",
+  "Current.Export" = "Current.Export",
+  "Current.Offered" = "Current.Offered",
+  Voltage = "Voltage",
+  Temperature = "Temperature",
+  SoC = "SoC",
+  RPM = "RPM"
+}
+export const enum Phase {
+  L1 = "L1",
+  L2 = "L2",
+  L3 = "L3",
+  N = "N",
+  "L1-N" = "L1-N",
+  "L2-N" = "L2-N",
+  "L3-N" = "L3-N",
+  "L1-L2" = "L1-L2",
+  "L2-L3" = "L2-L3",
+  "L3-L1" = "L3-L1"
+}
+export const enum Location {
+  Cable = "Cable",
+  EV = "EV",
+  Inlet = "Inlet",
+  Outlet = "Outlet",
+  Body = "Body"
+}
+export const enum Unit {
+  Wh = "Wh",
+  kWh = "kWh",
+  varh = "varh",
+  kvarh = "kvarh",
+  W = "W",
+  kW = "kW",
+  VA = "VA",
+  kVA = "kVA",
+  var = "var",
+  kvar = "kvar",
+  A = "A",
+  V = "V",
+  K = "K",
+  Celcius = "Celcius",
+  Celsius = "Celsius",
+  Fahrenheit = "Fahrenheit",
+  Percent = "Percent"
 }

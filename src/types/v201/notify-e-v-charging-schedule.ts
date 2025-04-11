@@ -4,21 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Charging_ Schedule. Charging_ Rate_ Unit. Charging_ Rate_ Unit_ Code
- * urn:x-oca:ocpp:uid:1:569238
- * The unit of measure Limit is expressed in.
- *
- */
-export type ChargingRateUnitEnumType = "W" | "A";
-/**
- * Cost. Cost_ Kind. Cost_ Kind_ Code
- * urn:x-oca:ocpp:uid:1:569243
- * The kind of cost referred to in the message element amount
- *
- */
-export type CostKindEnumType = "CarbonDioxideEmission" | "RelativePricePercentage" | "RenewableGenerationPercentage";
-
 export interface NotifyEVChargingScheduleRequestV201 {
   customData?: CustomDataType;
   /**
@@ -241,4 +226,26 @@ export interface CostType {
    *
    */
   amountMultiplier?: number;
+}
+
+/**
+ * Charging_ Schedule. Charging_ Rate_ Unit. Charging_ Rate_ Unit_ Code
+ * urn:x-oca:ocpp:uid:1:569238
+ * The unit of measure Limit is expressed in.
+ *
+ */
+export const enum ChargingRateUnitEnumType {
+  W = "W",
+  A = "A"
+}
+/**
+ * Cost. Cost_ Kind. Cost_ Kind_ Code
+ * urn:x-oca:ocpp:uid:1:569243
+ * The kind of cost referred to in the message element amount
+ *
+ */
+export const enum CostKindEnumType {
+  CarbonDioxideEmission = "CarbonDioxideEmission",
+  RelativePricePercentage = "RelativePricePercentage",
+  RenewableGenerationPercentage = "RenewableGenerationPercentage"
 }

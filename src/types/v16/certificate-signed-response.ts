@@ -4,8 +4,11 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type CertificateSignedStatusEnumType = "Accepted" | "Rejected";
-
 export interface CertificateSignedResponseV16 {
   status: CertificateSignedStatusEnumType;
+}
+
+export const enum CertificateSignedStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected"
 }

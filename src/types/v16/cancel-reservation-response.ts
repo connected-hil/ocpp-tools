@@ -5,5 +5,10 @@
  */
 
 export interface CancelReservationResponseV16 {
-  status: "Accepted" | "Rejected";
+  status: CancelReservationStatus;
+}
+
+export const enum CancelReservationStatus {
+  Accepted = "Accepted",
+  Rejected = "Rejected"
 }

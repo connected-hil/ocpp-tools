@@ -1,11 +1,11 @@
 import { type RpcCallErrorV16 } from "./../types/v16";
-import { OCPPMessageType, type OCPPErrorCodeType } from "./common";
-
+import { OCPPMessageType } from "./common";
 import { v4 as uuidv4 } from "uuid";
 import { type RpcCallErrorV201 } from "./../types/v201";
-import { type OCPPErrorCodeV16, type OCPPErrorCodeV201 } from "./../types";
+import { ErrorCode } from "./../types/v16";
+import { ErrorCode as ErrorCodeV201 } from "./../types/v201";
 
-export class OCPPCallError<T extends OCPPErrorCodeType> {
+export class OCPPCallError<T extends ErrorCode | ErrorCodeV201> {
   public messageTypeId: OCPPMessageType.CALL_ERROR;
   public messageId: string;
 
@@ -13,14 +13,16 @@ export class OCPPCallError<T extends OCPPErrorCodeType> {
   public errorDescription: string;
   public errorDetails: Record<string, unknown>;
 
-  public toRPCObject(): RpcCallErrorV16 | RpcCallErrorV201 {
+  public toRPCObject(): T extends ErrorCode
+    ? RpcCallErrorV16
+    : RpcCallErrorV201 {
     return [
       OCPPMessageType.CALL_ERROR,
       this.messageId,
       this.errorCode,
       this.errorDescription,
       this.errorDetails,
-    ];
+    ] as T extends ErrorCode ? RpcCallErrorV16 : RpcCallErrorV201;
   }
 
   public constructor({
@@ -42,5 +44,5 @@ export class OCPPCallError<T extends OCPPErrorCodeType> {
   }
 }
 
-export class OCPPCallErrorV16 extends OCPPCallError<OCPPErrorCodeV16> {}
-export class OCPPCallErrorV201 extends OCPPCallError<OCPPErrorCodeV201> {}
+export class OCPPCallErrorV16 extends OCPPCallError<ErrorCode> {}
+export class OCPPCallErrorV201 extends OCPPCallError<ErrorCodeV201> {}

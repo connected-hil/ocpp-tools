@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Type of attribute: Actual, Target, MinSet, MaxSet. Default is Actual when omitted.
- *
- */
-export type AttributeEnumType = "Actual" | "Target" | "MinSet" | "MaxSet";
-
 export interface SetVariablesRequestV201 {
   customData?: CustomDataType;
   /**
@@ -92,4 +86,15 @@ export interface VariableType {
    *
    */
   instance?: string;
+}
+
+/**
+ * Type of attribute: Actual, Target, MinSet, MaxSet. Default is Actual when omitted.
+ *
+ */
+export const enum AttributeEnumType {
+  Actual = "Actual",
+  Target = "Target",
+  MinSet = "MinSet",
+  MaxSet = "MaxSet"
 }

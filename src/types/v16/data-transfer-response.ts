@@ -5,6 +5,13 @@
  */
 
 export interface DataTransferResponseV16 {
-  status: "Accepted" | "Rejected" | "UnknownMessageId" | "UnknownVendorId";
+  status: DataTransferStatus;
   data?: string;
+}
+
+export const enum DataTransferStatus {
+  Accepted = "Accepted",
+  Rejected = "Rejected",
+  UnknownMessageId = "UnknownMessageId",
+  UnknownVendorId = "UnknownVendorId"
 }

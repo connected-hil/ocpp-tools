@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Indicates whether the Local Controller succeeded in unpublishing the firmware.
- *
- */
-export type UnpublishFirmwareStatusEnumType = "DownloadOngoing" | "NoFirmware" | "Unpublished";
-
 export interface UnpublishFirmwareResponseV201 {
   customData?: CustomDataType;
   status: UnpublishFirmwareStatusEnumType;
@@ -20,4 +14,14 @@ export interface UnpublishFirmwareResponseV201 {
 export interface CustomDataType {
   vendorId: string;
   [k: string]: unknown;
+}
+
+/**
+ * Indicates whether the Local Controller succeeded in unpublishing the firmware.
+ *
+ */
+export const enum UnpublishFirmwareStatusEnumType {
+  DownloadOngoing = "DownloadOngoing",
+  NoFirmware = "NoFirmware",
+  Unpublished = "Unpublished"
 }

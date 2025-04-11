@@ -5,5 +5,12 @@
  */
 
 export interface ChangeConfigurationResponseV16 {
-  status: "Accepted" | "Rejected" | "RebootRequired" | "NotSupported";
+  status: ChangeConfigurationStatus;
+}
+
+export const enum ChangeConfigurationStatus {
+  Accepted = "Accepted",
+  Rejected = "Rejected",
+  RebootRequired = "RebootRequired",
+  NotSupported = "NotSupported"
 }

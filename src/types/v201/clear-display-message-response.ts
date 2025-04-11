@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Returns whether the Charging Station has been able to remove the message.
- *
- */
-export type ClearMessageStatusEnumType = "Accepted" | "Unknown";
-
 export interface ClearDisplayMessageResponseV201 {
   customData?: CustomDataType;
   status: ClearMessageStatusEnumType;
@@ -38,4 +32,13 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * Returns whether the Charging Station has been able to remove the message.
+ *
+ */
+export const enum ClearMessageStatusEnumType {
+  Accepted = "Accepted",
+  Unknown = "Unknown"
 }

@@ -4,16 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Indicates the certificate type that is sent.
- *
- */
-export type InstallCertificateUseEnumType =
-  | "V2GRootCertificate"
-  | "MORootCertificate"
-  | "CSMSRootCertificate"
-  | "ManufacturerRootCertificate";
-
 export interface InstallCertificateRequestV201 {
   customData?: CustomDataType;
   certificateType: InstallCertificateUseEnumType;
@@ -29,4 +19,15 @@ export interface InstallCertificateRequestV201 {
 export interface CustomDataType {
   vendorId: string;
   [k: string]: unknown;
+}
+
+/**
+ * Indicates the certificate type that is sent.
+ *
+ */
+export const enum InstallCertificateUseEnumType {
+  V2GRootCertificate = "V2GRootCertificate",
+  MORootCertificate = "MORootCertificate",
+  CSMSRootCertificate = "CSMSRootCertificate",
+  ManufacturerRootCertificate = "ManufacturerRootCertificate"
 }

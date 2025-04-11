@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * This indicates whether the Charging Station has unlocked the connector.
- *
- */
-export type UnlockStatusEnumType = "Unlocked" | "UnlockFailed" | "OngoingAuthorizedTransaction" | "UnknownConnector";
-
 export interface UnlockConnectorResponseV201 {
   customData?: CustomDataType;
   status: UnlockStatusEnumType;
@@ -38,4 +32,15 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * This indicates whether the Charging Station has unlocked the connector.
+ *
+ */
+export const enum UnlockStatusEnumType {
+  Unlocked = "Unlocked",
+  UnlockFailed = "UnlockFailed",
+  OngoingAuthorizedTransaction = "OngoingAuthorizedTransaction",
+  UnknownConnector = "UnknownConnector"
 }

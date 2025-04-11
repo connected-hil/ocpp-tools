@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * This indicates whether the Charging Station is able to accept this request.
- *
- */
-export type GenericDeviceModelStatusEnumType = "Accepted" | "Rejected" | "NotSupported" | "EmptyResultSet";
-
 export interface GetBaseReportResponseV201 {
   customData?: CustomDataType;
   status: GenericDeviceModelStatusEnumType;
@@ -38,4 +32,15 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * This indicates whether the Charging Station is able to accept this request.
+ *
+ */
+export const enum GenericDeviceModelStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected",
+  NotSupported = "NotSupported",
+  EmptyResultSet = "EmptyResultSet"
 }

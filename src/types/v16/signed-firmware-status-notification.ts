@@ -4,23 +4,24 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type FirmwareStatusEnumType =
-  | "Downloaded"
-  | "DownloadFailed"
-  | "Downloading"
-  | "DownloadScheduled"
-  | "DownloadPaused"
-  | "Idle"
-  | "InstallationFailed"
-  | "Installing"
-  | "Installed"
-  | "InstallRebooting"
-  | "InstallScheduled"
-  | "InstallVerificationFailed"
-  | "InvalidSignature"
-  | "SignatureVerified";
-
 export interface SignedFirmwareStatusNotificationRequestV16 {
   status: FirmwareStatusEnumType;
   requestId?: number;
+}
+
+export const enum FirmwareStatusEnumType {
+  Downloaded = "Downloaded",
+  DownloadFailed = "DownloadFailed",
+  Downloading = "Downloading",
+  DownloadScheduled = "DownloadScheduled",
+  DownloadPaused = "DownloadPaused",
+  Idle = "Idle",
+  InstallationFailed = "InstallationFailed",
+  Installing = "Installing",
+  Installed = "Installed",
+  InstallRebooting = "InstallRebooting",
+  InstallScheduled = "InstallScheduled",
+  InstallVerificationFailed = "InstallVerificationFailed",
+  InvalidSignature = "InvalidSignature",
+  SignatureVerified = "SignatureVerified"
 }

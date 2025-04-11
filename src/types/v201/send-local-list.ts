@@ -4,49 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Enumeration of possible idToken types.
- *
- */
-export type IdTokenEnumType =
-  | "Central"
-  | "eMAID"
-  | "ISO14443"
-  | "ISO15693"
-  | "KeyCode"
-  | "Local"
-  | "MacAddress"
-  | "NoAuthorization";
-/**
- * ID_ Token. Status. Authorization_ Status
- * urn:x-oca:ocpp:uid:1:569372
- * Current status of the ID Token.
- *
- */
-export type AuthorizationStatusEnumType =
-  | "Accepted"
-  | "Blocked"
-  | "ConcurrentTx"
-  | "Expired"
-  | "Invalid"
-  | "NoCredit"
-  | "NotAllowedTypeEVSE"
-  | "NotAtThisLocation"
-  | "NotAtThisTime"
-  | "Unknown";
-/**
- * Message_ Content. Format. Message_ Format_ Code
- * urn:x-enexis:ecdm:uid:1:570848
- * Format of the message.
- *
- */
-export type MessageFormatEnumType = "ASCII" | "HTML" | "URI" | "UTF8";
-/**
- * This contains the type of update (full or differential) of this request.
- *
- */
-export type UpdateEnumType = "Differential" | "Full";
-
 export interface SendLocalListRequestV201 {
   customData?: CustomDataType;
   /**
@@ -183,4 +140,57 @@ export interface MessageContentType {
    *
    */
   content: string;
+}
+
+/**
+ * Enumeration of possible idToken types.
+ *
+ */
+export const enum IdTokenEnumType {
+  Central = "Central",
+  eMAID = "eMAID",
+  ISO14443 = "ISO14443",
+  ISO15693 = "ISO15693",
+  KeyCode = "KeyCode",
+  Local = "Local",
+  MacAddress = "MacAddress",
+  NoAuthorization = "NoAuthorization"
+}
+/**
+ * ID_ Token. Status. Authorization_ Status
+ * urn:x-oca:ocpp:uid:1:569372
+ * Current status of the ID Token.
+ *
+ */
+export const enum AuthorizationStatusEnumType {
+  Accepted = "Accepted",
+  Blocked = "Blocked",
+  ConcurrentTx = "ConcurrentTx",
+  Expired = "Expired",
+  Invalid = "Invalid",
+  NoCredit = "NoCredit",
+  NotAllowedTypeEVSE = "NotAllowedTypeEVSE",
+  NotAtThisLocation = "NotAtThisLocation",
+  NotAtThisTime = "NotAtThisTime",
+  Unknown = "Unknown"
+}
+/**
+ * Message_ Content. Format. Message_ Format_ Code
+ * urn:x-enexis:ecdm:uid:1:570848
+ * Format of the message.
+ *
+ */
+export const enum MessageFormatEnumType {
+  ASCII = "ASCII",
+  HTML = "HTML",
+  URI = "URI",
+  UTF8 = "UTF8"
+}
+/**
+ * This contains the type of update (full or differential) of this request.
+ *
+ */
+export const enum UpdateEnumType {
+  Differential = "Differential",
+  Full = "Full"
 }

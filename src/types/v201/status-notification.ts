@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * This contains the current status of the Connector.
- *
- */
-export type ConnectorStatusEnumType = "Available" | "Occupied" | "Reserved" | "Unavailable" | "Faulted";
-
 export interface StatusNotificationRequestV201 {
   customData?: CustomDataType;
   /**
@@ -35,4 +29,16 @@ export interface StatusNotificationRequestV201 {
 export interface CustomDataType {
   vendorId: string;
   [k: string]: unknown;
+}
+
+/**
+ * This contains the current status of the Connector.
+ *
+ */
+export const enum ConnectorStatusEnumType {
+  Available = "Available",
+  Occupied = "Occupied",
+  Reserved = "Reserved",
+  Unavailable = "Unavailable",
+  Faulted = "Faulted"
 }

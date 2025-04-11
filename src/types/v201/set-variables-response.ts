@@ -4,23 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Type of attribute: Actual, Target, MinSet, MaxSet. Default is Actual when omitted.
- *
- */
-export type AttributeEnumType = "Actual" | "Target" | "MinSet" | "MaxSet";
-/**
- * Result status of setting the variable.
- *
- */
-export type SetVariableStatusEnumType =
-  | "Accepted"
-  | "Rejected"
-  | "UnknownComponent"
-  | "UnknownVariable"
-  | "NotSupportedAttributeType"
-  | "RebootRequired";
-
 export interface SetVariablesResponseV201 {
   customData?: CustomDataType;
   /**
@@ -115,4 +98,27 @@ export interface VariableType {
    *
    */
   instance?: string;
+}
+
+/**
+ * Type of attribute: Actual, Target, MinSet, MaxSet. Default is Actual when omitted.
+ *
+ */
+export const enum AttributeEnumType {
+  Actual = "Actual",
+  Target = "Target",
+  MinSet = "MinSet",
+  MaxSet = "MaxSet"
+}
+/**
+ * Result status of setting the variable.
+ *
+ */
+export const enum SetVariableStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected",
+  UnknownComponent = "UnknownComponent",
+  UnknownVariable = "UnknownVariable",
+  NotSupportedAttributeType = "NotSupportedAttributeType",
+  RebootRequired = "RebootRequired"
 }

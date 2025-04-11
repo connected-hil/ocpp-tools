@@ -4,9 +4,12 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type CertificateUseEnumType = "CentralSystemRootCertificate" | "ManufacturerRootCertificate";
-
 export interface InstallCertificateRequestV16 {
   certificateType: CertificateUseEnumType;
   certificate: string;
+}
+
+export const enum CertificateUseEnumType {
+  CentralSystemRootCertificate = "CentralSystemRootCertificate",
+  ManufacturerRootCertificate = "ManufacturerRootCertificate"
 }

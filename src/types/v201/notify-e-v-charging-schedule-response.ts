@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Returns whether the CSMS has been able to process the message successfully. It does not imply any approval of the charging schedule.
- *
- */
-export type GenericStatusEnumType = "Accepted" | "Rejected";
-
 export interface NotifyEVChargingScheduleResponseV201 {
   customData?: CustomDataType;
   status: GenericStatusEnumType;
@@ -38,4 +32,13 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * Returns whether the CSMS has been able to process the message successfully. It does not imply any approval of the charging schedule.
+ *
+ */
+export const enum GenericStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected"
 }

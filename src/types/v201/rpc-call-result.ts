@@ -9,9 +9,10 @@
  * @maxItems 3
  */
 export type RpcCallResultV201 = [
-  3,
+  MessageTypeId,
   string,
   {
     [k: string]: unknown;
   }
 ];
+export type MessageTypeId = 3;

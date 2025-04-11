@@ -7,6 +7,12 @@
 export interface ClearChargingProfileRequestV16 {
   id?: number;
   connectorId?: number;
-  chargingProfilePurpose?: "ChargePointMaxProfile" | "TxDefaultProfile" | "TxProfile";
+  chargingProfilePurpose?: ChargingProfilePurpose;
   stackLevel?: number;
+}
+
+export const enum ChargingProfilePurpose {
+  ChargePointMaxProfile = "ChargePointMaxProfile",
+  TxDefaultProfile = "TxDefaultProfile",
+  TxProfile = "TxProfile"
 }

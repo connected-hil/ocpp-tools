@@ -4,19 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * The Charging Station will indicate if it was
- * able to process the request
- *
- */
-export type GenericStatusEnumType = "Accepted" | "Rejected";
-/**
- * The unit of measure Limit is
- * expressed in.
- *
- */
-export type ChargingRateUnitEnumType = "W" | "A";
-
 export interface GetCompositeScheduleResponseV201 {
   customData?: CustomDataType;
   status: GenericStatusEnumType;
@@ -115,4 +102,23 @@ export interface ChargingSchedulePeriodType {
    *
    */
   phaseToUse?: number;
+}
+
+/**
+ * The Charging Station will indicate if it was
+ * able to process the request
+ *
+ */
+export const enum GenericStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected"
+}
+/**
+ * The unit of measure Limit is
+ * expressed in.
+ *
+ */
+export const enum ChargingRateUnitEnumType {
+  W = "W",
+  A = "A"
 }

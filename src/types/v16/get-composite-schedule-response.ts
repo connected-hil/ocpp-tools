@@ -5,13 +5,13 @@
  */
 
 export interface GetCompositeScheduleResponseV16 {
-  status: "Accepted" | "Rejected";
+  status: GetCompositeScheduleStatus;
   connectorId?: number;
   scheduleStart?: string;
   chargingSchedule?: {
     duration?: number;
     startSchedule?: string;
-    chargingRateUnit: "A" | "W";
+    chargingRateUnit: ChargingRateUnit;
     chargingSchedulePeriod: {
       startPeriod: number;
       limit: number;
@@ -19,4 +19,13 @@ export interface GetCompositeScheduleResponseV16 {
     }[];
     minChargingRate?: number;
   };
+}
+
+export const enum GetCompositeScheduleStatus {
+  Accepted = "Accepted",
+  Rejected = "Rejected"
+}
+export const enum ChargingRateUnit {
+  A = "A",
+  W = "W"
 }

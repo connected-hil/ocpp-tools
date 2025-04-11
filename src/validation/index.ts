@@ -6,7 +6,7 @@ import { OCPPMessageType, ocppVersion } from "../message/common";
 const validator = new ajv({
   allErrors: true,
   strict: false,
-  strictSchema: false
+  strictSchema: false,
 });
 addFormats(validator);
 
@@ -73,5 +73,6 @@ export const validateOCPPMessage = (
 
   const schema = resolveSchema(ocppversion, data[0] as OCPPMessageType);
   const validate = validator.compile(schema);
+  // TODO remove
   return validate(data);
 };

@@ -5,5 +5,13 @@
  */
 
 export interface ReserveNowResponseV16 {
-  status: "Accepted" | "Faulted" | "Occupied" | "Rejected" | "Unavailable";
+  status: ReserveNowStatus;
+}
+
+export const enum ReserveNowStatus {
+  Accepted = "Accepted",
+  Faulted = "Faulted",
+  Occupied = "Occupied",
+  Rejected = "Rejected",
+  Unavailable = "Unavailable"
 }

@@ -4,25 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Used algorithms for the hashes provided.
- *
- */
-export type HashAlgorithmEnumType = "SHA256" | "SHA384" | "SHA512";
-/**
- * Enumeration of possible idToken types.
- *
- */
-export type IdTokenEnumType =
-  | "Central"
-  | "eMAID"
-  | "ISO14443"
-  | "ISO15693"
-  | "KeyCode"
-  | "Local"
-  | "MacAddress"
-  | "NoAuthorization";
-
 export interface CustomerInformationRequestV201 {
   customData?: CustomDataType;
   customerCertificate?: CertificateHashDataType;
@@ -110,4 +91,28 @@ export interface AdditionalInfoType {
    *
    */
   type: string;
+}
+
+/**
+ * Used algorithms for the hashes provided.
+ *
+ */
+export const enum HashAlgorithmEnumType {
+  SHA256 = "SHA256",
+  SHA384 = "SHA384",
+  SHA512 = "SHA512"
+}
+/**
+ * Enumeration of possible idToken types.
+ *
+ */
+export const enum IdTokenEnumType {
+  Central = "Central",
+  eMAID = "eMAID",
+  ISO14443 = "ISO14443",
+  ISO15693 = "ISO15693",
+  KeyCode = "KeyCode",
+  Local = "Local",
+  MacAddress = "MacAddress",
+  NoAuthorization = "NoAuthorization"
 }

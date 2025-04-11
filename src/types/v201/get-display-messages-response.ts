@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Indicates if the Charging Station has Display Messages that match the request criteria in the &lt;&lt;getdisplaymessagesrequest,GetDisplayMessagesRequest&gt;&gt;
- *
- */
-export type GetDisplayMessagesStatusEnumType = "Accepted" | "Unknown";
-
 export interface GetDisplayMessagesResponseV201 {
   customData?: CustomDataType;
   status: GetDisplayMessagesStatusEnumType;
@@ -38,4 +32,13 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * Indicates if the Charging Station has Display Messages that match the request criteria in the &lt;&lt;getdisplaymessagesrequest,GetDisplayMessagesRequest&gt;&gt;
+ *
+ */
+export const enum GetDisplayMessagesStatusEnumType {
+  Accepted = "Accepted",
+  Unknown = "Unknown"
 }

@@ -4,9 +4,13 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type LogStatusEnumType = "Accepted" | "Rejected" | "AcceptedCanceled";
-
 export interface GetLogResponseV16 {
   status: LogStatusEnumType;
   filename?: string;
+}
+
+export const enum LogStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected",
+  AcceptedCanceled = "AcceptedCanceled"
 }

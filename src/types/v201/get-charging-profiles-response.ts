@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * This indicates whether the Charging Station is able to process this request and will send &lt;&lt;reportchargingprofilesrequest, ReportChargingProfilesRequest&gt;&gt; messages.
- *
- */
-export type GetChargingProfileStatusEnumType = "Accepted" | "NoProfiles";
-
 export interface GetChargingProfilesResponseV201 {
   customData?: CustomDataType;
   status: GetChargingProfileStatusEnumType;
@@ -38,4 +32,13 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * This indicates whether the Charging Station is able to process this request and will send &lt;&lt;reportchargingprofilesrequest, ReportChargingProfilesRequest&gt;&gt; messages.
+ *
+ */
+export const enum GetChargingProfileStatusEnumType {
+  Accepted = "Accepted",
+  NoProfiles = "NoProfiles"
 }

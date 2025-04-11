@@ -4,23 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Result status of getting the variable.
- *
- *
- */
-export type GetVariableStatusEnumType =
-  | "Accepted"
-  | "Rejected"
-  | "UnknownComponent"
-  | "UnknownVariable"
-  | "NotSupportedAttributeType";
-/**
- * Attribute type for which value is requested. When absent, default Actual is assumed.
- *
- */
-export type AttributeEnumType = "Actual" | "Target" | "MinSet" | "MaxSet";
-
 export interface GetVariablesResponseV201 {
   customData?: CustomDataType;
   /**
@@ -127,4 +110,27 @@ export interface VariableType {
    *
    */
   instance?: string;
+}
+
+/**
+ * Result status of getting the variable.
+ *
+ *
+ */
+export const enum GetVariableStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected",
+  UnknownComponent = "UnknownComponent",
+  UnknownVariable = "UnknownVariable",
+  NotSupportedAttributeType = "NotSupportedAttributeType"
+}
+/**
+ * Attribute type for which value is requested. When absent, default Actual is assumed.
+ *
+ */
+export const enum AttributeEnumType {
+  Actual = "Actual",
+  Target = "Target",
+  MinSet = "MinSet",
+  MaxSet = "MaxSet"
 }

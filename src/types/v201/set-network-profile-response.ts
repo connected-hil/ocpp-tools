@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * Result of operation.
- *
- */
-export type SetNetworkProfileStatusEnumType = "Accepted" | "Rejected" | "Failed";
-
 export interface SetNetworkProfileResponseV201 {
   customData?: CustomDataType;
   status: SetNetworkProfileStatusEnumType;
@@ -38,4 +32,14 @@ export interface StatusInfoType {
    *
    */
   additionalInfo?: string;
+}
+
+/**
+ * Result of operation.
+ *
+ */
+export const enum SetNetworkProfileStatusEnumType {
+  Accepted = "Accepted",
+  Rejected = "Rejected",
+  Failed = "Failed"
 }

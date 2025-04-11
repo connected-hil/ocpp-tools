@@ -4,16 +4,17 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type UploadLogStatusEnumType =
-  | "BadMessage"
-  | "Idle"
-  | "NotSupportedOperation"
-  | "PermissionDenied"
-  | "Uploaded"
-  | "UploadFailure"
-  | "Uploading";
-
 export interface LogStatusNotificationRequestV16 {
   status: UploadLogStatusEnumType;
   requestId?: number;
+}
+
+export const enum UploadLogStatusEnumType {
+  BadMessage = "BadMessage",
+  Idle = "Idle",
+  NotSupportedOperation = "NotSupportedOperation",
+  PermissionDenied = "PermissionDenied",
+  Uploaded = "Uploaded",
+  UploadFailure = "UploadFailure",
+  Uploading = "Uploading"
 }

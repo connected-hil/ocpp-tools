@@ -4,12 +4,6 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * This contains the type of reset that the Charging Station or EVSE should perform.
- *
- */
-export type ResetEnumType = "Immediate" | "OnIdle";
-
 export interface ResetRequestV201 {
   customData?: CustomDataType;
   type: ResetEnumType;
@@ -25,4 +19,13 @@ export interface ResetRequestV201 {
 export interface CustomDataType {
   vendorId: string;
   [k: string]: unknown;
+}
+
+/**
+ * This contains the type of reset that the Charging Station or EVSE should perform.
+ *
+ */
+export const enum ResetEnumType {
+  Immediate = "Immediate",
+  OnIdle = "OnIdle"
 }

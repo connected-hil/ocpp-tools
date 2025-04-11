@@ -6,13 +6,7 @@
     "CertificateType": {
       "type": "string",
       "additionalProperties": false,
-      "enum": [
-        "V2GRootCertificate",
-        "MORootCertificate",
-        "CSMSRootCertificate",
-        "V2GCertificateChain",
-        "ManufacturerRootCertificate"
-      ]
+      "enum": ["CentralSystemRootCertificate", "ManufacturerRootCertificate"]
     }
   },
   "type": "object",
