@@ -82,6 +82,100 @@ import { type UnlockConnectorRequestV16 } from "./v16/unlock-connector";
 import { type UpdateFirmwareResponseV16 } from "./v16/update-firmware-response";
 import { type UpdateFirmwareRequestV16 } from "./v16/update-firmware";
 
+
+// Export all imported types
+export type { AuthorizeResponseV16 };
+export type { AuthorizeRequestV16 };
+export type { BootNotificationResponseV16 };
+export type { BootNotificationRequestV16 };
+export type { CancelReservationResponseV16 };
+export type { CancelReservationRequestV16 };
+export type { CertificateSignedResponseV16 };
+export type { CertificateSignedRequestV16 };
+export type { ChangeAvailabilityResponseV16 };
+export type { ChangeAvailabilityRequestV16 };
+export type { ChangeConfigurationResponseV16 };
+export type { ChangeConfigurationRequestV16 };
+export type { ClearCacheResponseV16 };
+export type { ClearCacheRequestV16 };
+export type { ClearChargingProfileResponseV16 };
+export type { ClearChargingProfileRequestV16 };
+export type { DataTransferResponseV16 };
+export type { DataTransferRequestV16 };
+export type { DeleteCertificateResponseV16 };
+export type { DeleteCertificateRequestV16 };
+export type { DiagnosticsStatusNotificationResponseV16 };
+export type { DiagnosticsStatusNotificationRequestV16 };
+export type { ExtendedTriggerMessageResponseV16 };
+export type { ExtendedTriggerMessageRequestV16 };
+export type { FirmwareStatusNotificationResponseV16 };
+export type { FirmwareStatusNotificationRequestV16 };
+export type { GetCompositeScheduleResponseV16 };
+export type { GetCompositeScheduleRequestV16 };
+export type { GetConfigurationResponseV16 };
+export type { GetConfigurationRequestV16 };
+export type { GetDiagnosticsResponseV16 };
+export type { GetDiagnosticsRequestV16 };
+export type { GetInstalledCertificateIdsResponseV16 };
+export type { GetInstalledCertificateIdsRequestV16 };
+export type { GetLocalListVersionResponseV16 };
+export type { GetLocalListVersionRequestV16 };
+export type { GetLogResponseV16 };
+export type { GetLogRequestV16 };
+export type { HeartbeatResponseV16 };
+export type { HeartbeatRequestV16 };
+export type { InstallCertificateResponseV16 };
+export type { InstallCertificateRequestV16 };
+export type { LogStatusNotificationResponseV16 };
+export type { LogStatusNotificationRequestV16 };
+export type { MeterValuesResponseV16 };
+export type { MeterValuesRequestV16 };
+export type { RemoteStartTransactionResponseV16 };
+export type { RemoteStartTransactionRequestV16 };
+export type { RemoteStopTransactionResponseV16 };
+export type { RemoteStopTransactionRequestV16 };
+export type { ReserveNowResponseV16 };
+export type { ReserveNowRequestV16 };
+export type { ResetResponseV16 };
+export type { ResetRequestV16 };
+export type { RpcCallErrorV16 };
+export type { RpcCallResultV16 };
+export type { RpcCallV16 };
+export type { SecurityEventNotificationResponseV16 };
+export type { SecurityEventNotificationRequestV16 };
+export type { SendLocalListResponseV16 };
+export type { SendLocalListRequestV16 };
+export type { SetChargingProfileResponseV16 };
+export type { SetChargingProfileRequestV16 };
+export type { SignCertificateResponseV16 };
+export type { SignCertificateRequestV16 };
+export type { SignedFirmwareStatusNotificationResponseV16 };
+export type { SignedFirmwareStatusNotificationRequestV16 };
+export type { SignedUpdateFirmwareResponseV16 };
+export type { SignedUpdateFirmwareRequestV16 };
+export type { StartTransactionResponseV16 };
+export type { StartTransactionRequestV16 };
+export type { StatusNotificationResponseV16 };
+export type { StatusNotificationRequestV16 };
+export type { StopTransactionResponseV16 };
+export type { StopTransactionRequestV16 };
+export type { TriggerMessageResponseV16 };
+export type { TriggerMessageRequestV16 };
+export type { UnlockConnectorResponseV16 };
+export type { UnlockConnectorRequestV16 };
+export type { UpdateFirmwareResponseV16 };
+export type { UpdateFirmwareRequestV16 };
+
+
+// ==================== Action Types ====================
+
+/** Actions initiated by Charge Point */
+export type CPActionV16 = "Authorize" | "BootNotification" | "DiagnosticsStatusNotification" | "FirmwareStatusNotification" | "Heartbeat" | "LogStatusNotification" | "MeterValues" | "SecurityEventNotification" | "SignCertificate" | "SignedFirmwareStatusNotification" | "StartTransaction" | "StatusNotification" | "StopTransaction";
+
+/** Actions initiated by CSMS (Central System) */
+export type CSMSActionV16 = "CancelReservation" | "CertificateSigned" | "ChangeAvailability" | "ChangeConfiguration" | "ClearCache" | "ClearChargingProfile" | "DataTransfer" | "DeleteCertificate" | "ExtendedTriggerMessage" | "GetCompositeSchedule" | "GetConfiguration" | "GetDiagnostics" | "GetInstalledCertificateIds" | "GetLocalListVersion" | "GetLog" | "InstallCertificate" | "RemoteStartTransaction" | "RemoteStopTransaction" | "ReserveNow" | "Reset" | "SendLocalList" | "SetChargingProfile" | "SignedUpdateFirmware" | "TriggerMessage" | "UnlockConnector" | "UpdateFirmware";
+
+/** All OCPP actions */
 export type ActionV16 = "Authorize" | "BootNotification" | "CancelReservation" | "CertificateSigned" | "ChangeAvailability" | "ChangeConfiguration" | "ClearCache" | "ClearChargingProfile" | "DataTransfer" | "DeleteCertificate" | "DiagnosticsStatusNotification" | "ExtendedTriggerMessage" | "FirmwareStatusNotification" | "GetCompositeSchedule" | "GetConfiguration" | "GetDiagnostics" | "GetInstalledCertificateIds" | "GetLocalListVersion" | "GetLog" | "Heartbeat" | "InstallCertificate" | "LogStatusNotification" | "MeterValues" | "RemoteStartTransaction" | "RemoteStopTransaction" | "ReserveNow" | "Reset" | "SecurityEventNotification" | "SendLocalList" | "SetChargingProfile" | "SignCertificate" | "SignedFirmwareStatusNotification" | "SignedUpdateFirmware" | "StartTransaction" | "StatusNotification" | "StopTransaction" | "TriggerMessage" | "UnlockConnector" | "UpdateFirmware";
 export enum ActionNameV16 {
     Authorize = "Authorize",
@@ -124,8 +218,31 @@ export enum ActionNameV16 {
     UnlockConnector = "UnlockConnector",
     UpdateFirmware = "UpdateFirmware"
 }
+
+// ==================== Request Types ====================
+
+/** Request messages sent from Charge Point to CSMS */
+export type CPRequestTypeV16 = AuthorizeRequestV16 | BootNotificationRequestV16 | DiagnosticsStatusNotificationRequestV16 | FirmwareStatusNotificationRequestV16 | HeartbeatRequestV16 | LogStatusNotificationRequestV16 | MeterValuesRequestV16 | SecurityEventNotificationRequestV16 | SignCertificateRequestV16 | SignedFirmwareStatusNotificationRequestV16 | StartTransactionRequestV16 | StatusNotificationRequestV16 | StopTransactionRequestV16;
+
+/** Request messages sent from CSMS to Charge Point */
+export type CSMSRequestTypeV16 = CancelReservationRequestV16 | CertificateSignedRequestV16 | ChangeAvailabilityRequestV16 | ChangeConfigurationRequestV16 | ClearCacheRequestV16 | ClearChargingProfileRequestV16 | DataTransferRequestV16 | DeleteCertificateRequestV16 | ExtendedTriggerMessageRequestV16 | GetCompositeScheduleRequestV16 | GetConfigurationRequestV16 | GetDiagnosticsRequestV16 | GetInstalledCertificateIdsRequestV16 | GetLocalListVersionRequestV16 | GetLogRequestV16 | InstallCertificateRequestV16 | RemoteStartTransactionRequestV16 | RemoteStopTransactionRequestV16 | ReserveNowRequestV16 | ResetRequestV16 | SendLocalListRequestV16 | SetChargingProfileRequestV16 | SignedUpdateFirmwareRequestV16 | TriggerMessageRequestV16 | UnlockConnectorRequestV16 | UpdateFirmwareRequestV16;
+
+/** All OCPP request types */
 export type OCPPRequestTypeV16 = AuthorizeRequestV16 | BootNotificationRequestV16 | CancelReservationRequestV16 | CertificateSignedRequestV16 | ChangeAvailabilityRequestV16 | ChangeConfigurationRequestV16 | ClearCacheRequestV16 | ClearChargingProfileRequestV16 | DataTransferRequestV16 | DeleteCertificateRequestV16 | DiagnosticsStatusNotificationRequestV16 | ExtendedTriggerMessageRequestV16 | FirmwareStatusNotificationRequestV16 | GetCompositeScheduleRequestV16 | GetConfigurationRequestV16 | GetDiagnosticsRequestV16 | GetInstalledCertificateIdsRequestV16 | GetLocalListVersionRequestV16 | GetLogRequestV16 | HeartbeatRequestV16 | InstallCertificateRequestV16 | LogStatusNotificationRequestV16 | MeterValuesRequestV16 | RemoteStartTransactionRequestV16 | RemoteStopTransactionRequestV16 | ReserveNowRequestV16 | ResetRequestV16 | SecurityEventNotificationRequestV16 | SendLocalListRequestV16 | SetChargingProfileRequestV16 | SignCertificateRequestV16 | SignedFirmwareStatusNotificationRequestV16 | SignedUpdateFirmwareRequestV16 | StartTransactionRequestV16 | StatusNotificationRequestV16 | StopTransactionRequestV16 | TriggerMessageRequestV16 | UnlockConnectorRequestV16 | UpdateFirmwareRequestV16;
+
+// ==================== Response Types ====================
+
+/** Response messages sent from CSMS to Charge Point (in response to CP requests) */
+export type CPResponseTypeV16 = AuthorizeResponseV16 | BootNotificationResponseV16 | DiagnosticsStatusNotificationResponseV16 | FirmwareStatusNotificationResponseV16 | HeartbeatResponseV16 | LogStatusNotificationResponseV16 | MeterValuesResponseV16 | SecurityEventNotificationResponseV16 | SignCertificateResponseV16 | SignedFirmwareStatusNotificationResponseV16 | StartTransactionResponseV16 | StatusNotificationResponseV16 | StopTransactionResponseV16;
+
+/** Response messages sent from Charge Point to CSMS (in response to CSMS requests) */
+export type CSMSResponseTypeV16 = CancelReservationResponseV16 | CertificateSignedResponseV16 | ChangeAvailabilityResponseV16 | ChangeConfigurationResponseV16 | ClearCacheResponseV16 | ClearChargingProfileResponseV16 | DataTransferResponseV16 | DeleteCertificateResponseV16 | ExtendedTriggerMessageResponseV16 | GetCompositeScheduleResponseV16 | GetConfigurationResponseV16 | GetDiagnosticsResponseV16 | GetInstalledCertificateIdsResponseV16 | GetLocalListVersionResponseV16 | GetLogResponseV16 | InstallCertificateResponseV16 | RemoteStartTransactionResponseV16 | RemoteStopTransactionResponseV16 | ReserveNowResponseV16 | ResetResponseV16 | SendLocalListResponseV16 | SetChargingProfileResponseV16 | SignedUpdateFirmwareResponseV16 | TriggerMessageResponseV16 | UnlockConnectorResponseV16 | UpdateFirmwareResponseV16;
+
+/** All OCPP response types */
 export type OCPPResponseTypeV16 = AuthorizeResponseV16 | BootNotificationResponseV16 | CancelReservationResponseV16 | CertificateSignedResponseV16 | ChangeAvailabilityResponseV16 | ChangeConfigurationResponseV16 | ClearCacheResponseV16 | ClearChargingProfileResponseV16 | DataTransferResponseV16 | DeleteCertificateResponseV16 | DiagnosticsStatusNotificationResponseV16 | ExtendedTriggerMessageResponseV16 | FirmwareStatusNotificationResponseV16 | GetCompositeScheduleResponseV16 | GetConfigurationResponseV16 | GetDiagnosticsResponseV16 | GetInstalledCertificateIdsResponseV16 | GetLocalListVersionResponseV16 | GetLogResponseV16 | HeartbeatResponseV16 | InstallCertificateResponseV16 | LogStatusNotificationResponseV16 | MeterValuesResponseV16 | RemoteStartTransactionResponseV16 | RemoteStopTransactionResponseV16 | ReserveNowResponseV16 | ResetResponseV16 | SecurityEventNotificationResponseV16 | SendLocalListResponseV16 | SetChargingProfileResponseV16 | SignCertificateResponseV16 | SignedFirmwareStatusNotificationResponseV16 | SignedUpdateFirmwareResponseV16 | StartTransactionResponseV16 | StatusNotificationResponseV16 | StopTransactionResponseV16 | TriggerMessageResponseV16 | UnlockConnectorResponseV16 | UpdateFirmwareResponseV16;
+
+// ==================== Error Codes ====================
+
 export enum OCPPErrorCodeV16 {
     NotImplemented = "NotImplemented",
     NotSupported = "NotSupported",
@@ -138,8 +255,10 @@ export enum OCPPErrorCodeV16 {
     TypeConstraintViolation = "TypeConstraintViolation",
     GenericError = "GenericError"
 }
-export type OCPPRpcMessageV16 = RpcCallV16 | RpcCallResultV16 | RpcCallErrorV16;
 
+// ==================== RPC Message Types ====================
+
+export type OCPPRpcMessageV16 = RpcCallV16 | RpcCallResultV16 | RpcCallErrorV16;
 
 // **** Generated by scripts/types-ast.ts for version v201 ****
 
@@ -275,6 +394,150 @@ import { type UnpublishFirmwareRequestV201 } from "./v201/unpublish-firmware";
 import { type UpdateFirmwareResponseV201 } from "./v201/update-firmware-response";
 import { type UpdateFirmwareRequestV201 } from "./v201/update-firmware";
 
+
+// Export all imported types
+export type { AuthorizeResponseV201 };
+export type { AuthorizeRequestV201 };
+export type { BootNotificationResponseV201 };
+export type { BootNotificationRequestV201 };
+export type { CancelReservationResponseV201 };
+export type { CancelReservationRequestV201 };
+export type { CertificateSignedResponseV201 };
+export type { CertificateSignedRequestV201 };
+export type { ChangeAvailabilityResponseV201 };
+export type { ChangeAvailabilityRequestV201 };
+export type { ClearCacheResponseV201 };
+export type { ClearCacheRequestV201 };
+export type { ClearChargingProfileResponseV201 };
+export type { ClearChargingProfileRequestV201 };
+export type { ClearDisplayMessageResponseV201 };
+export type { ClearDisplayMessageRequestV201 };
+export type { ClearVariableMonitoringResponseV201 };
+export type { ClearVariableMonitoringRequestV201 };
+export type { ClearedChargingLimitResponseV201 };
+export type { ClearedChargingLimitRequestV201 };
+export type { CostUpdatedResponseV201 };
+export type { CostUpdatedRequestV201 };
+export type { CustomerInformationResponseV201 };
+export type { CustomerInformationRequestV201 };
+export type { DataTransferResponseV201 };
+export type { DataTransferRequestV201 };
+export type { DeleteCertificateResponseV201 };
+export type { DeleteCertificateRequestV201 };
+export type { FirmwareStatusNotificationResponseV201 };
+export type { FirmwareStatusNotificationRequestV201 };
+export type { GetBaseReportResponseV201 };
+export type { GetBaseReportRequestV201 };
+export type { GetCertificateStatusResponseV201 };
+export type { GetCertificateStatusRequestV201 };
+export type { GetChargingProfilesResponseV201 };
+export type { GetChargingProfilesRequestV201 };
+export type { GetCompositeScheduleResponseV201 };
+export type { GetCompositeScheduleRequestV201 };
+export type { GetDisplayMessagesResponseV201 };
+export type { GetDisplayMessagesRequestV201 };
+export type { GetInstalledCertificateIdsResponseV201 };
+export type { GetInstalledCertificateIdsRequestV201 };
+export type { GetLocalListVersionResponseV201 };
+export type { GetLocalListVersionRequestV201 };
+export type { GetLogResponseV201 };
+export type { GetLogRequestV201 };
+export type { GetMonitoringReportResponseV201 };
+export type { GetMonitoringReportRequestV201 };
+export type { GetReportResponseV201 };
+export type { GetReportRequestV201 };
+export type { GetTransactionStatusResponseV201 };
+export type { GetTransactionStatusRequestV201 };
+export type { GetVariablesResponseV201 };
+export type { GetVariablesRequestV201 };
+export type { Get15118EVCertificateResponseV201 };
+export type { Get15118EVCertificateRequestV201 };
+export type { HeartbeatResponseV201 };
+export type { HeartbeatRequestV201 };
+export type { InstallCertificateResponseV201 };
+export type { InstallCertificateRequestV201 };
+export type { LogStatusNotificationResponseV201 };
+export type { LogStatusNotificationRequestV201 };
+export type { MeterValuesResponseV201 };
+export type { MeterValuesRequestV201 };
+export type { NotifyChargingLimitResponseV201 };
+export type { NotifyChargingLimitRequestV201 };
+export type { NotifyCustomerInformationResponseV201 };
+export type { NotifyCustomerInformationRequestV201 };
+export type { NotifyDisplayMessagesResponseV201 };
+export type { NotifyDisplayMessagesRequestV201 };
+export type { NotifyEVChargingNeedsResponseV201 };
+export type { NotifyEVChargingNeedsRequestV201 };
+export type { NotifyEVChargingScheduleResponseV201 };
+export type { NotifyEVChargingScheduleRequestV201 };
+export type { NotifyEventResponseV201 };
+export type { NotifyEventRequestV201 };
+export type { NotifyMonitoringReportResponseV201 };
+export type { NotifyMonitoringReportRequestV201 };
+export type { NotifyReportResponseV201 };
+export type { NotifyReportRequestV201 };
+export type { PublishFirmwareResponseV201 };
+export type { PublishFirmwareStatusNotificationResponseV201 };
+export type { PublishFirmwareStatusNotificationRequestV201 };
+export type { PublishFirmwareRequestV201 };
+export type { ReportChargingProfilesResponseV201 };
+export type { ReportChargingProfilesRequestV201 };
+export type { ReservationStatusUpdateResponseV201 };
+export type { ReservationStatusUpdateRequestV201 };
+export type { ReserveNowResponseV201 };
+export type { ReserveNowRequestV201 };
+export type { ResetResponseV201 };
+export type { ResetRequestV201 };
+export type { RpcCallErrorV201 };
+export type { RpcCallResultV201 };
+export type { RpcCallV201 };
+export type { SecurityEventNotificationResponseV201 };
+export type { SecurityEventNotificationRequestV201 };
+export type { SendLocalListResponseV201 };
+export type { SendLocalListRequestV201 };
+export type { SetChargingProfileResponseV201 };
+export type { SetChargingProfileRequestV201 };
+export type { SetDisplayMessageResponseV201 };
+export type { SetDisplayMessageRequestV201 };
+export type { SetMonitoringBaseResponseV201 };
+export type { SetMonitoringBaseRequestV201 };
+export type { SetMonitoringLevelResponseV201 };
+export type { SetMonitoringLevelRequestV201 };
+export type { SetNetworkProfileResponseV201 };
+export type { SetNetworkProfileRequestV201 };
+export type { SetVariableMonitoringResponseV201 };
+export type { SetVariableMonitoringRequestV201 };
+export type { SetVariablesResponseV201 };
+export type { SetVariablesRequestV201 };
+export type { SignCertificateResponseV201 };
+export type { SignCertificateRequestV201 };
+export type { RequestStartTransactionResponseV201 };
+export type { RequestStartTransactionRequestV201 };
+export type { StatusNotificationResponseV201 };
+export type { StatusNotificationRequestV201 };
+export type { RequestStopTransactionResponseV201 };
+export type { RequestStopTransactionRequestV201 };
+export type { TransactionEventResponseV201 };
+export type { TransactionEventRequestV201 };
+export type { TriggerMessageResponseV201 };
+export type { TriggerMessageRequestV201 };
+export type { UnlockConnectorResponseV201 };
+export type { UnlockConnectorRequestV201 };
+export type { UnpublishFirmwareResponseV201 };
+export type { UnpublishFirmwareRequestV201 };
+export type { UpdateFirmwareResponseV201 };
+export type { UpdateFirmwareRequestV201 };
+
+
+// ==================== Action Types ====================
+
+/** Actions initiated by Charge Point */
+export type CPActionV201 = "Authorize" | "BootNotification" | "ClearedChargingLimit" | "FirmwareStatusNotification" | "Get15118EVCertificate" | "GetCertificateStatus" | "Heartbeat" | "LogStatusNotification" | "MeterValues" | "NotifyChargingLimit" | "NotifyCustomerInformation" | "NotifyDisplayMessages" | "NotifyEVChargingNeeds" | "NotifyEVChargingSchedule" | "NotifyEvent" | "NotifyMonitoringReport" | "NotifyReport" | "PublishFirmwareStatusNotification" | "ReportChargingProfiles" | "ReservationStatusUpdate" | "SecurityEventNotification" | "SignCertificate" | "StatusNotification" | "TransactionEvent";
+
+/** Actions initiated by CSMS (Central System) */
+export type CSMSActionV201 = "CancelReservation" | "CertificateSigned" | "ChangeAvailability" | "ClearCache" | "ClearChargingProfile" | "ClearDisplayMessage" | "ClearVariableMonitoring" | "CostUpdated" | "CustomerInformation" | "DataTransfer" | "DeleteCertificate" | "GetBaseReport" | "GetChargingProfiles" | "GetCompositeSchedule" | "GetDisplayMessages" | "GetInstalledCertificateIds" | "GetLocalListVersion" | "GetLog" | "GetMonitoringReport" | "GetReport" | "GetTransactionStatus" | "GetVariables" | "InstallCertificate" | "PublishFirmware" | "StartTransactionRequest" | "StopTransactionRequest" | "ReserveNow" | "Reset" | "SendLocalList" | "SetChargingProfile" | "SetDisplayMessage" | "SetMonitoringBase" | "SetMonitoringLevel" | "SetNetworkProfile" | "SetVariableMonitoring" | "SetVariables" | "TriggerMessage" | "UnlockConnector" | "UnpublishFirmware" | "UpdateFirmware";
+
+/** All OCPP actions */
 export type ActionV201 = "Authorize" | "BootNotification" | "CancelReservation" | "CertificateSigned" | "ChangeAvailability" | "ClearCache" | "ClearChargingProfile" | "ClearDisplayMessage" | "ClearVariableMonitoring" | "ClearedChargingLimit" | "CostUpdated" | "CustomerInformation" | "DataTransfer" | "DeleteCertificate" | "FirmwareStatusNotification" | "GetBaseReport" | "GetCertificateStatus" | "GetChargingProfiles" | "GetCompositeSchedule" | "GetDisplayMessages" | "GetInstalledCertificateIds" | "GetLocalListVersion" | "GetLog" | "GetMonitoringReport" | "GetReport" | "GetTransactionStatus" | "GetVariables" | "Get15118EVCertificate" | "Heartbeat" | "InstallCertificate" | "LogStatusNotification" | "MeterValues" | "NotifyChargingLimit" | "NotifyCustomerInformation" | "NotifyDisplayMessages" | "NotifyEVChargingNeeds" | "NotifyEVChargingSchedule" | "NotifyEvent" | "NotifyMonitoringReport" | "NotifyReport" | "PublishFirmwareStatusNotification" | "PublishFirmware" | "ReportChargingProfiles" | "ReservationStatusUpdate" | "ReserveNow" | "Reset" | "SecurityEventNotification" | "SendLocalList" | "SetChargingProfile" | "SetDisplayMessage" | "SetMonitoringBase" | "SetMonitoringLevel" | "SetNetworkProfile" | "SetVariableMonitoring" | "SetVariables" | "SignCertificate" | "StartTransactionResponse" | "StartTransactionRequest" | "StatusNotification" | "StopTransactionResponse" | "StopTransactionRequest" | "TransactionEvent" | "TriggerMessage" | "UnlockConnector" | "UnpublishFirmware" | "UpdateFirmware";
 export enum ActionNameV201 {
     Authorize = "Authorize",
@@ -344,8 +607,31 @@ export enum ActionNameV201 {
     UnpublishFirmware = "UnpublishFirmware",
     UpdateFirmware = "UpdateFirmware"
 }
+
+// ==================== Request Types ====================
+
+/** Request messages sent from Charge Point to CSMS */
+export type CPRequestTypeV201 = AuthorizeRequestV201 | BootNotificationRequestV201 | ClearedChargingLimitRequestV201 | FirmwareStatusNotificationRequestV201 | GetCertificateStatusRequestV201 | Get15118EVCertificateRequestV201 | HeartbeatRequestV201 | LogStatusNotificationRequestV201 | MeterValuesRequestV201 | NotifyChargingLimitRequestV201 | NotifyCustomerInformationRequestV201 | NotifyDisplayMessagesRequestV201 | NotifyEVChargingNeedsRequestV201 | NotifyEVChargingScheduleRequestV201 | NotifyEventRequestV201 | NotifyMonitoringReportRequestV201 | NotifyReportRequestV201 | PublishFirmwareStatusNotificationRequestV201 | ReportChargingProfilesRequestV201 | ReservationStatusUpdateRequestV201 | SecurityEventNotificationRequestV201 | SignCertificateRequestV201 | StatusNotificationRequestV201 | TransactionEventRequestV201;
+
+/** Request messages sent from CSMS to Charge Point */
+export type CSMSRequestTypeV201 = CancelReservationRequestV201 | CertificateSignedRequestV201 | ChangeAvailabilityRequestV201 | ClearCacheRequestV201 | ClearChargingProfileRequestV201 | ClearDisplayMessageRequestV201 | ClearVariableMonitoringRequestV201 | CostUpdatedRequestV201 | CustomerInformationRequestV201 | DataTransferRequestV201 | DeleteCertificateRequestV201 | GetBaseReportRequestV201 | GetChargingProfilesRequestV201 | GetCompositeScheduleRequestV201 | GetDisplayMessagesRequestV201 | GetInstalledCertificateIdsRequestV201 | GetLocalListVersionRequestV201 | GetLogRequestV201 | GetMonitoringReportRequestV201 | GetReportRequestV201 | GetTransactionStatusRequestV201 | GetVariablesRequestV201 | InstallCertificateRequestV201 | PublishFirmwareRequestV201 | ReserveNowRequestV201 | ResetRequestV201 | SendLocalListRequestV201 | SetChargingProfileRequestV201 | SetDisplayMessageRequestV201 | SetMonitoringBaseRequestV201 | SetMonitoringLevelRequestV201 | SetNetworkProfileRequestV201 | SetVariableMonitoringRequestV201 | SetVariablesRequestV201 | RequestStartTransactionRequestV201 | RequestStopTransactionRequestV201 | TriggerMessageRequestV201 | UnlockConnectorRequestV201 | UnpublishFirmwareRequestV201 | UpdateFirmwareRequestV201;
+
+/** All OCPP request types */
 export type OCPPRequestTypeV201 = AuthorizeRequestV201 | BootNotificationRequestV201 | CancelReservationRequestV201 | CertificateSignedRequestV201 | ChangeAvailabilityRequestV201 | ClearCacheRequestV201 | ClearChargingProfileRequestV201 | ClearDisplayMessageRequestV201 | ClearVariableMonitoringRequestV201 | ClearedChargingLimitRequestV201 | CostUpdatedRequestV201 | CustomerInformationRequestV201 | DataTransferRequestV201 | DeleteCertificateRequestV201 | FirmwareStatusNotificationRequestV201 | GetBaseReportRequestV201 | GetCertificateStatusRequestV201 | GetChargingProfilesRequestV201 | GetCompositeScheduleRequestV201 | GetDisplayMessagesRequestV201 | GetInstalledCertificateIdsRequestV201 | GetLocalListVersionRequestV201 | GetLogRequestV201 | GetMonitoringReportRequestV201 | GetReportRequestV201 | GetTransactionStatusRequestV201 | GetVariablesRequestV201 | Get15118EVCertificateRequestV201 | HeartbeatRequestV201 | InstallCertificateRequestV201 | LogStatusNotificationRequestV201 | MeterValuesRequestV201 | NotifyChargingLimitRequestV201 | NotifyCustomerInformationRequestV201 | NotifyDisplayMessagesRequestV201 | NotifyEVChargingNeedsRequestV201 | NotifyEVChargingScheduleRequestV201 | NotifyEventRequestV201 | NotifyMonitoringReportRequestV201 | NotifyReportRequestV201 | PublishFirmwareStatusNotificationRequestV201 | PublishFirmwareRequestV201 | ReportChargingProfilesRequestV201 | ReservationStatusUpdateRequestV201 | ReserveNowRequestV201 | ResetRequestV201 | SecurityEventNotificationRequestV201 | SendLocalListRequestV201 | SetChargingProfileRequestV201 | SetDisplayMessageRequestV201 | SetMonitoringBaseRequestV201 | SetMonitoringLevelRequestV201 | SetNetworkProfileRequestV201 | SetVariableMonitoringRequestV201 | SetVariablesRequestV201 | SignCertificateRequestV201 | RequestStartTransactionResponseV201 | RequestStartTransactionRequestV201 | StatusNotificationRequestV201 | RequestStopTransactionResponseV201 | RequestStopTransactionRequestV201 | TransactionEventRequestV201 | TriggerMessageRequestV201 | UnlockConnectorRequestV201 | UnpublishFirmwareRequestV201 | UpdateFirmwareRequestV201;
+
+// ==================== Response Types ====================
+
+/** Response messages sent from CSMS to Charge Point (in response to CP requests) */
+export type CPResponseTypeV201 = AuthorizeResponseV201 | BootNotificationResponseV201 | ClearedChargingLimitResponseV201 | FirmwareStatusNotificationResponseV201 | GetCertificateStatusResponseV201 | Get15118EVCertificateResponseV201 | HeartbeatResponseV201 | LogStatusNotificationResponseV201 | MeterValuesResponseV201 | NotifyChargingLimitResponseV201 | NotifyCustomerInformationResponseV201 | NotifyDisplayMessagesResponseV201 | NotifyEVChargingNeedsResponseV201 | NotifyEVChargingScheduleResponseV201 | NotifyEventResponseV201 | NotifyMonitoringReportResponseV201 | NotifyReportResponseV201 | PublishFirmwareStatusNotificationResponseV201 | ReportChargingProfilesResponseV201 | ReservationStatusUpdateResponseV201 | SecurityEventNotificationResponseV201 | SignCertificateResponseV201 | StatusNotificationResponseV201 | TransactionEventResponseV201;
+
+/** Response messages sent from Charge Point to CSMS (in response to CSMS requests) */
+export type CSMSResponseTypeV201 = CancelReservationResponseV201 | CertificateSignedResponseV201 | ChangeAvailabilityResponseV201 | ClearCacheResponseV201 | ClearChargingProfileResponseV201 | ClearDisplayMessageResponseV201 | ClearVariableMonitoringResponseV201 | CostUpdatedResponseV201 | CustomerInformationResponseV201 | DataTransferResponseV201 | DeleteCertificateResponseV201 | GetBaseReportResponseV201 | GetChargingProfilesResponseV201 | GetCompositeScheduleResponseV201 | GetDisplayMessagesResponseV201 | GetInstalledCertificateIdsResponseV201 | GetLocalListVersionResponseV201 | GetLogResponseV201 | GetMonitoringReportResponseV201 | GetReportResponseV201 | GetTransactionStatusResponseV201 | GetVariablesResponseV201 | InstallCertificateResponseV201 | PublishFirmwareResponseV201 | ReserveNowResponseV201 | ResetResponseV201 | SendLocalListResponseV201 | SetChargingProfileResponseV201 | SetDisplayMessageResponseV201 | SetMonitoringBaseResponseV201 | SetMonitoringLevelResponseV201 | SetNetworkProfileResponseV201 | SetVariableMonitoringResponseV201 | SetVariablesResponseV201 | TriggerMessageResponseV201 | UnlockConnectorResponseV201 | UnpublishFirmwareResponseV201 | UpdateFirmwareResponseV201;
+
+/** All OCPP response types */
 export type OCPPResponseTypeV201 = AuthorizeResponseV201 | BootNotificationResponseV201 | CancelReservationResponseV201 | CertificateSignedResponseV201 | ChangeAvailabilityResponseV201 | ClearCacheResponseV201 | ClearChargingProfileResponseV201 | ClearDisplayMessageResponseV201 | ClearVariableMonitoringResponseV201 | ClearedChargingLimitResponseV201 | CostUpdatedResponseV201 | CustomerInformationResponseV201 | DataTransferResponseV201 | DeleteCertificateResponseV201 | FirmwareStatusNotificationResponseV201 | GetBaseReportResponseV201 | GetCertificateStatusResponseV201 | GetChargingProfilesResponseV201 | GetCompositeScheduleResponseV201 | GetDisplayMessagesResponseV201 | GetInstalledCertificateIdsResponseV201 | GetLocalListVersionResponseV201 | GetLogResponseV201 | GetMonitoringReportResponseV201 | GetReportResponseV201 | GetTransactionStatusResponseV201 | GetVariablesResponseV201 | Get15118EVCertificateResponseV201 | HeartbeatResponseV201 | InstallCertificateResponseV201 | LogStatusNotificationResponseV201 | MeterValuesResponseV201 | NotifyChargingLimitResponseV201 | NotifyCustomerInformationResponseV201 | NotifyDisplayMessagesResponseV201 | NotifyEVChargingNeedsResponseV201 | NotifyEVChargingScheduleResponseV201 | NotifyEventResponseV201 | NotifyMonitoringReportResponseV201 | NotifyReportResponseV201 | PublishFirmwareResponseV201 | PublishFirmwareStatusNotificationResponseV201 | ReportChargingProfilesResponseV201 | ReservationStatusUpdateResponseV201 | ReserveNowResponseV201 | ResetResponseV201 | SecurityEventNotificationResponseV201 | SendLocalListResponseV201 | SetChargingProfileResponseV201 | SetDisplayMessageResponseV201 | SetMonitoringBaseResponseV201 | SetMonitoringLevelResponseV201 | SetNetworkProfileResponseV201 | SetVariableMonitoringResponseV201 | SetVariablesResponseV201 | SignCertificateResponseV201 | RequestStartTransactionResponseV201 | StatusNotificationResponseV201 | RequestStopTransactionResponseV201 | TransactionEventResponseV201 | TriggerMessageResponseV201 | UnlockConnectorResponseV201 | UnpublishFirmwareResponseV201 | UpdateFirmwareResponseV201;
+
+// ==================== Error Codes ====================
+
 export enum OCPPErrorCodeV201 {
     NotImplemented = "NotImplemented",
     NotSupported = "NotSupported",
@@ -358,6 +644,8 @@ export enum OCPPErrorCodeV201 {
     TypeConstraintViolation = "TypeConstraintViolation",
     GenericError = "GenericError"
 }
-export type OCPPRpcMessageV201 = RpcCallV201 | RpcCallResultV201 | RpcCallErrorV201;
 
+// ==================== RPC Message Types ====================
+
+export type OCPPRpcMessageV201 = RpcCallV201 | RpcCallResultV201 | RpcCallErrorV201;
 
