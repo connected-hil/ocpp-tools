@@ -24,6 +24,9 @@
       <a href="#about-the-project">About The Project</a>
     </li>
     <li>
+      <a href="#alternatives">Alternatives</a>
+    </li>
+    <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
@@ -56,6 +59,10 @@
 **Note**: Things are changing, and backwards compatibility might be broken until all todo items are cleard.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Alternatives
+
+* [typed-ocpp](https://github.com/jacoscaz/typed-ocpp) - Supports OCPP 2.1
 
 ## Getting Started
 
