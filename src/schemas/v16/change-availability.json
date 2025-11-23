@@ -8,11 +8,22 @@
       "type": "integer"
     },
     "type": {
-      "type": "string",
-      "additionalProperties": false,
-      "enum": ["Inoperative", "Operative"]
+      "$ref": "#/definitions/TypeEnumType"
     }
   },
   "additionalProperties": false,
-  "required": ["connectorId", "type"]
+  "required": [
+    "connectorId",
+    "type"
+  ],
+  "definitions": {
+    "TypeEnumType": {
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "Inoperative",
+        "Operative"
+      ]
+    }
+  }
 }

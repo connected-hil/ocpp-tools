@@ -4,8 +4,10 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type StatusEnumType = "Accepted" | "Pending" | "Rejected";
+
 export interface BootNotificationResponseV16 {
-  status: "Accepted" | "Pending" | "Rejected";
+  status: StatusEnumType;
   currentTime: string;
   interval: number;
 }

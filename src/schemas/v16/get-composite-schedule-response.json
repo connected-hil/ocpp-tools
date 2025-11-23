@@ -5,9 +5,7 @@
   "type": "object",
   "properties": {
     "status": {
-      "type": "string",
-      "additionalProperties": false,
-      "enum": ["Accepted", "Rejected"]
+      "$ref": "#/definitions/StatusEnumType"
     },
     "connectorId": {
       "type": "integer"
@@ -29,7 +27,10 @@
         "chargingRateUnit": {
           "type": "string",
           "additionalProperties": false,
-          "enum": ["A", "W"]
+          "enum": [
+            "A",
+            "W"
+          ]
         },
         "chargingSchedulePeriod": {
           "type": "array",
@@ -48,7 +49,10 @@
               }
             },
             "additionalProperties": false,
-            "required": ["startPeriod", "limit"]
+            "required": [
+              "startPeriod",
+              "limit"
+            ]
           }
         },
         "minChargingRate": {
@@ -57,9 +61,24 @@
         }
       },
       "additionalProperties": false,
-      "required": ["chargingRateUnit", "chargingSchedulePeriod"]
+      "required": [
+        "chargingRateUnit",
+        "chargingSchedulePeriod"
+      ]
     }
   },
   "additionalProperties": false,
-  "required": ["status"]
+  "required": [
+    "status"
+  ],
+  "definitions": {
+    "StatusEnumType": {
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "Accepted",
+        "Rejected"
+      ]
+    }
+  }
 }

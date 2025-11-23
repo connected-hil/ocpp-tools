@@ -11,11 +11,22 @@
       "type": "integer"
     },
     "chargingRateUnit": {
-      "type": "string",
-      "additionalProperties": false,
-      "enum": ["A", "W"]
+      "$ref": "#/definitions/ChargingRateUnitEnumType"
     }
   },
   "additionalProperties": false,
-  "required": ["connectorId", "duration"]
+  "required": [
+    "connectorId",
+    "duration"
+  ],
+  "definitions": {
+    "ChargingRateUnitEnumType": {
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "A",
+        "W"
+      ]
+    }
+  }
 }

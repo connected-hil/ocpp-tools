@@ -4,6 +4,8 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type TypeEnumType = "Hard" | "Soft";
+
 export interface ResetRequestV16 {
-  type: "Hard" | "Soft";
+  type: TypeEnumType;
 }

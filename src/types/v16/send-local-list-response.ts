@@ -4,6 +4,8 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type StatusEnumType = "Accepted" | "Failed" | "NotSupported" | "VersionMismatch";
+
 export interface SendLocalListResponseV16 {
-  status: "Accepted" | "Failed" | "NotSupported" | "VersionMismatch";
+  status: StatusEnumType;
 }

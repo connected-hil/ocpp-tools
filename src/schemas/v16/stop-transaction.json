@@ -19,21 +19,7 @@
       "type": "integer"
     },
     "reason": {
-      "type": "string",
-      "additionalProperties": false,
-      "enum": [
-        "EmergencyStop",
-        "EVDisconnected",
-        "HardReset",
-        "Local",
-        "Other",
-        "PowerLoss",
-        "Reboot",
-        "Remote",
-        "SoftReset",
-        "UnlockCommand",
-        "DeAuthorized"
-      ]
+      "$ref": "#/definitions/ReasonEnumType"
     },
     "transactionData": {
       "type": "array",
@@ -69,7 +55,10 @@
                 "format": {
                   "type": "string",
                   "additionalProperties": false,
-                  "enum": ["Raw", "SignedData"]
+                  "enum": [
+                    "Raw",
+                    "SignedData"
+                  ]
                 },
                 "measurand": {
                   "type": "string",
@@ -118,7 +107,13 @@
                 "location": {
                   "type": "string",
                   "additionalProperties": false,
-                  "enum": ["Cable", "EV", "Inlet", "Outlet", "Body"]
+                  "enum": [
+                    "Cable",
+                    "EV",
+                    "Inlet",
+                    "Outlet",
+                    "Body"
+                  ]
                 },
                 "unit": {
                   "type": "string",
@@ -144,15 +139,43 @@
                 }
               },
               "additionalProperties": false,
-              "required": ["value"]
+              "required": [
+                "value"
+              ]
             }
           }
         },
         "additionalProperties": false,
-        "required": ["timestamp", "sampledValue"]
+        "required": [
+          "timestamp",
+          "sampledValue"
+        ]
       }
     }
   },
   "additionalProperties": false,
-  "required": ["transactionId", "timestamp", "meterStop"]
+  "required": [
+    "transactionId",
+    "timestamp",
+    "meterStop"
+  ],
+  "definitions": {
+    "ReasonEnumType": {
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "EmergencyStop",
+        "EVDisconnected",
+        "HardReset",
+        "Local",
+        "Other",
+        "PowerLoss",
+        "Reboot",
+        "Remote",
+        "SoftReset",
+        "UnlockCommand",
+        "DeAuthorized"
+      ]
+    }
+  }
 }

@@ -4,6 +4,8 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type StatusEnumType = "Accepted" | "Rejected";
+
 export interface CancelReservationResponseV16 {
-  status: "Accepted" | "Rejected";
+  status: StatusEnumType;
 }

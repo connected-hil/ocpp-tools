@@ -5,14 +5,26 @@
   "type": "object",
   "properties": {
     "status": {
-      "type": "string",
-      "additionalProperties": false,
-      "enum": ["Accepted", "Rejected", "UnknownMessageId", "UnknownVendorId"]
+      "$ref": "#/definitions/StatusEnumType"
     },
     "data": {
       "type": "string"
     }
   },
   "additionalProperties": false,
-  "required": ["status"]
+  "required": [
+    "status"
+  ],
+  "definitions": {
+    "StatusEnumType": {
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "Accepted",
+        "Rejected",
+        "UnknownMessageId",
+        "UnknownVendorId"
+      ]
+    }
+  }
 }

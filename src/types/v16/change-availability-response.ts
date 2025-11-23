@@ -4,6 +4,8 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type StatusEnumType = "Accepted" | "Rejected" | "Scheduled";
+
 export interface ChangeAvailabilityResponseV16 {
-  status: "Accepted" | "Rejected" | "Scheduled";
+  status: StatusEnumType;
 }

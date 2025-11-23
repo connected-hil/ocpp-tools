@@ -4,6 +4,8 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type StatusEnumType = "Accepted" | "Rejected" | "RebootRequired" | "NotSupported";
+
 export interface ChangeConfigurationResponseV16 {
-  status: "Accepted" | "Rejected" | "RebootRequired" | "NotSupported";
+  status: StatusEnumType;
 }

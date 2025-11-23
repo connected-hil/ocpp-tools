@@ -4,6 +4,8 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type UpdateTypeEnumType = "Differential" | "Full";
+
 export interface SendLocalListRequestV16 {
   listVersion: number;
   localAuthorizationList?: {
@@ -14,5 +16,5 @@ export interface SendLocalListRequestV16 {
       status: "Accepted" | "Blocked" | "Expired" | "Invalid" | "ConcurrentTx";
     };
   }[];
-  updateType: "Differential" | "Full";
+  updateType: UpdateTypeEnumType;
 }

@@ -5,6 +5,18 @@
   "type": "object",
   "properties": {
     "requestedMessage": {
+      "$ref": "#/definitions/RequestedMessageEnumType"
+    },
+    "connectorId": {
+      "type": "integer"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "requestedMessage"
+  ],
+  "definitions": {
+    "RequestedMessageEnumType": {
       "type": "string",
       "additionalProperties": false,
       "enum": [
@@ -15,11 +27,6 @@
         "MeterValues",
         "StatusNotification"
       ]
-    },
-    "connectorId": {
-      "type": "integer"
     }
-  },
-  "additionalProperties": false,
-  "required": ["requestedMessage"]
+  }
 }

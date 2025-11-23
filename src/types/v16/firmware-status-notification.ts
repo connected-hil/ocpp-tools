@@ -4,6 +4,15 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type StatusEnumType =
+  | "Downloaded"
+  | "DownloadFailed"
+  | "Downloading"
+  | "Idle"
+  | "InstallationFailed"
+  | "Installing"
+  | "Installed";
+
 export interface FirmwareStatusNotificationRequestV16 {
-  status: "Downloaded" | "DownloadFailed" | "Downloading" | "Idle" | "InstallationFailed" | "Installing" | "Installed";
+  status: StatusEnumType;
 }

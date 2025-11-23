@@ -4,23 +4,25 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type ReasonEnumType =
+  | "EmergencyStop"
+  | "EVDisconnected"
+  | "HardReset"
+  | "Local"
+  | "Other"
+  | "PowerLoss"
+  | "Reboot"
+  | "Remote"
+  | "SoftReset"
+  | "UnlockCommand"
+  | "DeAuthorized";
+
 export interface StopTransactionRequestV16 {
   idTag?: string;
   meterStop: number;
   timestamp: string;
   transactionId: number;
-  reason?:
-    | "EmergencyStop"
-    | "EVDisconnected"
-    | "HardReset"
-    | "Local"
-    | "Other"
-    | "PowerLoss"
-    | "Reboot"
-    | "Remote"
-    | "SoftReset"
-    | "UnlockCommand"
-    | "DeAuthorized";
+  reason?: ReasonEnumType;
   transactionData?: {
     timestamp: string;
     sampledValue: {

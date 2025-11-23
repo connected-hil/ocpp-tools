@@ -4,7 +4,9 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type StatusEnumType = "Accepted" | "Rejected" | "UnknownMessageId" | "UnknownVendorId";
+
 export interface DataTransferResponseV16 {
-  status: "Accepted" | "Rejected" | "UnknownMessageId" | "UnknownVendorId";
+  status: StatusEnumType;
   data?: string;
 }

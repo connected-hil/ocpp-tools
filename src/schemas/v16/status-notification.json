@@ -8,6 +8,36 @@
       "type": "integer"
     },
     "errorCode": {
+      "$ref": "#/definitions/ErrorCodeEnumType"
+    },
+    "info": {
+      "type": "string",
+      "maxLength": 50
+    },
+    "status": {
+      "$ref": "#/definitions/StatusEnumType"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "vendorId": {
+      "type": "string",
+      "maxLength": 255
+    },
+    "vendorErrorCode": {
+      "type": "string",
+      "maxLength": 50
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "connectorId",
+    "errorCode",
+    "status"
+  ],
+  "definitions": {
+    "ErrorCodeEnumType": {
       "type": "string",
       "additionalProperties": false,
       "enum": [
@@ -29,11 +59,7 @@
         "WeakSignal"
       ]
     },
-    "info": {
-      "type": "string",
-      "maxLength": 50
-    },
-    "status": {
+    "StatusEnumType": {
       "type": "string",
       "additionalProperties": false,
       "enum": [
@@ -47,20 +73,6 @@
         "Unavailable",
         "Faulted"
       ]
-    },
-    "timestamp": {
-      "type": "string",
-      "format": "date-time"
-    },
-    "vendorId": {
-      "type": "string",
-      "maxLength": 255
-    },
-    "vendorErrorCode": {
-      "type": "string",
-      "maxLength": 50
     }
-  },
-  "additionalProperties": false,
-  "required": ["connectorId", "errorCode", "status"]
+  }
 }

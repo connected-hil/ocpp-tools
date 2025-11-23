@@ -4,6 +4,8 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type StatusEnumType = "Idle" | "Uploaded" | "UploadFailed" | "Uploading";
+
 export interface DiagnosticsStatusNotificationRequestV16 {
-  status: "Idle" | "Uploaded" | "UploadFailed" | "Uploading";
+  status: StatusEnumType;
 }

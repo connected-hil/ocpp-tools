@@ -4,9 +4,11 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type ChargingProfilePurposeEnumType = "ChargePointMaxProfile" | "TxDefaultProfile" | "TxProfile";
+
 export interface ClearChargingProfileRequestV16 {
   id?: number;
   connectorId?: number;
-  chargingProfilePurpose?: "ChargePointMaxProfile" | "TxDefaultProfile" | "TxProfile";
+  chargingProfilePurpose?: ChargingProfilePurposeEnumType;
   stackLevel?: number;
 }

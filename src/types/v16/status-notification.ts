@@ -4,36 +4,39 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type ErrorCodeEnumType =
+  | "ConnectorLockFailure"
+  | "EVCommunicationError"
+  | "GroundFailure"
+  | "HighTemperature"
+  | "InternalError"
+  | "LocalListConflict"
+  | "NoError"
+  | "OtherError"
+  | "OverCurrentFailure"
+  | "PowerMeterFailure"
+  | "PowerSwitchFailure"
+  | "ReaderFailure"
+  | "ResetFailure"
+  | "UnderVoltage"
+  | "OverVoltage"
+  | "WeakSignal";
+export type StatusEnumType =
+  | "Available"
+  | "Preparing"
+  | "Charging"
+  | "SuspendedEVSE"
+  | "SuspendedEV"
+  | "Finishing"
+  | "Reserved"
+  | "Unavailable"
+  | "Faulted";
+
 export interface StatusNotificationRequestV16 {
   connectorId: number;
-  errorCode:
-    | "ConnectorLockFailure"
-    | "EVCommunicationError"
-    | "GroundFailure"
-    | "HighTemperature"
-    | "InternalError"
-    | "LocalListConflict"
-    | "NoError"
-    | "OtherError"
-    | "OverCurrentFailure"
-    | "PowerMeterFailure"
-    | "PowerSwitchFailure"
-    | "ReaderFailure"
-    | "ResetFailure"
-    | "UnderVoltage"
-    | "OverVoltage"
-    | "WeakSignal";
+  errorCode: ErrorCodeEnumType;
   info?: string;
-  status:
-    | "Available"
-    | "Preparing"
-    | "Charging"
-    | "SuspendedEVSE"
-    | "SuspendedEV"
-    | "Finishing"
-    | "Reserved"
-    | "Unavailable"
-    | "Faulted";
+  status: StatusEnumType;
   timestamp?: string;
   vendorId?: string;
   vendorErrorCode?: string;

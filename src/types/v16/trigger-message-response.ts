@@ -4,6 +4,8 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type StatusEnumType = "Accepted" | "Rejected" | "NotImplemented";
+
 export interface TriggerMessageResponseV16 {
-  status: "Accepted" | "Rejected" | "NotImplemented";
+  status: StatusEnumType;
 }

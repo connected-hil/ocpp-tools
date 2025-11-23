@@ -4,6 +4,8 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type StatusEnumType = "Accepted" | "Rejected" | "NotSupported";
+
 export interface SetChargingProfileResponseV16 {
-  status: "Accepted" | "Rejected" | "NotSupported";
+  status: StatusEnumType;
 }

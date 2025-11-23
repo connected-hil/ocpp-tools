@@ -11,13 +11,22 @@
       "type": "integer"
     },
     "chargingProfilePurpose": {
-      "type": "string",
-      "additionalProperties": false,
-      "enum": ["ChargePointMaxProfile", "TxDefaultProfile", "TxProfile"]
+      "$ref": "#/definitions/ChargingProfilePurposeEnumType"
     },
     "stackLevel": {
       "type": "integer"
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "definitions": {
+    "ChargingProfilePurposeEnumType": {
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "ChargePointMaxProfile",
+        "TxDefaultProfile",
+        "TxProfile"
+      ]
+    }
+  }
 }

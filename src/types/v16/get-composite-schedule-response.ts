@@ -4,8 +4,10 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type StatusEnumType = "Accepted" | "Rejected";
+
 export interface GetCompositeScheduleResponseV16 {
-  status: "Accepted" | "Rejected";
+  status: StatusEnumType;
   connectorId?: number;
   scheduleStart?: string;
   chargingSchedule?: {

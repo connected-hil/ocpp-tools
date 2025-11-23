@@ -4,8 +4,10 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type ChargingRateUnitEnumType = "A" | "W";
+
 export interface GetCompositeScheduleRequestV16 {
   connectorId: number;
   duration: number;
-  chargingRateUnit?: "A" | "W";
+  chargingRateUnit?: ChargingRateUnitEnumType;
 }

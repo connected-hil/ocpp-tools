@@ -4,6 +4,8 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type StatusEnumType = "Unlocked" | "UnlockFailed" | "NotSupported";
+
 export interface UnlockConnectorResponseV16 {
-  status: "Unlocked" | "UnlockFailed" | "NotSupported";
+  status: StatusEnumType;
 }

@@ -5,6 +5,15 @@
   "type": "object",
   "properties": {
     "status": {
+      "$ref": "#/definitions/StatusEnumType"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "status"
+  ],
+  "definitions": {
+    "StatusEnumType": {
       "type": "string",
       "additionalProperties": false,
       "enum": [
@@ -17,7 +26,5 @@
         "Installed"
       ]
     }
-  },
-  "additionalProperties": false,
-  "required": ["status"]
+  }
 }

@@ -4,13 +4,15 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type RequestedMessageEnumType =
+  | "BootNotification"
+  | "DiagnosticsStatusNotification"
+  | "FirmwareStatusNotification"
+  | "Heartbeat"
+  | "MeterValues"
+  | "StatusNotification";
+
 export interface TriggerMessageRequestV16 {
-  requestedMessage:
-    | "BootNotification"
-    | "DiagnosticsStatusNotification"
-    | "FirmwareStatusNotification"
-    | "Heartbeat"
-    | "MeterValues"
-    | "StatusNotification";
+  requestedMessage: RequestedMessageEnumType;
   connectorId?: number;
 }

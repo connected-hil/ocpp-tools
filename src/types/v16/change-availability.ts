@@ -4,7 +4,9 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type TypeEnumType = "Inoperative" | "Operative";
+
 export interface ChangeAvailabilityRequestV16 {
   connectorId: number;
-  type: "Inoperative" | "Operative";
+  type: TypeEnumType;
 }

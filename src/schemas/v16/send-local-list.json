@@ -40,19 +40,34 @@
               }
             },
             "additionalProperties": false,
-            "required": ["status"]
+            "required": [
+              "status"
+            ]
           }
         },
         "additionalProperties": false,
-        "required": ["idTag"]
+        "required": [
+          "idTag"
+        ]
       }
     },
     "updateType": {
-      "type": "string",
-      "additionalProperties": false,
-      "enum": ["Differential", "Full"]
+      "$ref": "#/definitions/UpdateTypeEnumType"
     }
   },
   "additionalProperties": false,
-  "required": ["listVersion", "updateType"]
+  "required": [
+    "listVersion",
+    "updateType"
+  ],
+  "definitions": {
+    "UpdateTypeEnumType": {
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "Differential",
+        "Full"
+      ]
+    }
+  }
 }

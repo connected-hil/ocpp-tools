@@ -5,11 +5,23 @@
   "type": "object",
   "properties": {
     "status": {
-      "type": "string",
-      "additionalProperties": false,
-      "enum": ["Idle", "Uploaded", "UploadFailed", "Uploading"]
+      "$ref": "#/definitions/StatusEnumType"
     }
   },
   "additionalProperties": false,
-  "required": ["status"]
+  "required": [
+    "status"
+  ],
+  "definitions": {
+    "StatusEnumType": {
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "Idle",
+        "Uploaded",
+        "UploadFailed",
+        "Uploading"
+      ]
+    }
+  }
 }

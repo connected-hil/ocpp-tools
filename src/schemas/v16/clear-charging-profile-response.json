@@ -5,11 +5,21 @@
   "type": "object",
   "properties": {
     "status": {
-      "type": "string",
-      "additionalProperties": false,
-      "enum": ["Accepted", "Unknown"]
+      "$ref": "#/definitions/StatusEnumType"
     }
   },
   "additionalProperties": false,
-  "required": ["status"]
+  "required": [
+    "status"
+  ],
+  "definitions": {
+    "StatusEnumType": {
+      "type": "string",
+      "additionalProperties": false,
+      "enum": [
+        "Accepted",
+        "Unknown"
+      ]
+    }
+  }
 }
