@@ -6,7 +6,15 @@ import {
   type ActionV201,
   type OCPPErrorCodeV201,
   type OCPPRequestTypeV201,
-  type OCPPResponseTypeV201
+  type OCPPResponseTypeV201,
+  type OCPPRpcMessageV16,
+  type OCPPRpcMessageV201,
+  type RpcCallV16,
+  type RpcCallV201,
+  type RpcCallErrorV16,
+  type RpcCallErrorV201,
+  type RpcCallResultV201,
+  type RpcCallResultV16,
 } from "../types";
 
 export enum OCPPMessageType {
@@ -25,3 +33,35 @@ export type OCPPResponsePayloadType =
   | OCPPResponseTypeV16
   | OCPPResponseTypeV201;
 export type OCPPErrorCodeType = OCPPErrorCodeV16 | OCPPErrorCodeV201;
+export type OCPPRpcMessage = OCPPRpcMessageV16 | OCPPRpcMessageV201;
+export type RpcCall = RpcCallV16 | RpcCallV201;
+export type RpcCallResult = RpcCallResultV16 | RpcCallResultV201;
+export type RpcCallError = RpcCallErrorV16 | RpcCallErrorV201;
+
+export function getMessageType(message: OCPPRpcMessage): OCPPMessageType {
+  return message[0] as OCPPMessageType;
+}
+
+export function isCall(message: OCPPRpcMessage): message is RpcCall {
+  return getMessageType(message) === OCPPMessageType.CALL;
+}
+
+export function isCallResult(message: OCPPRpcMessage): message is RpcCallResult {
+  return getMessageType(message) === OCPPMessageType.CALL_RESULT;
+}
+
+export function isCallError(message: OCPPRpcMessage): message is RpcCallError {
+  return getMessageType(message) === OCPPMessageType.CALL_ERROR;
+}
+
+export function getMessageId(message: OCPPRpcMessage): string {
+  return message[1];
+}
+
+export function getAction(message: RpcCall): string {
+  return message[2];
+}
+
+export function getError(message: RpcCallError): OCPPErrorCodeType {
+  return message[2] as OCPPErrorCodeType;
+}
