@@ -4,12 +4,12 @@ name: Deploy static content to Pages
 on:
   # Runs on pushes targeting the default branch
   release:
-    types: [created]
+    types: [ created ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+    # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
@@ -31,15 +31,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: 18
+          node-version: 24
           registry-url: https://registry.npmjs.org/
+          # add Socket Firewall to the runner environment
+      - uses: socketdev/action@ba6de6cc0565af1f42295590380973573297e31f
+        with:
+          mode: firewall-free
       - uses: pnpm/action-setup@v3
         name: Install pnpm
         with:
-          version: 8
-          run_install: true
+          run_install: false
+
+      - name: Install dependencies
+        run: sfw pnpm install
       - name: Set version
         run: |
           TAG=${{ github.event.release.tag_name }}

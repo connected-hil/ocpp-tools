@@ -14,12 +14,13 @@ import {
   type OCPPRequestTypeV201,
 } from "./../types";
 
-import { v4 as uuidv4 } from "uuid";
 import { OCPPCallResult } from "./ocpp-call-result";
 import { actionValidatorV16 } from "./../validation/v16";
 import { actionValidatorV201 } from "./../validation/v201";
 import { type RpcCallV16 } from "./../types/v16";
 import { type RpcCallV201 } from "./../types/v201";
+
+import { v4 as uuidv4 } from "uuid";
 
 export interface iOCPPCall<
   RequestPayloadType extends OCPPRequestPayloadType,
@@ -50,7 +51,7 @@ export class OCPPCall<
    * @returns OCPPCallResult
    */
   public toCallResponse<T extends OCPPResponsePayloadType>(
-    payload: T
+    payload: T,
   ): OCPPCallResult<T> {
     return new OCPPCallResult<T>({
       messageId: this.messageId,
