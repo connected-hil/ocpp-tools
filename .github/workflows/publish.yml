@@ -36,6 +36,15 @@ jobs:
         with:
           tag: ${{ env.VERSION }}
           commit: false
-      - run: |
-          pnpm build
-          pnpm custom:publish
+      - name: Build
+        run: pnpm build
+      - name: Publish
+        run: |
+          TAG=${{ github.event.release.tag_name }}
+          cp package.json dist
+          cd dist
+          if [[ "$TAG" == *"-pre"* ]]; then
+            npm publish --access public --no-git-checks --tag next
+          else
+            npm publish --access public --no-git-checks
+          fi
