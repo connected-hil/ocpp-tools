@@ -17,7 +17,7 @@
     "check-types": "tsc --noEmit",
     "generate": "pnpm ts-node scripts/compile-schemas-to-types.ts",
     "build": "rimraf dist; tsc --project tsconfig.build.json",
-    "custom:publish": "cp package.json dist && cd dist && npm publish --publish-branch release --no-git-checks",
+    "custom:publish": "cp package.json dist && cd dist && npm publish --no-git-checks",
     "custom:pack": "cp packge.json dist/ && cd dist && pnpm pack --pack-destination ../",
     "test": "jest --no-coverage",
     "test:coverage": "jest"
