@@ -1,0 +1,31 @@
+packages:
+  - .
+  
+minimumReleaseAge: 4280
+
+blockExoticSubdeps: true
+
+# Fail if a package's trust level has decreased (pnpm 10.21+)
+trustPolicy: no-downgrade
+
+# Allow specific packages or versions to bypass the check when needed
+# trustPolicyExclude:
+
+# Ignore the check for packages published more than 30 days ago (pnpm 10.27+)
+# Useful for older packages that pre-date provenance support
+trustPolicyIgnoreAfter: 43200  # minutes (30 days)
+
+# will exit with non-zero if any dependency tries to run a livecycle script that has not been explicitly allowed
+strictDepBuilds: true
+
+allowBuilds:
+  esbuild: true
+  unrs-resolver: true
+
+onlyBuiltDependencies:
+  - esbuild
+  - unrs-resolver
+
+auditConfig:
+  ignoreGhsas:
+    - GHSA-w5hq-g745-h8pq

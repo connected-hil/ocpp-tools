@@ -1,30 +1,36 @@
 name: Merge to main
 on:
   push:
-    branches: [main, release]
+    branches: [ main, release ]
   pull_request:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        node: [20, 22]
+        node: [ 22, 24 ]
 
     name: Node v${{ matrix.node }}
     steps:
+      # add Socket Firewall to the runner environment
+      - uses: socketdev/action@ba6de6cc0565af1f42295590380973573297e31f
+        with:
+          mode: firewall-free
       - uses: actions/checkout@v3
       - name: Run linting rules and tests
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node }}
-      - uses: pnpm/action-setup@v3
+      - uses: pnpm/action-setup@v6
         name: Install pnpm
         with:
-          version: 8
-          run_install: true
+          run_install: false
+
+      - name: Install dependencies
+        run: sfw pnpm install
+
       - run: pnpm check-types
       - run: pnpm run lint
       - run: pnpm run test:coverage
