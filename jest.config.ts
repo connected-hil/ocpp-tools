@@ -144,7 +144,7 @@ const config: Config = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: "jest-environment-node",
+  testEnvironment: "node",
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -172,11 +172,25 @@ const config: Config = {
   // This option allows use of a custom test runner
   // testRunner: "jest-circus/runner",
 
+  // Treat .ts files as ESM so Jest (with --experimental-vm-modules) can handle pure-ESM packages like uuid v14
+  extensionsToTreatAsEsm: [".ts"],
+
   // A map from regular expressions to paths to transformers
-  transform: { "^.+\\.ts?$": "ts-jest" },
+  transform: {
+    "^.+\\.ts?$": [
+      "ts-jest",
+      {
+        useESM: true,
+        tsconfig: {
+          module: "ESNext",
+          moduleResolution: "bundler",
+        },
+      },
+    ],
+  },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  transformIgnorePatterns: ["/node_modules/", "\\.pnp\\.[^\\/]+$"],
+  transformIgnorePatterns: ["node_modules/(?!(uuid|nanoid)/)"],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,
