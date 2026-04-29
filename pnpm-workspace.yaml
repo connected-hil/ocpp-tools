@@ -28,4 +28,4 @@ onlyBuiltDependencies:
 
 auditConfig:
   ignoreGhsas:
-    - GHSA-w5hq-g745-h8pq
+    #- GHSA-w5hq-g745-h8pq
