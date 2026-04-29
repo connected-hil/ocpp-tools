@@ -20,7 +20,7 @@
     "custom:publish": "cp package.json dist && cd dist && npm publish --no-git-checks",
     "custom:pack": "cp packge.json dist/ && cd dist && pnpm pack --pack-destination ../",
     "test": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" jest --no-coverage",
-    "test:coverage": "jest"
+    "test:coverage": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" jest"
   },
   "keywords": [
     "OCPP",
