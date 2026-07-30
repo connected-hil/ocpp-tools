@@ -29,27 +29,27 @@
   "author": "l-arte <lauri.arte@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@eslint/js": "^9.39.4",
-    "@jest/globals": "^30.3.0",
+    "@eslint/js": "^10.0.1",
+    "@jest/globals": "^30.4.1",
     "@types/jest": "^30.0.0",
-    "@types/node": "^24.12.2",
-    "@types/uuid": "^9.0.0",
-    "eslint": "^9.39.4",
-    "globals": "^16.5.0",
-    "jest": "^30.3.0",
+    "@types/node": "^26.1.1",
+    "@types/uuid": "^11.0.0",
+    "eslint": "^10.8.0",
+    "globals": "^17.8.0",
+    "jest": "^30.4.2",
     "jest-sonar-reporter": "^2.0.0",
     "json-schema-to-typescript": "^15.0.4",
     "rimraf": "^6.1.3",
-    "ts-jest": "^29.4.9",
+    "ts-jest": "^29.4.12",
     "ts-node": "^10.9.2",
-    "typedoc": "^0.28.19",
+    "typedoc": "^0.28.20",
     "typescript": "5.9.3",
-    "typescript-eslint": "^8.59.0"
+    "typescript-eslint": "^8.65.0"
   },
   "dependencies": {
     "ajv": "8.17.1",
     "ajv-formats": "3.0.1",
-    "uuid": "14.0.0"
+    "uuid": "14.0.1"
   },
   "directories": {
     "test": "test"
@@ -76,7 +76,16 @@
       "picomatch@<2.3.2": ">=2.3.2",
       "picomatch@>=4.0.0 <4.0.4": ">=4.0.4",
       "lodash@>=4.0.0 <=4.17.23": ">=4.18.0",
-      "lodash@<=4.17.23": ">=4.18.0"
+      "lodash@<=4.17.23": ">=4.18.0",
+      "fast-uri@<=3.1.0": ">=3.1.1",
+      "fast-uri@<=3.1.1": ">=3.1.2",
+      "brace-expansion@>=5.0.0 <5.0.6": ">=5.0.6",
+      "js-yaml@>=4.0.0 <=4.1.1": ">=4.2.0",
+      "brace-expansion@>=3.0.0 <5.0.7": ">=5.0.7",
+      "js-yaml@>=4.0.0 <4.3.0": ">=4.3.0",
+      "fast-uri@>=3.0.0 <=3.1.3": ">=3.1.4",
+      "brace-expansion@<=5.0.7": ">=5.0.8",
+      "fast-uri@>=3.0.0 <3.1.3": ">=3.1.3"
     }
   }
 }
