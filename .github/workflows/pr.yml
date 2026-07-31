@@ -1,16 +1,16 @@
 name: Merge to main
 on:
   push:
-    branches: [ main, release ]
+    branches: [main, release]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [ 22, 24 ]
+        node: [22, 24]
 
     name: Node v${{ matrix.node }}
     steps:
@@ -18,7 +18,7 @@ jobs:
       - uses: socketdev/action@ba6de6cc0565af1f42295590380973573297e31f
         with:
           mode: firewall-free
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
       - name: Run linting rules and tests
         uses: actions/setup-node@v6
         with:
